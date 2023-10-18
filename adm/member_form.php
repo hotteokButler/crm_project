@@ -202,10 +202,13 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         <td>
             <input type="text" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id" <?php echo $required_mb_id ?> class="frm_input <?php echo $required_mb_id_class ?>" size="15"  maxlength="20">
             <?php if ($w=='u'){ ?><a href="./boardgroupmember_form.php?mb_id=<?php echo $mb['mb_id'] ?>" class="btn_frmline">접근가능그룹보기</a><?php } ?>
+            <?php if ($w==''){ ?>
             <div>
                 <button type="button" id="mb_id_check_btn">중복 등록 확인</button>
                 <span>&#40;차트 중복 등록 방지 위해 체크 후 진행&#41;</span>
             </div>
+            <?php } ?>
+
         </td>
         <th scope="row"><label for="mb_password">비밀번호<?php echo $sound_only ?></label></th>
         <td><input type="password" name="mb_password" id="mb_password" <?php echo $required_mb_password ?> class="frm_input <?php echo $required_mb_password ?>" size="15" maxlength="20"></td>
@@ -374,7 +377,10 @@ function fmember_submit(f)
 
     return true;
 }
+
+
 </script>
+<script src="./admin.custom.js"></script>
 <?php
 run_event('admin_member_form_after', $mb, $w);
 
