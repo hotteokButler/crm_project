@@ -16,6 +16,7 @@ $mb_certify_case = isset($_POST['mb_certify_case']) ? preg_replace('/[^0-9a-z_]/
 $mb_certify = isset($_POST['mb_certify']) ? preg_replace('/[^0-9a-z_]/i', '', $_POST['mb_certify']) : '';
 $mb_zip = isset($_POST['mb_zip']) ? preg_replace('/[^0-9a-z_]/i', '', $_POST['mb_zip']) : '';
 
+
 // 휴대폰번호 체크
 $mb_hp = hyphen_hp_number($_POST['mb_hp']);
 if($mb_hp) {
@@ -37,9 +38,9 @@ $mb_zip1 = substr($mb_zip, 0, 3);
 $mb_zip2 = substr($mb_zip, 3);
 
 $mb_email = isset($_POST['mb_email']) ? get_email_address(trim($_POST['mb_email'])) : '';
-$mb_nick = isset($_POST['mb_nick']) ? trim(strip_tags($_POST['mb_nick'])) : '';
+$mb_nick = isset($_POST['mb_nick']) ? trim(strip_tags($_POST['mb_nick'])) : isset($_POST['mb_name']);
 
-if ($msg = valid_mb_nick($mb_nick))     alert($msg, "", true, true);
+if ($msg = valid_mb_nick($mb_nick))  alert($msg, "", true, true);
 
 $posts = array();
 $check_keys = array(
@@ -57,7 +58,16 @@ $check_keys = array(
 'mb_sms',
 'mb_open',
 'mb_profile',
-'mb_level'
+'mb_level',
+'mb_sdate',
+'mb_fdate',
+'mb_1',
+'mb_2',
+'mb_3',
+'mb_4',
+'mb_5',
+'mb_6',
+'mb_7'
 );
 
 for($i=1;$i<=10;$i++){
@@ -102,13 +112,15 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_7 = '{$posts['mb_7']}',
                  mb_8 = '{$posts['mb_8']}',
                  mb_9 = '{$posts['mb_9']}',
-                 mb_10 = '{$posts['mb_10']}' ";
+                 mb_10 = '{$posts['mb_10']}',
+                 mb_sdate = '{$posts['mb_sdate']}',
+                 mb_fdate = '{$posts['mb_fdate']}' ";
 
 if ($w == '')
 {
     $mb = get_member($mb_id);
     if (isset($mb['mb_id']) && $mb['mb_id'])
-        alert('이미 존재하는 차트번호입니다.\\nＩＤ : '.$mb['mb_id'].'\\n이름 : ');
+        alert('이미 존재하는 아이디(차트번호)입니다.\\nＩＤ : '.$mb['mb_id'].'\\n이름 : ');
 
     // 이메일중복체크
     $sql = " select mb_id, mb_name, mb_nick, mb_email from {$g5['member_table']} where mb_email = '{$mb_email}' ";

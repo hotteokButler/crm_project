@@ -83,7 +83,7 @@ $colspan = 16;
     <option value="mb_name"<?php echo get_selected($sfl, "mb_name"); ?>>이름</option>
     <option value="mb_level"<?php echo get_selected($sfl, "mb_level"); ?>>권한</option>
     <option value="mb_email"<?php echo get_selected($sfl, "mb_email"); ?>>E-MAIL</option>
-    <option value="mb_tel"<?php echo get_selected($sfl, "mb_tel"); ?>>전화번호</option>
+    <option value="mb_tel"<?php echo get_selected($sfl, "mb_tel"); ?>>보호자휴대폰</option>
     <option value="mb_hp"<?php echo get_selected($sfl, "mb_hp"); ?>>휴대폰번호</option>
     <option value="mb_point"<?php echo get_selected($sfl, "mb_point"); ?>>포인트</option>
     <option value="mb_datetime"<?php echo get_selected($sfl, "mb_datetime"); ?>>가입일시</option>
@@ -138,7 +138,7 @@ $colspan = 16;
         <th scope="col" id="mb_list_adultc"><?php echo subject_sort_link('mb_adult', '', 'desc') ?>성인인증</a></th>
         <th scope="col" id="mb_list_auth"><?php echo subject_sort_link('mb_intercept_date', '', 'desc') ?>접근차단</a></th>
         <th scope="col" id="mb_list_deny"><?php echo subject_sort_link('mb_level', '', 'desc') ?>권한</a></th>
-        <th scope="col" id="mb_list_tel">전화번호</th>
+        <th scope="col" id="mb_list_tel">보호자휴대폰</th>
         <th scope="col" id="mb_list_join"><?php echo subject_sort_link('mb_datetime', '', 'desc') ?>가입일</a></th>
         <th scope="col" id="mb_list_point"><?php echo subject_sort_link('mb_point', '', 'desc') ?> 포인트</a></th>
     </tr>

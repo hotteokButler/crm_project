@@ -37,6 +37,8 @@ $mb = array(
 'mb_8' => null,
 'mb_9' => null,
 'mb_10' => null,
+'mb_sdate' => null,
+'mb_fdate' => null,
 );
 
 $sound_only = '';
@@ -90,7 +92,10 @@ else if ($w == 'u')
     $mb['mb_8'] = get_text($mb['mb_8']);
     $mb['mb_9'] = get_text($mb['mb_9']);
     $mb['mb_10'] = get_text($mb['mb_10']);
+    $mb['mb_sdate'] = get_text($mb['mb_sdate']);
+    $mb['mb_fdate'] = get_text($mb['mb_fdate']);
 }
+
 else
     alert('제대로 된 값이 넘어오지 않았습니다.');
 
@@ -186,6 +191,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 <input type="hidden" name="sod" value="<?php echo $sod ?>">
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="token" value="">
+<input type="hidden" name="mb_nick" value="<?php echo $mb['mb_nick'] ?>">
 
 <div class="tbl_frm01 tbl_wrap">
     <table>
@@ -202,26 +208,25 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         <td>
             <input type="text" name="mb_id" value="<?php echo $mb['mb_id'] ?>" id="mb_id" <?php echo $required_mb_id ?> class="frm_input <?php echo $required_mb_id_class ?>" size="15"  maxlength="20">
             <?php if ($w=='u'){ ?><a href="./boardgroupmember_form.php?mb_id=<?php echo $mb['mb_id'] ?>" class="btn_frmline">접근가능그룹보기</a><?php } ?>
-            <?php if ($w==''){ ?>
-            <div>
-                <button type="button" id="mb_id_check_btn">중복 등록 확인</button>
-                <span>&#40;차트 중복 등록 방지 위해 체크 후 진행&#41;</span>
-            </div>
-            <?php } ?>
-
         </td>
         <th scope="row"><label for="mb_password">비밀번호<?php echo $sound_only ?></label></th>
         <td><input type="password" name="mb_password" id="mb_password" <?php echo $required_mb_password ?> class="frm_input <?php echo $required_mb_password ?>" size="15" maxlength="20"></td>
     </tr>
     <tr>
         <th scope="row"><label for="mb_name">이름(실명)<strong class="sound_only">필수</strong></label></th>
-        <td><input type="text" name="mb_name" value="<?php echo $mb['mb_name'] ?>" id="mb_name" required class="required frm_input" size="15"  maxlength="20"></td>
-        <th scope="row"><label for="mb_nick">생년월일<strong class="sound_only">필수</strong></label></th>
-        <td><input type="text" name="mb_nick" value="<?php echo $mb['mb_nick'] ?>" id="mb_nick" required class="required frm_input" size="15"  maxlength="20"></td>
+        <td><input type="text" name="mb_name" value="<?php echo $mb['mb_name'] ?>" id="mb_name" required class="required frm_input" size="15"  maxlength="20" ></td>
+        <th scope="row"><label for="mb_1">생년월일<strong class="sound_only">필수</strong></label></th>
+        <td>
+            <input type="date" name="mb_1" value="<?php echo $mb['mb_1'] ?>" id="mb_1" required class="required frm_input" size="15"  maxlength="20">
+            <span class="example_txt">예&#41;2003-01-01</span>
+        </td>
     </tr>
     <tr>
         <th scope="row"><label for="mb_level">회원 권한</label></th>
-        <td><?php echo get_member_level_select('mb_level', 1, $member['mb_level'], $mb['mb_level']) ?></td>
+        <td>
+            <?php echo help('교정 중인 경우 권한 6, 교정 마무리 후 권한 5로 변경') ?>
+            <?php echo get_member_level_select('mb_level', 1, $member['mb_level'], $mb['mb_level']) ?>
+        </td>
         <th scope="row">포인트</th>
         <td><a href="./point_list.php?sfl=mb_id&amp;stx=<?php echo $mb['mb_id'] ?>" target="_blank"><?php echo number_format($mb['mb_point']) ?></a> 점</td>
     </tr>
@@ -229,13 +234,28 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         <th scope="row"><label for="mb_email">E-mail<strong class="sound_only">필수</strong></label></th>
         <td><input type="text" name="mb_email" value="<?php echo $mb['mb_email'] ?>" id="mb_email" maxlength="100" required class="required frm_input email" size="30"></td>
         <th scope="row"><label for="mb_homepage">성별</label></th>
-        <td><input type="radio" name="mb_homepage" value="<?php echo $mb['mb_homepage'] ?>" id="mb_homepage" class="frm_input" maxlength="255" size="15"></td>
+        <td>
+            <div>
+                <input type="radio" name="mb_homepage" value="man" id="man" class="frm_input" checked>
+                <label for="man">남자</label>
+            </div>
+            <div>
+                <input type="radio" name="mb_homepage" value="woman" id="woman" class="frm_input">
+                <label for="woman">여자</label>
+            </div>
+        </td>
     </tr>
     <tr>
         <th scope="row"><label for="mb_hp">휴대폰번호</label></th>
-        <td><input type="text" name="mb_hp" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" class="frm_input" size="15" maxlength="20"></td>
+        <td>
+            <input class="required frm_input" type="text" name="mb_hp" oninput="oninputPhone(this)" value="<?php echo $mb['mb_hp'] ?>" id="mb_hp" size="15" maxlength="20">
+            <span>예&#41;010-1234-1234</span>
+        </td>
         <th scope="row"><label for="mb_tel">보호자 휴대폰번호</label></th>
-        <td><input type="text" name="mb_tel" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" class="frm_input" size="15" maxlength="20"></td>
+        <td>
+            <input class="required frm_input" type="text" name="mb_tel" oninput="oninputPhone(this)" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" size="15" maxlength="20">
+            <span>예&#41;010-1234-1234</span>
+        </td>
     </tr>
     <tr>
         <th scope="row">본인확인방법</th>
@@ -320,19 +340,25 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         </td>
     </tr>
     <tr>
-        <th scope="row"><label for="mb_memo">메모</label></th>
-        <td colspan="3"><textarea name="mb_memo" id="mb_memo"><?php echo $mb['mb_memo'] ?></textarea></td>
+        <th scope="row"><label for="mb_sdate">치료시작일</label></th>
+        <td colspan="3">
+            <input class="required frm_input" type="date" name="mb_sdate" id="mb_sdate" value="<?=$mb['mb_sdate'];?>" pattern="\d{4}-\d{2}-\d{2}">
+            <span class="example_txt">ex&#41;연도-월-일</span>
+        </td>
     </tr>
-
-    <?php if ($w == 'u') { ?>
     <tr>
-        <th scope="row">치료시작일</th>
-        <td><?php echo $mb['mb_sdate'] ?></td>
-        <th scope="row">치료종료예상일</th>
-        <td><?php echo $mb['mb_fdate'] ?></td>
+        <th scope="row"><label for="mb_fdate">치료종료예상일</label></th>
+        <td colspan="3">
+            <input class="required frm_input" type="date" name="mb_fdate" id="mb_fdate" value="<?=$mb['mb_fdate'];?>" pattern="\d{4}-\d{2}-\d{2}">
+            <span class="example_txt">ex&#41;연도-월-일</span>
+        </td>
     </tr>
-    <?php } ?>
 
+    <tr>
+        <th scope="row"><label for="mb_memo">추가 기입 사항</label></th>
+        <td colspan="3"><textarea name="mb_memo" id="mb_memo"><?php echo $mb['mb_memo']; ?></textarea></td>
+    </tr>
+    
     <?php if ($config['cf_use_recommend']) { // 추천인 사용 -> 소개 환자 시 사용! 차트번호 기입으로 체크 ?>
     <tr>
         <th scope="row">추천인</th>
@@ -340,17 +366,92 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
     </tr>
     <?php } ?>
 
-    <?php
+    <?//여분필드추가 시작-> ?>
+    <tr id="ortho_case">
+        <th scope="row"><label for="mb_2">CASE</label></th>
+        <td colspan="3">
+            <?php
+            //case 추가 시 list에만 추가
+            $ortho_case_li = ['돌출입','덧니','치아사이공간','개방교합','과개교합','반대교합','비수술주걱턱','비수술무턱','수술교정','재교정','소아교정'];
+            $ortho_case_checked="";
+            for ($i=1; $i<=count($ortho_case_li); $i++) { 
+                $ortho_case_checked = $ortho_case_li[$i-1] == $mb['mb_2'] ? 'checked' : '';
+                ?>
+                <input type="radio" name="mb_2" value="<?=$ortho_case_li[$i-1];?>" id="<?='case'.$i;?>" <?=$ortho_case_checked?>>
+                <label for="<?='case'.$i;?>"><?=$ortho_case_li[$i-1];?>&nbsp;&nbsp;</label>
+            <?php } ?>
+        </td>
+    </tr>
+                
+    <tr id="treat_case">
+        <th scope="row">치료형태</th>
+        <td colspan="3">
+            <!-- 01 -->
+            <ul class="treat_case01">
+                <li class="treat_idx">발치 진행 유무</li>
+                <li>
+                    <input type="radio" name="mb_3" value="발치" id="treat_c0101" <?=$mb['mb_3'] == "발치" ? 'checked' : ''?>>
+                    <label for="treat_c0101">발치&nbsp;&nbsp;</label>
+                    <input type="radio" name="mb_3" value="비발치" id="treat_c0102" <?=$mb['mb_3'] == "비발치" ? 'checked' : ''?>>
+                    <label for="treat_c0102">비발치&nbsp;&nbsp;</label>
+                </li>
+            </ul>
+            <!-- 02 -->
+            <ul class="treat_case02">
+                <li class="treat_idx">교정 범위</li>
+                <li>
+                    <input type="radio" name="mb_4" value="전체" id="treat_c0201" <?=$mb['mb_4'] == "전체" ? 'checked' : ''?>>
+                    <label for="treat_c0201">전체&nbsp;&nbsp;</label>
+                    <input type="radio" name="mb_4" value="부분" id="treat_c0202" <?=$mb['mb_4'] == "부분" ? 'checked' : ''?>>
+                    <label for="treat_c0202">부분&nbsp;&nbsp;</label>
+                </li>
+            </ul>
+            <!-- 03 -->
+            <ul class="treat_case03">
+                <li class="treat_idx">교정 부위</li>
+                <li>
+                    <input type="radio" name="mb_5" value="순측" id="treat_c0301" <?=$mb['mb_5'] == "순측" ? 'checked' : ''?>>
+                    <label for="treat_c0301">순측&nbsp;&nbsp;</label>
+                    <input type="radio" name="mb_5" value="설측" id="treat_c0302" <?=$mb['mb_5'] == "설측" ? 'checked' : ''?>>
+                    <label for="treat_c0302">설측&nbsp;&nbsp;</label>
+                    <input type="radio" name="mb_5" value="콤비" id="treat_c0303" <?=$mb['mb_5'] == "콤비" ? 'checked' : ''?>>
+                    <label for="treat_c0303">콤비&nbsp;&nbsp;</label>
+                </li>
+            </ul>
+            <!-- 04 -->
+            <ul class="treat_case04">
+                <li class="treat_idx">교정 악궁</li>
+                <li>
+                    <input type="radio" name="mb_6" value="양악" id="treat_c0401" <?=$mb['mb_6'] == "양악" ? 'checked' : ''?>>
+                    <label for="treat_c0401">양악&nbsp;&nbsp;</label>
+                    <input type="radio" name="mb_6" value="상악" id="treat_c0402" <?=$mb['mb_6'] == "상악" ? 'checked' : ''?>>
+                    <label for="treat_c0402">상악&nbsp;&nbsp;</label>
+                    <input type="radio" name="mb_6" value="하악" id="treat_c0403" <?=$mb['mb_6'] == "하악" ? 'checked' : ''?>>
+                    <label for="treat_c0403">하악&nbsp;&nbsp;</label>
+                </li>
+            </ul>
+        </td>
+    </tr>
 
+    <tr id="ortho_inc">
+        <th scope="row"><label for="mb_7">치료장치</label></th>
+        <td colspan="3">
+            <?php
+            //장치 추가 시 list에만 추가
+            $ortho_inc_li = ['클리피엠','클리피씨','데이몬클리어','크라리티울트라','인비절라인','클리피엘','MTA'];
+            $ortho_inc_checked="";
+            for ($i=1; $i<=count($ortho_inc_li); $i++) { 
+                $ortho_inc_checked = $ortho_inc_li[$i-1] == $mb['mb_7'] ? 'checked' : '';
+                ?>
+                <input type="radio" name="mb_7" value="<?=$ortho_inc_li[$i-1];?>" id="<?='ortho_inc'.$i;?>" <?=$ortho_inc_checked?>>
+                <label for="<?='ortho_inc'.$i;?>"><?=$ortho_inc_li[$i-1];?>&nbsp;&nbsp;</label>
+            <?php } ?>
+        </td>
+    </tr>
+
+    <?php
     run_event('admin_member_form_add', $mb, $w, 'table');
     ?>
-
-    <?php for ($i=1; $i<=10; $i++) { ?>
-    <tr>
-        <th scope="row"><label for="mb_<?php echo $i ?>">여분 필드 <?php echo $i ?></label></th>
-        <td colspan="3"><input type="text" name="mb_<?php echo $i ?>" value="<?php echo $mb['mb_'.$i] ?>" id="mb_<?php echo $i ?>" class="frm_input" size="30" maxlength="255"></td>
-    </tr>
-    <?php } ?>
 
     </tbody>
     </table>
