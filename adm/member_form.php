@@ -234,14 +234,14 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
     <tr>
         <th scope="row"><label for="mb_email">E-mail<strong class="sound_only">필수</strong></label></th>
         <td><input type="text" name="mb_email" value="<?php echo $mb['mb_email'] ?>" id="mb_email" maxlength="100" required class="required frm_input email" size="30"></td>
-        <th scope="row"><label for="mb_sex">성별</label></th>
+        <th scope="row">성별</th>
         <td>
             <div>
-                <input type="radio" name="mb_sex" value="0" id="man" class="frm_input"  <?=$mb['mb_sex'] =='0'? 'checked' : '' ?> >
+                <input type="radio" name="mb_sex" value="0" id="mb_man" class="frm_input"  <?=$mb['mb_sex'] =='0'? 'checked' : '' ?> >
                 <label for="man">남자</label>
             </div>
             <div>
-                <input type="radio" name="mb_sex" value="1" id="woman" class="frm_input" <?=$mb['mb_sex'] =='1'? 'checked' : '' ?>>
+                <input type="radio" name="mb_sex" value="1" id="mb_woman" class="frm_input" <?=$mb['mb_sex'] =='1'? 'checked' : '' ?>>
                 <label for="woman">여자</label>
             </div>
         </td>
@@ -369,7 +369,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
     <?//여분필드추가 시작-> ?>
     <tr id="ortho_case">
-        <th scope="row"><label for="mb_2">CASE</label></th>
+        <th scope="row">CASE</th>
         <td colspan="3">
             <?php
             //case 추가 시 list에만 추가
@@ -435,7 +435,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
     </tr>
 
     <tr id="ortho_inc">
-        <th scope="row"><label for="mb_7">치료장치</label></th>
+        <th scope="row">치료장치</th>
         <td colspan="3">
             <?php
             //장치 추가 시 list에만 추가
