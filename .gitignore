@@ -1,4 +1,13 @@
 /all
-/skin/pt_rec/img
-/skin/pt_rec/os/
-/skin/*
+/skin/crm/img/
+/skin/crm/os/
+/skin/crm/ajax_sms.php
+/skin/crm/latest.skin.php
+/skin/crm/sms_send.php
+/skin/crm/style.css
+/skin/crm/view_comment.skin.php
+/skin/crm/view.skin.php
+/skin/crm/write.update.skin.php
+/skin/crm/write_comment_update.tail.skin.php
+/skin/crm/write_update.tail.skin.php
+/skin/crm/write.skin.php
