@@ -192,7 +192,6 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="token" value="">
 <input type="hidden" name="mb_homepage" value="notuse">
-<input type="hidden" name="mb_nick" value="<?php echo $mb['mb_nick'] ?>">
 
 <div class="tbl_frm01 tbl_wrap">
     <table>

@@ -38,9 +38,9 @@ $mb_zip1 = substr($mb_zip, 0, 3);
 $mb_zip2 = substr($mb_zip, 3);
 
 $mb_email = isset($_POST['mb_email']) ? get_email_address(trim($_POST['mb_email'])) : '';
-$mb_nick = isset($_POST['mb_nick']) ? trim(strip_tags($_POST['mb_nick'])) : isset($_POST['mb_name']);
+$mb_nick = isset($_POST['mb_name']) ? trim(strip_tags($_POST['mb_name'])) : '';
 
-if ($msg = valid_mb_nick($mb_nick))  alert($msg, "", true, true);
+// if ($msg = valid_mb_nick($mb_nick))  alert($msg, "", true, true);
 
 $posts = array();
 $check_keys = array(
@@ -131,6 +131,7 @@ if ($w == '')
         alert('이미 존재하는 이메일입니다.\\nＩＤ : '.$row['mb_id'].'\\n이름 : '.$row['mb_name'].'\\n닉네임 : '.$row['mb_nick'].'\\n메일 : '.$row['mb_email']);
 
     sql_query(" insert into {$g5['member_table']} set mb_id = '{$mb_id}', mb_password = '".get_encrypt_string($mb_password)."', mb_datetime = '".G5_TIME_YMDHIS."', mb_ip = '{$_SERVER['REMOTE_ADDR']}', mb_email_certify = '".G5_TIME_YMDHIS."', {$sql_common} ");
+    alert('정상적으로 등록 되었습니다.');
 }
 else if ($w == 'u')
 {
@@ -170,6 +171,7 @@ else if ($w == 'u')
                      {$sql_certify}
                 where mb_id = '{$mb_id}' ";
     sql_query($sql);
+    alert('정상적으로 수정 되었습니다.');
 }
 else
     alert('제대로 된 값이 넘어오지 않았습니다.');
