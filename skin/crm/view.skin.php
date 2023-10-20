@@ -165,7 +165,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
     <section>
 	  <? if($member['mb_level'] == "10") {?>
-		<div style="width:55%; margin: 0 auto; float:left;"><a href="/ortho_sms.php?bo_table=<?=$bo_table?>&wr_id=<?=$view['wr_id']?>&wr_1=<?=$view[wr_1]?>"><input type="button" value="문자알림 보내기" style="width:100px; height:35px; float:right; margin-right:5px; background-color:#ff3158; border: 1px solid #dd2145; color:#fff; cursor:pointer;" onclick="location.href=''; document.getElementById('popchk').style.display='none'"></a></div>
+		<div style="width:55%; margin: 0 auto; float:left;"><a href="/ortho_sms.php?bo_table=<?=$bo_table?>&wr_id=<?=$view['wr_id']?>&wr_1=<?=$view['wr_1']?>"><input type="button" value="문자알림 보내기" style="width:100px; height:35px; float:right; margin-right:5px; background-color:#ff3158; border: 1px solid #dd2145; color:#fff; cursor:pointer;" onclick="location.href=''; document.getElementById('popchk').style.display='none'"></a></div>
 		<br><br><br>
 		<div style="width:100%; text-align:center;">발송일시 : <?=$view['wr_10']?> / 발송인: <?=$view['wr_9']?> / 단축 url : <?=$view['wr_8']?></div>
 	 <? } ?>
