@@ -238,11 +238,11 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         <td>
             <div>
                 <input type="radio" name="mb_sex" value="0" id="mb_man" class="frm_input"  <?=$mb['mb_sex'] =='0'? 'checked' : '' ?> >
-                <label for="man">남자</label>
+                <label for="mb_man">남자</label>
             </div>
             <div>
                 <input type="radio" name="mb_sex" value="1" id="mb_woman" class="frm_input" <?=$mb['mb_sex'] =='1'? 'checked' : '' ?>>
-                <label for="woman">여자</label>
+                <label for="mb_woman">여자</label>
             </div>
         </td>
     </tr>
