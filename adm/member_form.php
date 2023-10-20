@@ -191,6 +191,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 <input type="hidden" name="sod" value="<?php echo $sod ?>">
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="token" value="">
+<input type="hidden" name="mb_homepage" value="notuse">
 <input type="hidden" name="mb_nick" value="<?php echo $mb['mb_nick'] ?>">
 
 <div class="tbl_frm01 tbl_wrap">
@@ -233,14 +234,14 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
     <tr>
         <th scope="row"><label for="mb_email">E-mail<strong class="sound_only">필수</strong></label></th>
         <td><input type="text" name="mb_email" value="<?php echo $mb['mb_email'] ?>" id="mb_email" maxlength="100" required class="required frm_input email" size="30"></td>
-        <th scope="row"><label for="mb_homepage">성별</label></th>
+        <th scope="row"><label for="mb_sex">성별</label></th>
         <td>
             <div>
-                <input type="radio" name="mb_homepage" value="man" id="man" class="frm_input" checked>
+                <input type="radio" name="mb_sex" value="0" id="man" class="frm_input"  <?=$mb['mb_sex'] =='0'? 'checked' : '' ?> >
                 <label for="man">남자</label>
             </div>
             <div>
-                <input type="radio" name="mb_homepage" value="woman" id="woman" class="frm_input">
+                <input type="radio" name="mb_sex" value="1" id="woman" class="frm_input" <?=$mb['mb_sex'] =='1'? 'checked' : '' ?>>
                 <label for="woman">여자</label>
             </div>
         </td>
