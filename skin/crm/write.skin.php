@@ -6,7 +6,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
 
 
-// 22.01.18  올소스토리  6등급 회원 조회 
+// 6등급 회원 조회 
 $wr_set= array();
 $sql1="select mb_id, mb_name from {$g5['member_table']} where mb_level=6 order by mb_id desc";
 $res1=sql_query( $sql1);
@@ -282,16 +282,6 @@ $attrs=NULL ) {
         </div>
     </div>
     <?}?>
-    <!--
-    <select name="wr_1" id="wr_1">
-        <?
-        $sql3="select mb_id, mb_name from {$g5['member_table']} where mb_level=6 order by mb_id desc";
-        $res3=sql_query( $sql3);
-        while($row3 = sql_fetch_array($res3)){?>
-        <option value="<?=$row3['mb_id']?>" <? if($stx==$row3['mb_id']){?>selected<?}?> disabled><?=$row3['mb_id']?>(<?=$row3['mb_name']?>)</option>
-
-        <? }?>
-    </select> -->
 
     <input type="hidden" name="wr_1" value="<?=$stx?>" style="width:100px; ">  
     <input type="hidden" name="wr_2" value="<?=$row['mb_name']?>" style="width:100px; ">

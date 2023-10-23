@@ -1,0 +1,67 @@
+@import url("https://webfontworld.github.io/gmarket/GmarketSans.css");
+html {
+  overflow: hidden;
+}
+
+body {
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden;
+  color: #333;
+  text-align: center;
+}
+
+#ready_wrapper {
+  background: url(../img/ready/main_bg.jpg) no-repeat center/cover;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: "GmarketSans" !important;
+  letter-spacing: 0 !important;
+}
+#ready_wrapper div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#ready_wrapper p {
+  display: inline-block;
+  margin: 2rem auto;
+}
+#ready_wrapper p img {
+  width: 100%;
+}
+#ready_wrapper h1 {
+  font-family: "GmarketSans";
+  font-size: 30px;
+  word-break: keep-all;
+  margin: 1rem auto;
+}
+#ready_wrapper h1 span {
+  color: #5dc2d0;
+}
+#ready_wrapper .inner-txt {
+  font-family: "GmarketSans";
+  font-size: 16px;
+}
+#ready_wrapper dl {
+  margin-top: 2em;
+  font-size: 16px;
+  font-family: "GmarketSans";
+  text-align: center;
+}
+#ready_wrapper dt {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+#ready_wrapper dd {
+  font-size: 15px;
+}
+#ready_wrapper dd a {
+  font-size: 15px;
+}

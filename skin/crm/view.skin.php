@@ -41,8 +41,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 	        <?php ob_start(); ?>
 
 	        <ul class="btn_bo_user bo_v_com">
-				<!-- <li><a href="/bbs/board.php?bo_table=ortho_story&page=&sca=&sfl=wr_1&stx=<?=$view['wr_1']?>" class="btn_b01 btn" title="목록"><i class="fa fa-list" aria-hidden="true"></i><span class="sound_only">목록</span></a></li> -->
-	            <!-- <?php if ($reply_href) { ?><li><a href="<?php echo $reply_href ?>" class="btn_b01 btn" title="답변"><i class="fa fa-reply" aria-hidden="true"></i><span class="sound_only">답변</span></a></li><?php } ?> -->
 	            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>&stx=<?=$view['wr_1']?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
 	        	<?php if($update_href || $delete_href || $copy_href || $move_href || $search_href) { ?>
 	        	<li>
@@ -98,8 +96,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
     <section>
 		<div style="font-size:15px; color:#ff5f59; padding:10px; line-height:32px;">
-				▶ <?=$row['mb_name'];?>님의 다음 진료 예약일은  <?=$view['wr_6'];?>(<?=$view['wr_7'];?>) 입니다.  <br>
-				▶ 진료일, 시간 변경은 전화로만 가능합니다. 
+            <?
+            if ($view['wr_6'] && $view['wr_7']) { 
+                echo '▶'.$row['mb_name'].'님의 다음 진료 예약일은 '.$view['wr_6'].'('.$view['wr_7'].') 입니다.';
+            } else {
+                echo   '▶'.$row['mb_name'].'님의 다음 진료 예약이 없습니다. 예약 진행 시 전화 문의 부탁드립니다.';
+            }   ?>
+            <br>
+            ▶ 진료일, 시간 변경은 전화로만 가능합니다. 
 		</div>
     </section>
 
