@@ -54,14 +54,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
       
     <? // 검색된 회원 정보 가져오기
     $sql1="select * from {$g5['member_table']} where mb_level=6 and mb_id = '$stx' order by mb_name ";
-    $res1=sql_query( $sql1);
-    $row= sql_fetch_array( $res1);
+    $res1=sql_query($sql1);
+    $row= sql_fetch_array($res1);
     ?>
 
     <? //D-day 계산 (오늘날짜 기준)
 
     $d_start = date("Y-m-d", time());;
-    $d_day_count = floor((strtotime(date($row['mb_fdate'])) -  strtotime($d_start)) / 86400 );
+    $d_day_count = floor((strtotime(date($row['mb_fdate'])) - strtotime($d_start)) / 86400 );
     if ($d_day_count < 0) {
       $d_day_count = '<span class="event_btn event_end dm fw700">치료종료</span>';
     } else {
@@ -77,7 +77,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     ?>
 
     <br><br>
-    <?if(!$is_admin && $member['mb_level'] <=8){?>
+    <?if(!$is_admin && $member['mb_level'] <=8 && is_numeric($stx)){?>
     <div class="ortho_info_wrap">
         <div class="ortho_pf">
             <p class="g8">
@@ -129,7 +129,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
    <?}?>
 
    <br><br>
-   <?if($is_admin || $member['mb_level'] >=9 ){?>
+   <?if(($is_admin || $member['mb_level'] >=9 ) && is_numeric($stx)){?>
     <div class="ortho_info_wrap">
         <div class="ortho_pf">
             <p class="g8">
@@ -195,7 +195,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             <p><?= $row['mb_7']?></p>
         </div>
     </div>
-    <?}?>
+<?}?>
 
 <?if($sfl=='wr_2'){?>
 <br><br>
