@@ -129,72 +129,88 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
    <?}?>
 
    <br><br>
-   <?if(($is_admin || $member['mb_level'] >=9 ) && is_numeric($stx)){?>
-    <div class="ortho_info_wrap">
-        <div class="ortho_pf">
-            <p class="g8">
-                <?    
-                    $mb_prof_dir = substr($row['mb_id'],0,2);
-                    $mb_prof_file = G5_DATA_PATH.'/member/'.$mb_prof_dir.'/'.get_mb_icon_name($row['mb_id']).'.gif';
-                    
-                    if (file_exists($mb_prof_file)) 
-                        echo get_member_profile_img($row['mb_id']);
-                ?>
-            <span> <?= $row['mb_name']?></span>
 
-            </p>
+   <?if(($is_admin || $member['mb_level'] >=9 )){?>
+
+    <?if(is_numeric($stx)){?>
+        <div class="ortho_info_wrap">
+            <div class="ortho_pf">
+                <p class="g8">
+                    <?    
+                        $mb_prof_dir = substr($row['mb_id'],0,2);
+                        $mb_prof_file = G5_DATA_PATH.'/member/'.$mb_prof_dir.'/'.get_mb_icon_name($row['mb_id']).'.gif';
+                        
+                        if (file_exists($mb_prof_file)) 
+                            echo get_member_profile_img($row['mb_id']);
+                    ?>
+                <span> <?= $row['mb_name']?></span>
+
+                </p>
+            </div>
+            <div class="ortho_info">
+                <div class="ortho_info1">
+                    <span class="dm fw700"><?php echo $row['mb_sdate'] ?></span>
+                    <p>치료 시작일</p>
+                </div>
+                <div class="ortho_info2">
+                    <span class="dm fw700"><?php echo $row['mb_fdate'] ?></span>
+                    <p>치료 종료 예상일</p>
+                </div>
+                <div class="ortho_info3">
+                    <span class="dm fw700"><?php echo number_format($total_count) ?></span>
+                    <p>스토리</p>
+                </div>
+                <div class="ortho_info4">
+                    <?= $d_day_count ?>
+                    <p>남은 기간</p>
+                </div>
+            </div>
         </div>
+
+        <div class="customer_info_wrap">
+            <div class="admin_info">
+                <p class="fw700">차트번호</p>
+                <p><?= $row['mb_id']?></p>
+            </div>
+            <div class="admin_info">
+                <p class="fw700">환자정보</p>
+                <p><?= $row['mb_name']?>(<?=$row['mb_sex'] == '0' ? '남' : '여'?>) / <span class="dm"><?= $row['mb_1']?> </span>(만 <span class="dm"><?=$age?></span>세)</p>
+            </div>
+            <div class="admin_info">
+                <p class="fw700">전화번호</p>
+                <p class="dm"><?= $row['mb_hp']?> <? if($row['mb_tel']) {?>보호자: <?= $row['mb_tel']?> <? } ?></p>
+            </div>
+            <div class="customer_info1">
+                <p class="fw700">CASE</p>
+                <p><?= $row['mb_2']?></p>
+            </div>
+            <div class="customer_info2">
+                <p class="fw700">치료형태</p>
+                <p>
+                    <span>발치 진행 유무 : <?= $row['mb_3']?>&nbsp;&#124;&nbsp;</span>
+                    <span>교정 범위 : <?= $row['mb_4']?>&nbsp;&#124;&nbsp;</span>
+                    <span>교정 부위 : <?= $row['mb_5']?>&nbsp;&#124;&nbsp;</span>
+                    <span>교정 악궁 : <?= $row['mb_6']?>&nbsp;</span>
+                </p>
+            </div>
+            <div class="customer_info3">
+                <p class="fw700">사용장치</p>
+                <p><?= $row['mb_7']?></p>
+            </div>
+        </div>
+    <?} elseif ($stx="" || !is_numeric($stx)) {?>
         <div class="ortho_info">
-        <div class="ortho_info1">
-                <span class="dm fw700"><?php echo $row['mb_sdate'] ?></span>
-                <p>치료 시작일</p>
-            </div>
-            <div class="ortho_info2">
-                <span class="dm fw700"><?php echo $row['mb_fdate'] ?></span>
-                <p>치료 종료 예상일</p>
-            </div>
             <div class="ortho_info3">
-                <span class="dm fw700"><?php echo number_format($total_count) ?></span>
-                <p>스토리</p>
-            </div>
-            <div class="ortho_info4">
-                <?= $d_day_count ?>
-                <p>남은 기간</p>
+                <span class="dm fw700">
+                    <?
+                    $list_a = sql_fetch("select bo_count_write from g5_board where bo_table='crm';"); 
+                    echo $list_a['bo_count_write']; // 전체 게시글 수
+                    ?>
+                <p>총 스토리</p>
             </div>
         </div>
-    </div>
 
-    <div class="customer_info_wrap">
-	 <div class="admin_info">
-            <p class="fw700">차트번호</p>
-            <p><?= $row['mb_id']?></p>
-        </div>
-        <div class="admin_info">
-            <p class="fw700">환자정보</p>
-            <p><?= $row['mb_name']?>(<?=$row['mb_sex'] == '0' ? '남' : '여'?>) / <span class="dm"><?= $row['mb_1']?> </span>(만 <span class="dm"><?=$age?></span>세)</p>
-        </div>
-        <div class="admin_info">
-            <p class="fw700">전화번호</p>
-            <p class="dm"><?= $row['mb_hp']?> <? if($row['mb_tel']) {?>보호자: <?= $row['mb_tel']?> <? } ?></p>
-        </div>
-        <div class="customer_info1">
-            <p class="fw700">CASE</p>
-            <p><?= $row['mb_2']?></p>
-        </div>
-        <div class="customer_info2">
-            <p class="fw700">치료형태</p>
-            <p>
-                <span>발치 진행 유무 : <?= $row['mb_3']?>&nbsp;&#124;&nbsp;</span>
-                <span>교정 범위 : <?= $row['mb_4']?>&nbsp;&#124;&nbsp;</span>
-                <span>교정 부위 : <?= $row['mb_5']?>&nbsp;&#124;&nbsp;</span>
-                <span>교정 악궁 : <?= $row['mb_6']?>&nbsp;</span>
-            </p>
-        </div>
-        <div class="customer_info3">
-            <p class="fw700">사용장치</p>
-            <p><?= $row['mb_7']?></p>
-        </div>
-    </div>
+    <?}?>
 <?}?>
 
 <?if($sfl=='wr_2'){?>
