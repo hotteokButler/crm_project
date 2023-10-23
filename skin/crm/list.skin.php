@@ -198,7 +198,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <p><?= $row['mb_7']?></p>
             </div>
         </div>
-    <?} elseif ($stx="" || !is_numeric($stx)) {?>
+    <?} elseif (!$stx || !$sfl) {?>
         <div class="ortho_info">
             <div class="ortho_info3">
                 <span class="dm fw700">
