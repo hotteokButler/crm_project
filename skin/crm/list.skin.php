@@ -53,7 +53,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
       
     <? // 검색된 회원 정보 가져오기
-    $sql1="select * from {$g5['member_table']} where mb_level=6 and mb_id = '$stx' order by mb_name ";
+    
+    $sql_is_member = "select * from {$g5['member_table']} where mb_level=6 and mb_id = '".$member['mb_id']."' order by mb_name ";        
+    $sql_by_stx = "select * from {$g5['member_table']} where mb_level=6 and mb_id = '$stx' order by mb_name ";
+
+    $sql1= $is_member && !$is_admin ? $sql_is_member :  $sql_by_stx;
     $res1=sql_query($sql1);
     $row= sql_fetch_array($res1);
     ?>
@@ -76,7 +80,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     $age           = $now - $birthday - 1  ;
     ?>
 
-    <br><br>
+    <br>
+    <br>
     <?if(!$is_admin && $member['mb_level'] <=8 ){?>
     <div class="ortho_info_wrap">
         <div class="ortho_pf">
@@ -132,7 +137,19 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
    <?if(($is_admin || $member['mb_level'] >=9 )){?>
 
-    <?if(is_numeric($stx)){?>
+    <?if(!$stx || !$sfl){?>
+        <div class="ortho_info">
+            <div class="ortho_info3">
+                <span class="dm fw700">
+                    <?
+                    $list_a = sql_fetch("select bo_count_write from g5_board where bo_table='crm';"); 
+                    echo $list_a['bo_count_write']; // 전체 게시글 수
+                    ?>
+                <p>총 스토리</p>
+            </div>
+        </div>
+    <?} else {?>
+
         <div class="ortho_info_wrap">
             <div class="ortho_pf">
                 <p class="g8">
@@ -198,18 +215,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <p><?= $row['mb_7']?></p>
             </div>
         </div>
-    <?} elseif (!$stx || !$sfl) {?>
-        <div class="ortho_info">
-            <div class="ortho_info3">
-                <span class="dm fw700">
-                    <?
-                    $list_a = sql_fetch("select bo_count_write from g5_board where bo_table='crm';"); 
-                    echo $list_a['bo_count_write']; // 전체 게시글 수
-                    ?>
-                <p>총 스토리</p>
-            </div>
-        </div>
-
     <?}?>
 <?}?>
 
