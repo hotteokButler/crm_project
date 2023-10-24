@@ -77,7 +77,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     ?>
 
     <br><br>
-    <?if(!$is_admin && $member['mb_level'] <=8 && is_numeric($stx)){?>
+    <?if(!$is_admin && $member['mb_level'] <=8 ){?>
     <div class="ortho_info_wrap">
         <div class="ortho_pf">
             <p class="g8">
