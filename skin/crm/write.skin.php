@@ -284,8 +284,8 @@ $attrs=NULL ) {
     </div>
     <?}?>
 
-    <input type="hidden" name="wr_1" value="<?=$stx?>" style="width:100px; ">  
-    <input type="hidden" name="wr_2" value="<?=$row['mb_name']?>" style="width:100px; ">
+    <input type="hidden" name="wr_1" value="<?=$stx?>">  
+    <input type="hidden" name="wr_2" value="<?=$row['mb_name']?>">  
   
     <?php }else{ ?>
         <select name="wr_1" id="wr_1" required>
@@ -324,8 +324,7 @@ $attrs=NULL ) {
             </div>
             <?php } ?>
         </div>
-    </div>
-
+    </div>    
     <div class="write_div">
         <label for="wr_content" class="sound_only">내용<strong>필수</strong></label>
         <div class="wr_content <?php echo $is_dhtml_editor ? $config['cf_editor'] : ''; ?>">

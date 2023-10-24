@@ -61,14 +61,14 @@ $check_keys = array(
 'mb_level',
 'mb_sdate',
 'mb_fdate',
-'mb_sex',
 'mb_1',
 'mb_2',
 'mb_3',
 'mb_4',
 'mb_5',
 'mb_6',
-'mb_7'
+'mb_7',
+'mb_8'
 );
 
 for($i=1;$i<=10;$i++){
@@ -114,7 +114,6 @@ $sql_common = "  mb_name = '{$posts['mb_name']}',
                  mb_8 = '{$posts['mb_8']}',
                  mb_9 = '{$posts['mb_9']}',
                  mb_10 = '{$posts['mb_10']}',
-                 mb_sex = '{$posts['mb_sex']}',
                  mb_sdate = '{$posts['mb_sdate']}',
                  mb_fdate = '{$posts['mb_fdate']}' ";
 

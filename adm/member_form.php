@@ -236,11 +236,11 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         <th scope="row">성별</th>
         <td>
             <div>
-                <input type="radio" name="mb_sex" value="0" id="mb_man" class="frm_input"  <?=$mb['mb_sex'] =='0'? 'checked' : '' ?> >
+                <input type="radio" name="mb_8" value="0" id="mb_man" class="frm_input"  <?=$mb['mb_8'] =='0'? 'checked' : '' ?> >
                 <label for="mb_man">남자</label>
             </div>
             <div>
-                <input type="radio" name="mb_sex" value="1" id="mb_woman" class="frm_input" <?=$mb['mb_sex'] =='1'? 'checked' : '' ?>>
+                <input type="radio" name="mb_8" value="1" id="mb_woman" class="frm_input" <?=$mb['mb_8'] =='1'? 'checked' : '' ?>>
                 <label for="mb_woman">여자</label>
             </div>
         </td>
