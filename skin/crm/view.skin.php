@@ -96,14 +96,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
     <section>
 		<div style="font-size:15px; color:#ff5f59; padding:10px; line-height:32px;">
-            <?
-            if ($view['wr_6'] && $view['wr_7']) { 
-                echo '▶'.$row['mb_name'].'님의 다음 진료 예약일은 '.$view['wr_6'].'('.$view['wr_7'].') 입니다.';
-            } else {
-                echo   '▶'.$row['mb_name'].'님의 다음 진료 예약이 없습니다. 예약 진행 시 전화 문의 부탁드립니다.';
-            }   ?>
-            <br>
-            ▶ 진료일, 시간 변경은 전화로만 가능합니다. 
+                <?
+                if ($view['wr_6'] && $view['wr_7']) { 
+                    echo '▶'.$row['mb_name'].'님의 다음 진료 예약일은 '.$view['wr_6'].'('.$view['wr_7'].') 입니다.';
+                } else {
+                    echo   '▶'.$row['mb_name'].'님의 다음 진료 예약이 없습니다. 예약 진행 시 전화 문의 부탁드립니다.';
+                }   ?>
+                <br>
+				▶ 진료일, 시간 변경은 전화로만 가능합니다. 
 		</div>
     </section>
 
