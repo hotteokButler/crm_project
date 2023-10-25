@@ -374,22 +374,22 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         <fieldset class="bo_sch">
             <h3>검색</h3>
             <form name="fsearch" method="get">
-            <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
-            <input type="hidden" name="sca" value="<?php echo $sca ?>">
-            <input type="hidden" name="sop" value="and">
-            <label for="sfl" class="sound_only">검색대상</label>
-            <select name="sfl" id="sfl">
-                <?php //echo get_board_sfl_select_options($sfl); ?>
-                <option value="wr_1"<?php echo get_selected($sfl, 'wr_1', true); ?>>차트번호</option>
-                <option value="wr_2"<?php echo get_selected($sfl, 'wr_2', true); ?>>환자명</option>
-            </select>
-            
-            <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-            <div class="sch_bar">
-                <input type="text" name="stx" value="<?php echo stripslashes($stx) ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요">
-                <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
-            </div>
-            <button type="button" class="bo_sch_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
+                <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
+                <input type="hidden" name="sca" value="<?php echo $sca ?>">
+                <input type="hidden" name="sop" value="and">
+                <label for="sfl" class="sound_only">검색대상</label>
+                <select name="sfl" id="sfl">
+                    <?php //echo get_board_sfl_select_options($sfl); ?>
+                    <option value="wr_1"<?php echo get_selected($sfl, 'wr_1', true); ?>>차트번호</option>
+                    <option value="wr_2"<?php echo get_selected($sfl, 'wr_2', true); ?>>환자명</option>
+                </select>
+                
+                <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+                <div class="sch_bar">
+                    <input type="text" name="stx" value="<?php echo stripslashes($stx) ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요">
+                    <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
+                </div>
+                <button type="button" class="bo_sch_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
             </form>
         </fieldset>
         <div class="bo_sch_bg"></div>
@@ -487,9 +487,11 @@ jQuery(function($){
     });
     // script 추가
     $(".bo_sch select[name='sfl']").on("change", function() {
-        if ($(this).val() == "wr_2") {
+        if ($(this).children('option:selected').val() == 'wr_2') {
             $('.bo_sch input[name="stx"]').attr('placeholder','성함을 입력해주세요');
-            $('.bo_sch .sch_bar').before('<div class="sch_bar"><input type="date" name="wr_5" value="" required id="stx" class="sch_input" size="25" maxlength="20"><span>생년월일 입력해주세요</span></div>');
+            $('.bo_sch .sch_bar').before('<div class="sch_bar sch_bar_date"><input type="date" name="wr_5" value="" required id="stx" class="sch_input" size="25" maxlength="20"><span>생년월일 입력해주세요</span></div>');
+        } else {
+            $('.sch_bar_date').length > 0 && $('div').remove('.sch_bar_date');
         }
     }); 
 });
