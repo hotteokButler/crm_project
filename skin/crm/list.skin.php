@@ -191,7 +191,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             </div>
             <div class="admin_info">
                 <p class="fw700">환자정보</p>
-                <p><?= $row['mb_name']?>(<?=$row['mb_sex'] == '0' ? '남' : '여'?>) / <span class="dm"><?= $row['mb_1']?> </span>(만 <span class="dm"><?=$age?></span>세)</p>
+                <p><?= $row['mb_name']?>(<?=$row['mb_8'] == '0' ? '남' : '여'?>) / <span class="dm"><?= $row['mb_1']?> </span>(만 <span class="dm"><?=$age?></span>세)</p>
             </div>
             <div class="admin_info">
                 <p class="fw700">전화번호</p>
