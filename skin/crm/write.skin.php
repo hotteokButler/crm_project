@@ -341,20 +341,6 @@ $attrs=NULL ) {
         
     </div>
 
-    <?php for ($i=0; $is_file && $i<$file_count; $i++) { ?>
-    <div class="bo_w_flie write_div">
-        <div class="file_wr write_div">
-            <label for="bf_file_<?php echo $i+1 ?>" class="lb_icon"><i class="fa fa-folder-open" aria-hidden="true"></i><span class="sound_only"> 파일 #<?php echo $i+1 ?></span></label>
-            <input type="file"  multiple="multiple"  name="bf_file[]" multi id="bf_file_<?php echo $i+1 ?>" title="파일첨부 <?php echo $i+1 ?> : 용량 <?php echo $upload_max_filesize ?> 이하만 업로드 가능" class="frm_file ">
-        </div>
-        <?php if($w == 'u' && $file[$i]['file']) { ?>
-        <span class="file_del">
-            <input type="checkbox" id="bf_file_del<?php echo $i ?>" name="bf_file_del[<?php echo $i;  ?>]" value="1"> <label for="bf_file_del<?php echo $i ?>"><?php echo $file[$i]['source'].'('.$file[$i]['size'].')';  ?> 파일 삭제</label>
-        </span>
-        <?php } ?>
-        
-    </div>
-    <?php } ?>
 
     <div class="write_div"> 다음 진료 예약일
 			<input type="date" name="wr_6" value="<?php echo $write['wr_6']?>" id="wr_6"  class="" size="10" style="height:30px;" placeholder="예약일">
@@ -385,7 +371,6 @@ $attrs=NULL ) {
             check_byte("wr_content", "char_count");
         });
     });
-
     <?php } ?>
     function html_auto_br(obj)
     {

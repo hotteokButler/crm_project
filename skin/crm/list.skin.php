@@ -56,8 +56,16 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     
     $sql_is_member = "select * from {$g5['member_table']} where mb_level=6 and mb_id = '".$member['mb_id']."' order by mb_name ";        
     $sql_by_stx = "select * from {$g5['member_table']} where mb_level=6 and mb_id = '$stx' order by mb_name ";
+    $sql_by_birth_and_name = "select * from {$g5['member_table']} where mb_level=6 and mb_name = '$stx' and mb_1 = '$wr_5' order by mb_name ";
 
-    $sql1= $is_member && !$is_admin ? $sql_is_member :  $sql_by_stx;
+    if ( $is_member && !$is_admin) {
+        $sql1 = $sql_is_member;
+    } elseif($wr_5) {
+        $sql1 =  $sql_by_birth_and_name;
+    } else {
+        $sql1 =  $sql_by_stx;
+    }
+
     $res1=sql_query($sql1);
     $row= sql_fetch_array($res1);
     ?>
@@ -82,6 +90,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
     <br>
     <br>
+
     <?if(!$is_admin && $member['mb_level'] <=8 ){?>
     <div class="ortho_info_wrap">
         <div class="ortho_pf">
@@ -374,6 +383,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <option value="wr_1"<?php echo get_selected($sfl, 'wr_1', true); ?>>차트번호</option>
                 <option value="wr_2"<?php echo get_selected($sfl, 'wr_2', true); ?>>환자명</option>
             </select>
+            
             <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
             <div class="sch_bar">
                 <input type="text" name="stx" value="<?php echo stripslashes($stx) ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요">
@@ -475,7 +485,15 @@ jQuery(function($){
             $(".more_opt.is_list_btn").hide();
         }
     });
+    // script 추가
+    $(".bo_sch select[name='sfl']").on("change", function() {
+        if ($(this).val() == "wr_2") {
+            $('.bo_sch input[name="stx"]').attr('placeholder','성함을 입력해주세요');
+            $('.bo_sch .sch_bar').before('<div class="sch_bar"><input type="date" name="wr_5" value="" required id="stx" class="sch_input" size="25" maxlength="20"><span>생년월일 입력해주세요</span></div>');
+        }
+    }); 
 });
+
 </script>
 <?php } ?>
 <!-- } 게시판 목록 끝 -->
