@@ -478,7 +478,7 @@ function select_copy(sw) {
 
 </script>
 <!--게시판 리스트 관리자 옵션  -->
-<script src="<?=$board_skin_url?>/skin.custom.js"></script>
+<script src="<?=$board_skin_url?>/foradm.custom.js"></script>
 <?php } ?>
 
 <!-- } 게시판 목록 끝 -->
