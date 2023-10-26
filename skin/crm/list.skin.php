@@ -388,7 +388,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 
                 <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
                 <div class="sch_bar">
-                    <input type="text" name="stx" value="<?php echo stripslashes($stx) ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요">
+                    <input type="text" name="stx" value="<?php echo stripslashes($stx) ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요" oninput="inputNumberOnly(this)">
                     <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
                 </div>
                 <button type="button" class="bo_sch_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
@@ -480,5 +480,6 @@ function select_copy(sw) {
 <!--게시판 리스트 관리자 옵션  -->
 <script src="<?=$board_skin_url?>/foradm.custom.js"></script>
 <?php } ?>
+<script src="<?=$board_skin_url?>/skin.custom.js"></script>
 
 <!-- } 게시판 목록 끝 -->
