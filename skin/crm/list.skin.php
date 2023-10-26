@@ -229,7 +229,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
 <?if($sfl=='wr_2'){?>
 <br><br>
-<div style="width:100%; text-align:center; color:red; font-size:20px;">환자명으로 검색하신 경우 아래 목록에서 아이콘 을 선택하신 후<br>"환자 정보가 나오는 화면"으로 이동 후 새글을 작성해주세요.</div>
+<div style="width:100%; text-align:center; color:red; font-size:20px;">
+    환자명으로 검색하신 경우 아래 목록에서 아이콘 을 선택하신 후<br>"환자 정보가 나오는 화면"으로 이동 후 새글을 작성해주세요.
+</div>
 <?}?>
 
 <br><br>
@@ -474,28 +476,9 @@ function select_copy(sw) {
     f.submit();
 }
 
-// 게시판 리스트 관리자 옵션
-jQuery(function($){
-    $(".btn_more_opt.is_list_btn").on("click", function(e) {
-        e.stopPropagation();
-        $(".more_opt.is_list_btn").toggle();
-    });
-    $(document).on("click", function (e) {
-        if(!$(e.target).closest('.is_list_btn').length) {
-            $(".more_opt.is_list_btn").hide();
-        }
-    });
-    // script 추가
-    $(".bo_sch select[name='sfl']").on("change", function() {
-        if ($(this).children('option:selected').val() == 'wr_2') {
-            $('.bo_sch input[name="stx"]').attr('placeholder','성함을 입력해주세요');
-            $('.bo_sch .sch_bar').before('<div class="sch_bar sch_bar_date"><input type="date" name="wr_5" value="" required id="stx" class="sch_input" size="25" maxlength="20"><span>생년월일 입력해주세요</span></div>');
-        } else {
-            $('.sch_bar_date').length > 0 && $('div').remove('.sch_bar_date');
-        }
-    }); 
-});
-
 </script>
+<!--게시판 리스트 관리자 옵션  -->
+<script src="<?=$board_skin_url?>/skin.custom.js"></script>
 <?php } ?>
+
 <!-- } 게시판 목록 끝 -->
