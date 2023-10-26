@@ -269,6 +269,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     
 
     <ul id="gall_ul" class="gall_row">
+        <!-- 핀고정 아래 추가 -->
+
+
         <?php for ($i=0; $i<count($list); $i++) {
 
             $classes = array();
@@ -283,6 +286,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             if( $wr_id && $wr_id == $list[$i]['wr_id'] ){
                 $classes[] = 'gall_now';
             }
+
+            if ($is_member && !$is_admin && $list[$i]['wr_1'] !== $member['mb_id']) continue;
         ?>
 
         <li class="<?php echo implode(' ', $classes); ?>">
@@ -292,15 +297,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <label for="chk_wr_id_<?php echo $i ?>" class="sound_only"><?php echo $list[$i]['subject'] ?></label>
                 <input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
                 <?php } ?>
-                <span class="sound_only">
-                    <?php
-                        if ($list[$i]['is_notice']) // 공지사항
-                            echo '<strong class="notice_icon"><i class="fa fa-bullhorn" aria-hidden="true"></i><span class="sound_only">공지</span></strong>';
-                        else if ($wr_id == $list[$i]['wr_id'])
-                            echo "<span class=\"bo_current\">열람중</span>";
-                        else
-                            echo $list[$i]['num'];
-					?>
+
+                <span>
+                <?php
+                    if ($wr_id == $list[$i]['wr_id'])
+                        echo "<span class=\"bo_current\">열람중</span>";
+                    else
+                        echo "<span class='sound_only'>".$list[$i]['num']."</span>";
+                ?>
                 </span>
                 </div>
                 <div class="gall_con">
@@ -351,6 +355,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
             </div>
 
         </li>
+
         <?php } ?>
         <?php if (count($list) == 0) { echo "<li class=\"empty_list\">게시물이 없습니다.</li>"; } ?>
     </ul>

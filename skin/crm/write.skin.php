@@ -175,7 +175,7 @@ $attrs=NULL ) {
                 if (file_exists($mb_prof_file)) 
                     echo get_member_profile_img($row['mb_id']);
             ?>
-            <span> <?= $row['mb_name']?></span>
+            <span><?= $row['mb_name']?></span>
 
             </p>
         </div>
@@ -306,6 +306,10 @@ $attrs=NULL ) {
 
     </div>
 
+    <div>
+    <input type="checkbox" id="pin_fix" name="wr_3"  class="pin_fix" value="1" <?=(int) $write['wr_3'] == 1 ? 'checked' : ''?>>
+    <label for="pin_fix"><span></span>상단 고정</label>
+    </div>
     <div class="bo_w_tit write_div">
         <label for="wr_subject" class="sound_only">제목<strong>필수</strong></label>
 
