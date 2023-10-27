@@ -207,7 +207,10 @@ if($page_rows > 0) {
 
 g5_latest_cache_data($board['bo_table'], $list);
 
-$write_pages = get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, get_pretty_url($bo_table, '', $qstr.'&amp;page='));
+// bo_table = crm 일 경우 추가
+$crm_write_pages = $bo_table && $str ? '&wr_5='.$wr_5 :'' ;
+
+$write_pages = get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, get_pretty_url($bo_table, '', $qstr.$crm_write_pages.'&amp;page='));
 
 $list_href = '';
 $prev_part_href = '';
