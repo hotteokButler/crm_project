@@ -13,6 +13,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 </style>
 
 
+
+
+
 <!-- 게시판 목록 시작 { -->
 <div id="bo_gall">
     <?php if ($is_category) { ?>
@@ -24,6 +27,51 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </nav>
     <?php } ?>
 
+
+    <!-- 게시판 페이지 정보 및 버튼 시작 { -->
+    <div id="bo_btn_top">
+
+        <?if($is_admin || $member['mb_level'] >=9){?>
+            <!-- 게시판 검색 시작 { -->
+            <div class="bo_sch_wrap top_sch_wrap">	
+                <fieldset class="bo_sch">
+                    <h3 class="sound_only">검색</h3>
+                    <form name="fsearch" method="get">
+                        <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
+                        <input type="hidden" name="sca" value="<?php echo $sca ?>">
+                        <input type="hidden" name="sop" value="and">
+
+                        <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+                        <div class="sch_bar">
+                            <input  type="text" name="stx" value="<?php echo stripslashes($stx) ?>" id="stx" class="sch_input" required size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요">
+                            <button type="submit" value="검색" class="sch_btn"><span class="sound_only">검색</span></button>
+                        </div>
+                        <button type="button" id="show_detail_sch">상세 검색</button>
+                        <div class="sch_select_wrap">
+                            <label for="sfl" class="sound_only">검색 옵션</label>
+                            <select name="sfl" id="sfl">
+                                <?php //echo get_board_sfl_select_options($sfl); ?>
+                                <option value="wr_1" <?php echo get_selected($sfl, 'wr_1', true); ?>>차트번호</option>
+                                <option value="wr_2" <?php echo get_selected($sfl, 'wr_2', false); ?>>환자명</option>
+                            </select>
+                        </div>
+                        
+                    </form>
+                </fieldset>
+
+            </div>
+            <!-- } 게시판 검색 끝 -->
+            <?}?>
+            <?if($stx){?>
+            <?if($is_admin || $member['mb_level'] >=9 ){?>        
+                <a href="/bbs/board.php?bo_table=<?=$bo_table;?>" style="font-size:16px;"><img src="/theme/basic/svg/back.svg" alt="">차트 전체보기</a>        
+            <?}?>
+            <?}?>
+
+    </div>
+    <!-- } 게시판 페이지 정보 및 버튼 끝 -->
+
+
     <form name="fboardlist"  id="fboardlist" action="<?php echo G5_BBS_URL; ?>/board_list_update.php" onsubmit="return fboardlist_submit(this);" method="post">
     <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
     <input type="hidden" name="sfl" value="<?php echo $sfl ?>">
@@ -34,22 +82,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <input type="hidden" name="page" value="<?php echo $page ?>">
     <input type="hidden" name="sw" value="">
 
-    <!-- 게시판 페이지 정보 및 버튼 시작 { -->
-    <div id="bo_btn_top">
-
-        <?if($is_admin || $member['mb_level'] >=9){?>
-        <div class="ortho_sch">
-            <button type="button" class="btn_bo_sch btn_b01 btn" title="게시판 검색"><i class="fa fa-search" aria-hidden="true"></i><span class="">차트번호를 먼저 검색해주세요.</span></button>
-        </div>
-        <?}?>
-        <?if($stx){?>
-        <?if($is_admin || $member['mb_level'] >=9 ){?>        
-            <a href="/bbs/board.php?bo_table=<?=$bo_table;?>" style="font-size:16px;"><img src="/theme/basic/svg/back.svg" alt="">차트 전체보기</a>        
-        <?}?>
-        <?}?>
-
-    </div>
-    <!-- } 게시판 페이지 정보 및 버튼 끝 -->
 
       
     <? // 검색된 회원 정보 가져오기
@@ -376,41 +408,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <?php } ?> 
     </form>
 
-    <!-- 게시판 검색 시작 { -->
-    <div class="bo_sch_wrap">	
-        <fieldset class="bo_sch">
-            <h3>검색</h3>
-            <form name="fsearch" method="get">
-                <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
-                <input type="hidden" name="sca" value="<?php echo $sca ?>">
-                <input type="hidden" name="sop" value="and">
-                <label for="sfl" class="sound_only">검색대상</label>
-                <select name="sfl" id="sfl">
-                    <?php //echo get_board_sfl_select_options($sfl); ?>
-                    <option value="wr_1" <?php echo get_selected($sfl, 'wr_1', true); ?>>차트번호</option>
-                    <option value="wr_2" <?php echo get_selected($sfl, 'wr_2', false); ?>>환자명</option>
-                </select>
-                
-                <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-                <div class="sch_bar">
-                    <input type="text" name="stx" value="<?php echo stripslashes($stx) ?>" required id="stx" class="sch_input" size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요">
-                    <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
-                </div>
-                <button type="button" class="bo_sch_cls"><i class="fa fa-times" aria-hidden="true"></i><span class="sound_only">닫기</span></button>
-            </form>
-        </fieldset>
-        <div class="bo_sch_bg"></div>
-    </div>
-    <script>
-        // 게시판 검색
-        $(".btn_bo_sch").on("click", function() {
-            $(".bo_sch_wrap").toggle();
-        })
-        $('.bo_sch_bg, .bo_sch_cls').click(function(){
-            $('.bo_sch_wrap').hide();
-        });
-    </script>
-    <!-- } 게시판 검색 끝 -->
+
 </div>
 
 <?php if($is_checkbox) { ?>
