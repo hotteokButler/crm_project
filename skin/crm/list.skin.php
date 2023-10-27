@@ -387,8 +387,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 <label for="sfl" class="sound_only">검색대상</label>
                 <select name="sfl" id="sfl">
                     <?php //echo get_board_sfl_select_options($sfl); ?>
-                    <option value="wr_1"<?php echo get_selected($sfl, 'wr_1', true); ?>>차트번호</option>
-                    <option value="wr_2"<?php echo get_selected($sfl, 'wr_2', true); ?>>환자명</option>
+                    <option value="wr_1" <?php echo get_selected($sfl, 'wr_1', true); ?>>차트번호</option>
+                    <option value="wr_2" <?php echo get_selected($sfl, 'wr_2', false); ?>>환자명</option>
                 </select>
                 
                 <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
