@@ -2,8 +2,15 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
+
+// 관리자가 아닌 회원의 경우 로그인 아이디(차트번호)와 게시글 차트번호 체크
+if ($is_member && !$is_admin) {
+
+}
+
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
+
 
 ?>
 
@@ -123,7 +130,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <br>
     <br>
 
-    <?if(!$is_admin && $member['mb_level'] <=8 ){?>
+    <?if(!$is_admin && $member['mb_level'] <=8){?>
     <div class="ortho_info_wrap">
         <div class="ortho_pf">
             <p class="g8">
@@ -319,7 +326,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                 $classes[] = 'gall_now';
             }
 
-            if ($is_member && !$is_admin && $list[$i]['wr_1'] !== $member['mb_id']) continue;
         ?>
 
         <li class="<?php echo implode(' ', $classes); ?>">

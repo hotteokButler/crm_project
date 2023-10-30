@@ -1,5 +1,11 @@
 <?php
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
+
+// 관리자가 아닌 회원의 경우 로그인 아이디(차트번호)와 게시글 차트번호 체크
+if ($is_member && !$is_admin && $view['wr_1']!== $member['mb_id']) {
+    alert("잘못된 접근입니다" ,"/bbs/board.php?bo_table=".$bo_table."&page=&sca=&sfl=wr_1&stx=".$member['mb_id']);
+}
+
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
@@ -15,13 +21,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 <article id="bo_v" style="max-width:900px; min-width: 320px; width:100%; margin:0 auto;">
     <header>
         <div>
-       <a href="/bbs/board.php?bo_table=ortho_story&sca=&sop=and&sfl=wr_1&stx=<?=$stx?>"><img src="/theme/basic/svg/back.svg" alt=""></a>
+       <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&sca=&sop=and&sfl=wr_1&stx=<?=$stx?>"><img src="/theme/basic/svg/back.svg" alt=""></a>
         </div>
         <div id="bo_v_title">
             <?php if ($category_name) { ?>
             <span class="bo_v_cate"><?php echo $view['ca_name']; // 분류 출력 끝 ?></span> 
             <?php } ?>            
-            <a href="/bbs/board.php?bo_table=ortho_story&page=&sca=&sfl=wr_1&stx=<?=$view['wr_1']?>"><img src="/theme/basic/svg/ortho_story.svg" alt=""></a>
+            <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&page=&sca=&sfl=wr_1&stx=<?=$view['wr_1']?>"><img src="/theme/basic/svg/ortho_story.svg" alt=""></a>
             <p class="bo_v_tit color_point m">
             <?php
             echo cut_str(get_text($view['wr_subject']), 70); // 글제목 출력

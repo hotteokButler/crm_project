@@ -36,20 +36,6 @@ $stx = trim($stx);
 //검색인지 아닌지 구분하는 변수 초기화
 $is_search_bbs = false;
 
-// 추가 231030 crm 테이블일때 list 
-if ($bo_table == "crm" && !$is_admin){ 
-    if($wr_1 !== $member['mb_id']) {
-        echo'
-        <script>
-        $(function(){
-            $("li.empty_list").append("<button class=\"go_to_list\"><a href=\"/bbs/board.php?bo_table=crm\">목록으로 돌아가기</a></button>");
-          });
-        </script>';
-    };
-	$sql_addlist .= " and wr_1='".$member['mb_id']."' ";
-	$qstr .= "&wr_1=$wr_1";
-}
-
 if ($sca || $stx || $stx === '0') {     //검색이면
     $is_search_bbs = true;      //검색구분변수 true 지정
     $sql_search = get_sql_search($sca, $sfl, $stx, $sop);
@@ -76,10 +62,7 @@ if ($sca || $stx || $stx === '0') {     //검색이면
 } else {
     $sql_search = "";
 
- 	// 원글만 얻는다. (코멘트의 내용도 검색하기 위함)
-    $sql = " select distinct wr_parent from {$write_table} where (1) {$sql_search} {$sql_addlist}";
-    $result = sql_query($sql);
-    $total_count = sql_num_rows($result);
+    $total_count = $board['bo_count_write'];
 }
 
 if(G5_IS_MOBILE) {
@@ -189,9 +172,9 @@ if ($sst) {
 }
 
 if ($is_search_bbs) {
-    $sql = " select distinct wr_parent from {$write_table} where {$sql_search} {$sql_addlist} {$sql_order} limit {$from_record}, $page_rows ";
+    $sql = " select distinct wr_parent from {$write_table} where {$sql_search} {$sql_order} limit {$from_record}, $page_rows ";
 } else {
-    $sql = " select * from {$write_table} where wr_is_comment = 0 {$sql_addlist}";
+    $sql = " select * from {$write_table} where wr_is_comment = 0 ";
     if(!empty($notice_array))
         $sql .= " and wr_id not in (".implode(', ', $notice_array).") ";
     $sql .= " {$sql_order} limit {$from_record}, $page_rows ";
