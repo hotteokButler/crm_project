@@ -8,7 +8,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
 // 6등급 회원 조회 
 $wr_set= array();
-$sql1="select mb_id, mb_name from {$g5['member_table']} where mb_level=6 order by mb_id desc";
+$sql1="select mb_id, mb_name from {$g5['member_table']} where (mb_level in (6,5)) order by mb_id desc";
 $res1=sql_query( $sql1);
 while( $row= sql_fetch_array( $res1)) $wr_set[ $row['mb_id']]= $row['mb_id'].'('.$row['mb_name'].')';
 
@@ -137,7 +137,7 @@ $attrs=NULL ) {
 
 
     <? // 검색된 회원 정보 가져오기
-    $sql1="select * from {$g5['member_table']} where mb_level=6 and mb_id = '$stx' order by mb_name ";
+    $sql1="select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = '$stx' order by mb_name ";
     $res1=sql_query( $sql1);
     $row= sql_fetch_array( $res1);
     ?>
