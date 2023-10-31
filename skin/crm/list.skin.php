@@ -7,15 +7,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">', 0);
 ?>
 
-<style>
-.btn_bo_user { margin-top: -30px; }
-#bo_gall {max-width:900px; margin: 0 auto;}
-</style>
-
-
-
-
-
 <!-- 게시판 목록 시작 { -->
 <div id="bo_gall">
     <?php if ($is_category) { ?>
@@ -30,7 +21,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 
     <!-- 게시판 페이지 정보 및 버튼 시작 { -->
     <div id="bo_btn_top">
-
         <?if($is_admin || $member['mb_level'] >=9){?>
             <!-- 게시판 검색 시작 { -->
             <div class="bo_sch_wrap top_sch_wrap">	
@@ -44,13 +34,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                         <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
                         <div class="sch_bar">
                             <input  type="text" name="stx" value="<?php echo stripslashes($stx) ?>" id="stx" class="sch_input" required size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요">
-                            <button type="submit" value="검색" class="sch_btn"><span class="sound_only">검색</span></button>
+                            <button type="submit" value="검색" class="sch_btn"><img src="<?=$board_skin_url;?>/img/search_icon.png" alt="검색"><span class="sound_only">검색</span></button>
                         </div>
                         <button type="button" id="show_detail_sch">상세 검색</button>
                         <div class="sch_select_wrap">
                             <label for="sfl" class="sound_only">검색 옵션</label>
-                            <select name="sfl" id="sfl">
-                                <?php //echo get_board_sfl_select_options($sfl); ?>
+                            <select name="sfl" id="sfl" class="sch_input">
                                 <option value="wr_1" <?php echo get_selected($sfl, 'wr_1', true); ?>>차트번호</option>
                                 <option value="wr_2" <?php echo get_selected($sfl, 'wr_2', false); ?>>환자명</option>
                             </select>
@@ -89,6 +78,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     $sql_is_member = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = '".$member['mb_id']."' order by mb_name ";        
     $sql_by_stx = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = '$stx' order by mb_name ";
     $sql_by_birth_and_name = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_name = '$stx' and mb_1 = '$wr_5' order by mb_name ";
+
 
     if ( $is_member && !$is_admin) {
         $sql1 = $sql_is_member;
@@ -343,7 +333,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                         <p><?=$list[$i]['wr_2']?></p>
                     </div>
                     <div class="gall_more">
-                        <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&page=&sca=&sfl=wr_1&stx=<?=$list[$i]['wr_1']?>"><img src="/theme/basic/svg/ortho_story.svg" alt=""></a>
+                        <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&page=&sca=&sfl=wr_1&stx=<?=$list[$i]['wr_1']?>"><span></span></a>
                     </div>
                 <?}?>
                     <div class="gall_img">

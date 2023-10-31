@@ -1,3 +1,107 @@
 @charset 'utf-8';
 
 /* list.skin.php custom 시작*/
+
+// search
+
+.top_sch_wrap {
+  .bo_sch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  form {
+    width: 100%;
+  }
+  .sch_bar {
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin: 20px 0 10px;
+    .sch_btn {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      width: 22px;
+      height: 22px;
+      transform: translate(0, -50%);
+      text-align: center;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .sch_input {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px 0 60px;
+    box-sizing: border-box;
+    outline: none;
+    -webkit-border: 1px solid transparent;
+    border: 1px solid transparent;
+    border-radius: 100px;
+    background-color: #eee;
+    input[type="text"]:focus {
+      -webkit-box-shadow: 0 0 8px #7bb7ff;
+      -moz-box-shadow: 0 0 5px #7bb7ff;
+      box-shadow: 0 0 8px #7bb7ff;
+      border: 1px solid transparent;
+    }
+    &::placeholder {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #232323;
+      line-height: 45px;
+    }
+  }
+}
+// select
+.sch_bar_date {
+  .sch_input {
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    line-height: 40px;
+    margin: 10px 10px 10px 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #232323;
+    line-height: 45px;
+    &:focus {
+      -webkit-box-shadow: 0 0 8px #7bb7ff;
+      -moz-box-shadow: 0 0 5px #7bb7ff;
+      box-shadow: 0 0 8px #7bb7ff;
+      border: 1px solid transparent;
+    }
+  }
+}
+.sch_select_wrap {
+  display: none;
+  justify-content: flex-start;
+  align-items: flex-start;
+  select.sch_input {
+    width: 20%;
+    height: 50px;
+    margin: 9px 10px 4px 0px;
+    padding: 0px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #232323;
+    line-height: 50px;
+  }
+}
+
+#show_detail_sch {
+  font-size: 0.9rem;
+  padding: 0 20px;
+  text-decoration: underline;
+}
+// list
+
+#bo_gall {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+}
