@@ -51,6 +51,10 @@ select:focus {
     border: 1px solid transparent;
     border-radius: 100px;
     background-color: #eee;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #232323;
+    line-height: 45px;
     &::placeholder {
       font-size: 0.9rem;
       font-weight: bold;
@@ -93,11 +97,26 @@ select:focus {
   font-size: 0.9rem;
   padding: 0 20px;
   text-decoration: underline;
+  &:hover {
+    color: #7bb7ff;
+  }
 }
 // list
 
+.back_to_list {
+  display: inline-block;
+  padding: 10px 20px 10px 35px;
+  font-size: 1rem;
+  background: url("../img/back_to.png") no-repeat left center/19% auto;
+  transition: 0.4s;
+  font-weight: 700;
+  &:hover {
+    color: #7bb7ff;
+    background-image: url("../img/back_to_hov.png");
+  }
+}
 #bo_gall {
   width: 80%;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 3rem auto;
 }

@@ -18,6 +18,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     </nav>
     <?php } ?>
 
+    <?if($stx){?>
+        <?if($is_admin || $member['mb_level'] >=9 ){?>        
+            <a class="back_to_list" href="/bbs/board.php?bo_table=<?=$bo_table;?>">차트 전체보기</a>        
+        <?}?>
+    <?}?>
 
     <!-- 게시판 페이지 정보 및 버튼 시작 { -->
     <div id="bo_btn_top">
@@ -36,7 +41,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                             <input  type="text" name="stx" value="<?php echo stripslashes($stx) ?>" id="stx" class="sch_input" required size="25" maxlength="20" placeholder="차트번호 5자리를 입력해주세요">
                             <button type="submit" value="검색" class="sch_btn"><img src="<?=$board_skin_url;?>/img/search_icon.png" alt="검색"><span class="sound_only">검색</span></button>
                         </div>
-                        <button type="button" id="show_detail_sch">상세 검색</button>
+                        <button type="button" id="show_detail_sch">상세 검색 옵션</button>
                         <div class="sch_select_wrap">
                             <label for="sfl" class="sound_only">검색 옵션</label>
                             <select name="sfl" id="sfl" class="sch_input">
@@ -51,11 +56,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
             </div>
             <!-- } 게시판 검색 끝 -->
             <?}?>
-            <?if($stx){?>
-            <?if($is_admin || $member['mb_level'] >=9 ){?>        
-                <a href="/bbs/board.php?bo_table=<?=$bo_table;?>" style="font-size:16px;"><img src="/theme/basic/svg/back.svg" alt="">차트 전체보기</a>        
-            <?}?>
-            <?}?>
+
 
     </div>
     <!-- } 게시판 페이지 정보 및 버튼 끝 -->
