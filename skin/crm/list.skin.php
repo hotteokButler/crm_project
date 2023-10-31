@@ -3,9 +3,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
-
-
+add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">', 0);
 ?>
 
 <style>
@@ -125,54 +124,54 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <br>
 
     <?if(!$is_admin && $member['mb_level'] <=8){?>
-    <div class="ortho_info_wrap">
-        <div class="ortho_pf">
-            <p class="g8">
-            <?    
-                $mb_prof_dir = substr($row['mb_id'],0,2);
-                $mb_prof_file = G5_DATA_PATH.'/member/'.$mb_prof_dir.'/'.get_mb_icon_name($row['mb_id']).'.gif';
-                
-                if (file_exists($mb_prof_file)) 
-                    echo get_member_profile_img($row['mb_id']);
-            ?>
-            <span> <?= $row['mb_name']?></span>
-
+    <div class="crm_info_wrap">
+        <div class="crm_pf_wrap">
+            <p class="crm_pf">
+                <?    
+                    $mb_prof_dir = substr($row['mb_id'],0,2);
+                    $mb_prof_file = G5_DATA_PATH.'/member/'.$mb_prof_dir.'/'.get_mb_icon_name($row['mb_id']).'.gif';
+                    
+                    if (file_exists($mb_prof_file)) 
+                        echo get_member_profile_img($row['mb_id']);
+                ?>
+                <span> <?= $row['mb_name']?></span>
             </p>
         </div>
-        <div class="ortho_info">
-            <div class="ortho_info1">
+
+        <ul class="crm_info">
+            <li class="crm_info_li">
                 <span class="dm fw700"><?php echo $row['mb_sdate'] ?></span>
                 <p>치료 시작일</p>
-            </div>
-            <div class="ortho_info2">
+            </li>
+            <li class="crm_info_li">
                 <span class="dm fw700"><?php echo $row['mb_fdate'] ?></span>
                 <p>치료 종료 예상일</p>
-            </div>
-            <div class="ortho_info3">
+            </li>
+            <li class="crm_info_li">
                 <span class="dm fw700"><?php echo number_format($total_count) ?></span>
                 <p>스토리</p>
-            </div>
-            <div class="ortho_info4">
+            </li>
+            <li class="crm_info_li">
                 <?= $d_day_count ?>
                 <p>남은 기간</p>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 
-    <div class="customer_info_wrap">
-        <div class="customer_info1">
+    <ul class="crm_info_detail">
+        <li class="crm_info_detail_li">
             <p class="fw700">CASE</p>
             <p><?= $row['mb_2']?></p>
-        </div>
-        <div class="customer_info2">
+        </li>
+        <li class="crm_info_detail_li">
             <p class="fw700">치료형태</p>
             <p><?= $row['mb_3']?></p>
-        </div>
-        <div class="customer_info3">
+        </li>
+        <li class="crm_info_detail_li">
             <p class="fw700">사용장치</p>
             <p><?= $row['mb_7']?></p>
-        </div>
-    </div>
+        </li>
+    </ul>
    <?}?>
 
    <br><br>
@@ -180,8 +179,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
    <?if(($is_admin || $member['mb_level'] >=9 )){?>
 
     <?if(!$stx || !$sfl){?>
-        <div class="ortho_info">
-            <div class="ortho_info3">
+        <div class="crm_info">
+            <div class="crm_info_li crm_total_story">
                 <span class="dm fw700">
                     <?
                     $list_a = sql_fetch("select bo_count_write from g5_board where bo_table='crm';"); 
@@ -192,9 +191,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         </div>
     <?} else {?>
 
-        <div class="ortho_info_wrap">
-            <div class="ortho_pf">
-                <p class="g8">
+        <div class="crm_info_wrap">
+            <div class="crm_pf_wrap">
+                <p class="crm_pf">
                     <?    
                         $mb_prof_dir = substr($row['mb_id'],0,2);
                         $mb_prof_file = G5_DATA_PATH.'/member/'.$mb_prof_dir.'/'.get_mb_icon_name($row['mb_id']).'.gif';
@@ -206,44 +205,44 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
                 </p>
             </div>
-            <div class="ortho_info">
-                <div class="ortho_info1">
+            <ul class="crm_info">
+                <li class="crm_info_li">
                     <span class="dm fw700"><?php echo $row['mb_sdate'] ?></span>
                     <p>치료 시작일</p>
-                </div>
-                <div class="ortho_info2">
+                </li>
+                <li class="crm_info_li">
                     <span class="dm fw700"><?php echo $row['mb_fdate'] ?></span>
                     <p>치료 종료 예상일</p>
-                </div>
-                <div class="ortho_info3">
+                </li>
+                <li class="crm_info_li">
                     <span class="dm fw700"><?php echo number_format($total_count) ?></span>
                     <p>스토리</p>
-                </div>
-                <div class="ortho_info4">
+                </li>
+                <li class="crm_info_li">
                     <?= $d_day_count ?>
                     <p>남은 기간</p>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
 
-        <div class="customer_info_wrap">
-            <div class="admin_info">
+        <ul class="crm_info_detail">
+            <li class="crm_info_detail_li">
                 <p class="fw700">차트번호</p>
                 <p><?= $row['mb_id']?></p>
-            </div>
-            <div class="admin_info">
+            </li>
+            <li class="crm_info_detail_li">
                 <p class="fw700">환자정보</p>
                 <p><?= $row['mb_name']?>(<?=$row['mb_8'] == '0' ? '남' : '여'?>) / <span class="dm"><?= $row['mb_1']?> </span>(만 <span class="dm"><?=$age?></span>세)</p>
-            </div>
-            <div class="admin_info">
+            </li>
+            <li class="crm_info_detail_li">
                 <p class="fw700">전화번호</p>
                 <p class="dm"><?= $row['mb_hp']?> <? if($row['mb_tel']) {?>보호자: <?= $row['mb_tel']?> <? } ?></p>
-            </div>
-            <div class="customer_info1">
+            </li>
+            <li class="crm_info_detail_li">
                 <p class="fw700">CASE</p>
                 <p><?= $row['mb_2']?></p>
-            </div>
-            <div class="customer_info2">
+            </li>
+            <li class="crm_info_detail_li">
                 <p class="fw700">치료형태</p>
                 <p>
                     <span>발치 진행 유무 : <?= $row['mb_3']?>&nbsp;&#124;&nbsp;</span>
@@ -251,23 +250,21 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
                     <span>교정 부위 : <?= $row['mb_5']?>&nbsp;&#124;&nbsp;</span>
                     <span>교정 악궁 : <?= $row['mb_6']?>&nbsp;</span>
                 </p>
-            </div>
-            <div class="customer_info3">
+            </li>
+            <li class="customer_info3">
                 <p class="fw700">사용장치</p>
                 <p><?= $row['mb_7']?></p>
-            </div>
-        </div>
+            </li>
+        </ul>
     <?}?>
 <?}?>
 
 <?if($sfl=='wr_2'){?>
-<br><br>
-<div style="width:100%; text-align:center; color:red; font-size:20px;">
+<div class="crm_notice">
     환자명으로 검색하신 경우 아래 목록에서 아이콘 을 선택하신 후<br>"환자 정보가 나오는 화면"으로 이동 후 새글을 작성해주세요.
-</div>
+</div> 
 <?}?>
 
-<br><br>
     <?php if ($is_checkbox) { ?>
     <div id="gall_allchk" class="all_chk chk_box">
         <input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);" class="selec_chk">
