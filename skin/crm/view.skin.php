@@ -21,7 +21,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 <article id="bo_v" style="max-width:900px; min-width: 320px; width:100%; margin:0 auto;">
     <header>
         <div>
-       <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&sca=&sop=and&sfl=wr_1&stx=<?=$stx?>"><img src="/theme/basic/svg/back.svg" alt=""></a>
+            <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&sca=&sop=and&sfl=wr_1&stx=<?=$stx?>"><img src="/theme/basic/svg/back.svg" alt=""></a>
         </div>
         <div id="bo_v_title">
             <?php if ($category_name) { ?>
@@ -77,7 +77,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 	        <?php
 	        $link_buttons = ob_get_contents();
 	        ob_end_flush();
-	         ?>
+	    ?>
 	    </div>
 	    <!-- } 게시물 상단 버튼 끝 -->
 	    <div id="bo_v_top">
@@ -126,7 +126,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
             echo "</div>\n";
         }
-         ?>
+        ?>
 
 
 
@@ -245,19 +245,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         </ul>
     </section>
     <!-- } 관련링크 끝 -->
-    <?php } ?>
-<!--     
-    <?php if ($prev_href || $next_href) { ?>
-    <ul class="bo_v_nb">
-        <?php if ($prev_href) { ?><li class="btn_prv"><span class="nb_tit"><i class="fa fa-chevron-up" aria-hidden="true"></i> 이전글</span><a href="<?php echo $prev_href ?>"><?php echo $prev_wr_subject;?></a> <span class="nb_date"><?php echo str_replace('-', '.', substr($prev_wr_date, '2', '8')); ?></span></li><?php } ?>
-        <?php if ($next_href) { ?><li class="btn_next"><span class="nb_tit"><i class="fa fa-chevron-down" aria-hidden="true"></i> 다음글</span><a href="<?php echo $next_href ?>"><?php echo $next_wr_subject;?></a>  <span class="nb_date"><?php echo str_replace('-', '.', substr($next_wr_date, '2', '8')); ?></span></li><?php } ?>
-    </ul>
-    <?php } ?> -->
-
-    <?php
+    <?php }
     // 코멘트 입출력
     include_once(G5_BBS_PATH.'/view_comment.php');
-	?>
+    ?>
 </article>
 <!-- } 게시판 읽기 끝 -->
 

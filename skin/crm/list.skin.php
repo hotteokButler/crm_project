@@ -2,12 +2,6 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
-
-// 관리자가 아닌 회원의 경우 로그인 아이디(차트번호)와 게시글 차트번호 체크
-if ($is_member && !$is_admin) {
-
-}
-
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
 
@@ -93,9 +87,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
       
     <? // 검색된 회원 정보 가져오기
     
-    $sql_is_member = "select * from {$g5['member_table']} where mb_level=6 and mb_id = '".$member['mb_id']."' order by mb_name ";        
-    $sql_by_stx = "select * from {$g5['member_table']} where mb_level=6 and mb_id = '$stx' order by mb_name ";
-    $sql_by_birth_and_name = "select * from {$g5['member_table']} where mb_level=6 and mb_name = '$stx' and mb_1 = '$wr_5' order by mb_name ";
+    $sql_is_member = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = '".$member['mb_id']."' order by mb_name ";        
+    $sql_by_stx = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = '$stx' order by mb_name ";
+    $sql_by_birth_and_name = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_name = '$stx' and mb_1 = '$wr_5' order by mb_name ";
 
     if ( $is_member && !$is_admin) {
         $sql1 = $sql_is_member;
@@ -113,7 +107,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
     $d_start = date("Y-m-d", time());;
     $d_day_count = floor((strtotime(date($row['mb_fdate'])) - strtotime($d_start)) / 86400 );
-    if ($d_day_count < 0) {
+    if ($d_day_count <= 0) {
       $d_day_count = '<span class="event_btn event_end dm fw700">치료종료</span>';
     } else {
       $d_day_count = '<span class="event_btn event_ongoing dm fw700">D-' . $d_day_count . '</span>';
