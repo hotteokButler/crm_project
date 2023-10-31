@@ -3,7 +3,15 @@
 /* list.skin.php custom 시작*/
 
 // search
-
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  -webkit-box-shadow: 0 0 5px #7bb7ff;
+  -moz-box-shadow: 0 0 5px #7bb7ff;
+  box-shadow: 0 0 5px #7bb7ff;
+  border: 1px solid transparent !important;
+}
 .top_sch_wrap {
   .bo_sch {
     display: flex;
@@ -43,12 +51,6 @@
     border: 1px solid transparent;
     border-radius: 100px;
     background-color: #eee;
-    input[type="text"]:focus {
-      -webkit-box-shadow: 0 0 8px #7bb7ff;
-      -moz-box-shadow: 0 0 5px #7bb7ff;
-      box-shadow: 0 0 8px #7bb7ff;
-      border: 1px solid transparent;
-    }
     &::placeholder {
       font-size: 0.9rem;
       font-weight: bold;
@@ -69,12 +71,6 @@
     font-weight: bold;
     color: #232323;
     line-height: 45px;
-    &:focus {
-      -webkit-box-shadow: 0 0 8px #7bb7ff;
-      -moz-box-shadow: 0 0 5px #7bb7ff;
-      box-shadow: 0 0 8px #7bb7ff;
-      border: 1px solid transparent;
-    }
   }
 }
 .sch_select_wrap {

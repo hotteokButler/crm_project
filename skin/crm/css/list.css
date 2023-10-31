@@ -1,5 +1,13 @@
 @charset "UTF-8";
 /* list.skin.php custom 시작*/
+input[type=text]:focus,
+input[type=password]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 5px #7bb7ff;
+  border: 1px solid transparent !important;
+}
+
 .top_sch_wrap .bo_sch {
   display: flex;
   justify-content: center;
@@ -39,10 +47,6 @@
   border-radius: 100px;
   background-color: #eee;
 }
-.top_sch_wrap .sch_input input[type=text]:focus {
-  box-shadow: 0 0 8px #7bb7ff;
-  border: 1px solid transparent;
-}
 .top_sch_wrap .sch_input::-moz-placeholder {
   font-size: 0.9rem;
   font-weight: bold;
@@ -66,10 +70,6 @@
   font-weight: bold;
   color: #232323;
   line-height: 45px;
-}
-.sch_bar_date .sch_input:focus {
-  box-shadow: 0 0 8px #7bb7ff;
-  border: 1px solid transparent;
 }
 
 .sch_select_wrap {
