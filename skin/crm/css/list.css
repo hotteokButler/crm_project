@@ -1,5 +1,29 @@
 @charset "UTF-8";
 /* list.skin.php custom 시작*/
+.ft_blue {
+  color: #7bb7ff;
+}
+
+.ft_sblue {
+  color: #c3ddfe;
+}
+
+.fw900 {
+  font-weight: 900;
+}
+
+.fw700 {
+  font-weight: 700;
+}
+
+.fw500 {
+  font-weight: 500;
+}
+
+.fw300 {
+  font-weight: 300;
+}
+
 input[type=text]:focus,
 input[type=password]:focus,
 textarea:focus,
@@ -67,6 +91,7 @@ select:focus {
 .sch_bar_date .sch_input {
   display: block;
   width: 100%;
+  max-width: 180px;
   padding: 0 20px;
   line-height: 40px;
   margin: 10px 10px 10px 0;
@@ -75,15 +100,21 @@ select:focus {
   color: #232323;
   line-height: 45px;
 }
+.sch_bar_date .sch_input:focus:focus {
+  box-shadow: 0 0 5px #7bb7ff;
+  border: 1px solid transparent !important;
+}
 
 .sch_select_wrap {
   display: none;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 .sch_select_wrap select.sch_input {
   width: 20%;
   height: 50px;
+  min-width: 180px;
   margin: 9px 10px 4px 0px;
   padding: 0px 20px;
   font-size: 0.9rem;
@@ -99,6 +130,27 @@ select:focus {
 }
 #show_detail_sch:hover {
   color: #7bb7ff;
+}
+
+.crm_info {
+  width: 120px;
+  text-align: center;
+  margin: 3rem 0 2rem;
+}
+.crm_info span {
+  display: inline-block;
+}
+.crm_info .crm_total_count {
+  font-size: 5rem;
+}
+.crm_info p {
+  font-size: 1.2rem;
+}
+
+.button_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .back_to_list {

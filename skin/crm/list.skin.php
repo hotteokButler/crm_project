@@ -54,10 +54,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                 </fieldset>
 
             </div>
-            <!-- } 게시판 검색 끝 -->
-            <?}?>
-
-
+        <!-- } 게시판 검색 끝 -->
+        <?}?>
     </div>
     <!-- } 게시판 페이지 정보 및 버튼 끝 -->
 
@@ -98,9 +96,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     $d_start = date("Y-m-d", time());;
     $d_day_count = floor((strtotime(date($row['mb_fdate'])) - strtotime($d_start)) / 86400 );
     if ($d_day_count <= 0) {
-      $d_day_count = '<span class="event_btn event_end dm fw700">치료종료</span>';
+      $d_day_count = '<span class="event_btn event_end fw700">치료종료</span>';
     } else {
-      $d_day_count = '<span class="event_btn event_ongoing dm fw700">D-' . $d_day_count . '</span>';
+      $d_day_count = '<span class="event_btn event_ongoing fw700">D-' . $d_day_count . '</span>';
     }
     ?>
 
@@ -111,8 +109,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     $age           = $now - $birthday - 1  ;
     ?>
 
-    <br>
-    <br>
+
 
     <?if(!$is_admin && $member['mb_level'] <=8){?>
     <div class="crm_info_wrap">
@@ -165,19 +162,18 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     </ul>
    <?}?>
 
-   <br><br>
-
    <?if(($is_admin || $member['mb_level'] >=9 )){?>
 
     <?if(!$stx || !$sfl){?>
         <div class="crm_info">
             <div class="crm_info_li crm_total_story">
-                <span class="dm fw700">
+                <span class="fw900 crm_total_count ft_sblue">
                     <?
                     $list_a = sql_fetch("select bo_count_write from g5_board where bo_table='crm';"); 
                     echo $list_a['bo_count_write']; // 전체 게시글 수
                     ?>
-                <p>총 스토리</p>
+                </span>  
+                <p class="ft_blue fw700">총 스토리</p>
             </div>
         </div>
     <?} else {?>
@@ -198,15 +194,15 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
             </div>
             <ul class="crm_info">
                 <li class="crm_info_li">
-                    <span class="dm fw700"><?php echo $row['mb_sdate'] ?></span>
+                    <span class="fw700"><?php echo $row['mb_sdate'] ?></span>
                     <p>치료 시작일</p>
                 </li>
                 <li class="crm_info_li">
-                    <span class="dm fw700"><?php echo $row['mb_fdate'] ?></span>
+                    <span class="fw700"><?php echo $row['mb_fdate'] ?></span>
                     <p>치료 종료 예상일</p>
                 </li>
                 <li class="crm_info_li">
-                    <span class="dm fw700"><?php echo number_format($total_count) ?></span>
+                    <span class="fw700"><?php echo number_format($total_count) ?></span>
                     <p>스토리</p>
                 </li>
                 <li class="crm_info_li">
@@ -256,38 +252,39 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 </div> 
 <?}?>
 
-    <?php if ($is_checkbox) { ?>
-    <div id="gall_allchk" class="all_chk chk_box">
-        <input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);" class="selec_chk">
-    	<label for="chkall">
-        	<span></span>
-        	<b class="sound_only">현재 페이지 게시물 </b> 전체선택
-        </label>
-    </div>
-    <?php } ?>
-    <?if($is_admin || $member['mb_level'] >=9 ){?>     
-        <ul class="btn_bo_user">
-        	<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
-            <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
+    <div class="button_wrap">
+        <?php if ($is_checkbox) { ?>
+        <div id="gall_allchk" class="all_chk chk_box">
+            <input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);" class="selec_chk">
+            <label for="chkall">
+                <span></span>
+                <b class="sound_only">현재 페이지 게시물 </b> 전체선택
+            </label>
+        </div>
+        <?php } ?>
+        <?if($is_admin || $member['mb_level'] >=9 ){?>     
+            <ul class="btn_bo_user">
+                <?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn" title="관리자"><i class="fa fa-cog fa-spin fa-fw"></i><span class="sound_only">관리자</span></a></li><?php } ?>
+                <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn" title="RSS"><i class="fa fa-rss" aria-hidden="true"></i><span class="sound_only">RSS</span></a></li><?php } ?>
 
-            <?if($sfl=='wr_1'){?>
-            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>&stx=<?=$stx?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
-            <?}?>
-        	<?php if ($is_admin == 'super' || $is_auth) {  ?>         
-        	<li>
-        		<button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
-        		<?php if ($is_checkbox) { ?>	
-		        <ul class="more_opt is_list_btn">  
-		            <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
-		            <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value"><i class="fa fa-files-o" aria-hidden="true"></i> 선택복사</button></li>
-		            <li><button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value"><i class="fa fa-arrows" aria-hidden="true"></i> 선택이동</button></li>
-		        </ul>
-		        <?php } ?>
-        	</li>
-        	<?php }  ?>
-        </ul>
+                <?if($sfl=='wr_1'){?>
+                <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>&stx=<?=$stx?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
+                <?}?>
+                <?php if ($is_admin == 'super' || $is_auth) {  ?>         
+                <li>
+                    <button type="button" class="btn_more_opt is_list_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
+                    <?php if ($is_checkbox) { ?>	
+                    <ul class="more_opt is_list_btn">  
+                        <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
+                        <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value"><i class="fa fa-files-o" aria-hidden="true"></i> 선택복사</button></li>
+                        <li><button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value"><i class="fa fa-arrows" aria-hidden="true"></i> 선택이동</button></li>
+                    </ul>
+                    <?php } ?>
+                </li>
+                <?php }  ?>
+            </ul>
         <?php }  ?>
-    
+    </div>
 
     <ul id="gall_ul" class="gall_row">
         <!-- 핀고정 아래 추가 -->
@@ -298,7 +295,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
             $classes = array();
             
             $classes[] = 'gall_li';
-            $classes[] = 'col-gn-'.$bo_gallery_cols;
 
             if( $i && ($i % $bo_gallery_cols == 0) ){
                 $classes[] = 'box_clear';
@@ -334,7 +330,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                         <p><?=$list[$i]['wr_2']?></p>
                     </div>
                     <div class="gall_more">
-                        <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&page=&sca=&sfl=wr_1&stx=<?=$list[$i]['wr_1']?>"><span></span></a>
+                        <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&page=&sca=&sfl=wr_1&stx=<?=$list[$i]['wr_1']?>">
+                        
+                        </a>
                     </div>
                 <?}?>
                     <div class="gall_img">
@@ -394,6 +392,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
         <?php } ?>
     </div>
     <?php } ?> 
+
+
     </form>
 
 

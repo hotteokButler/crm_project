@@ -99,16 +99,18 @@ box-shadow:inset 0 2px 5px rgb(33, 135, 202)}
 
 
 /* 갤러리 목록 ==============================================================================================*/
+/* S: crm 수정 */
 #bo_gall h2 {margin:0;padding:0;width:1px;height:1px;font-size:0;line-height:0;overflow:hidden}
-#bo_gall #gall_ul {margin:26px 0px 0;padding:0;list-style:none;zoom:1}
+#bo_gall #gall_ul { display: flex;flex-wrap: wrap;margin: 1.5rem 0px 0;padding: 0; list-style: none; zoom: 1;}
 #bo_gall #gall_ul:after {display:block;visibility:hidden;clear:both;content:""}
-#bo_gall .gall_li { position: relative; margin:0 1% 1% 0; }
+#bo_gall .gall_li {position: relative; margin: 0.5%;width: 32.3%; }
 #bo_gall .gall_li:after { content: ""; display: block; padding-bottom: 100%; }
 #bo_gall .gall_li .gall_chk {position:absolute;top:0;left:0;padding:5px;z-index:1}
-#bo_gall .gall_box {position: absolute; width: 100%; height: 100%; background-color: #FBC4C2; display: table;}
+#bo_gall .gall_box {position: absolute; display: table; top: 0;left: 0; width: 100%; height: 100%; background-color: #ebf4ff; }
 #bo_gall .gall_con {position:relative; display: table-cell; vertical-align: middle; text-align: center; }
 #bo_gall .gall_box .no_img { color: #4E5168;}
-#bo_gall .gall_li:nth-child(3n) { margin-right: 0; }
+/* #bo_gall .gall_li:nth-child(3n) { margin-right: 0; } */
+/* E: crm 수정 */
 
 .gall_row .col-gn-0,.gall_row .col-gn-1,.gall_row .col-gn-2,.gall_row .col-gn-3,.gall_row .col-gn-4,.gall_row .col-gn-5,.gall_row .col-gn-6,.gall_row .col-gn-7,.gall_row .col-gn-8,.gall_row .col-gn-9,.gall_row .col-gn-10 {position:relative;min-height:1px;float:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin-left:0}
 .gall_row .col-gn-0,.latest_row .col-gn-1 {width:100%}
@@ -136,11 +138,8 @@ box-shadow:inset 0 2px 5px rgb(33, 135, 202)}
 
 #bo_gall .gall_text_href {margin:10px 0; padding:0 10px; position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto; }
 .gall_text_href a {width: 100%; height: 100%;}
-/* .gall_text_href a {width: 100%; height: 100%;opacity: 0; transition: .5s; }
-.gall_text_href:hover .bo_tit {width: 100%; height: 100%; opacity: 1; transition: .5s;} */
 #bo_gall .gall_text_href img {margin:0 0 0 4px}
 #bo_gall .bo_tit {display:block; font-size:16px; letter-spacing: -1px;  font-weight: 400; line-height: 1.3; padding: 20%; }
-/* #bo_gall .bo_tit .cnt_cmt {color:#fff;font-size:14px;height:16px;line-height:16px; position: absolute; bottom: 5%; right: 5%;} */
 
 #bo_gall .bo_cnt {color:#acacac;line-height:18px}
 #bo_gall .profile_img img {border-radius:50%}
@@ -170,15 +169,26 @@ box-shadow:2px 2px 3px 0px rgba(0,0,0,0.2)}
 .bo_fx ul {margin:0;padding:0;list-style:none}
 #bo_list_total {float:left;line-height:34px;font-size:0.92em;color:#4e546f}
 
-.btn_bo_user {float:right;margin:0;padding:0;list-style:none}
-.btn_bo_user li {float:left;width:40px;text-align:center;margin-left:5px;background:transparent}
-.btn_bo_user > li {position:relative}
-.btn_bo_adm {float:left}
-.btn_bo_adm li {float:left;margin-right:5px}
+/*S: crm수정 */
+.btn_bo_user {margin:0;padding:0;list-style:none}
+.btn_bo_user li {width:40px;text-align:center;margin-left:5px;background:transparent}
+.btn_bo_user > li {position:relative;display: inline-block;}
+.btn_bo_user li a.btn_b01,
+.btn_bo_user li .btn_b01 {display: inline-block; background: #7bb7ff;    width: 35px;    line-height: 35px;    color: #FFF;    text-decoration: none;    vertical-align: middle;   border-radius: 50%;}
+.btn_bo_user li a.btn_admin, 
+.btn_bo_user li .btn_admin {background: #aaa;width: 35px;line-height: 35px;border-radius: 50%;}
+.btn_bo_user li a.btn_b01:hover,
+.btn_bo_user li .btn_b01:hover {background:#aaa;}
+.btn_bo_user li a.btn_admin:hover,
+.btn_bo_user li .btn_admin:hover {background:#f1aeae;}
+
+.btn_bo_adm {}
+.btn_bo_adm li {margin-right:5px}
 .btn_bo_adm input {padding:0 8px;border:0;background:#d4d4d4;color:#666;text-decoration:none;vertical-align:middle}
 .bo_notice td {background:#fff6fa !important;border-bottom:1px solid #f8e6ee}
 .bo_notice td a {font-weight:bold}
 .bo_notice .notice_icon {display:inline-block;line-height:25px;border-radius:5px;font-weight:bold;color:#f9267f}
+/*E: crm수정 */
 
 .more_opt {display:none;position:absolute;top:45px;right:0;background:#fff;border:1px solid #b8bfc4;z-index:999}
 .more_opt:before {content:"";position:absolute;top:-8px;right:13px;width:0;height:0;border-style:solid;border-width:0 6px 8px 6px;border-color:transparent transparent #b8bfc4 transparent}

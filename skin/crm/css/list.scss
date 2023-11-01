@@ -1,17 +1,43 @@
 @charset 'utf-8';
 
 /* list.skin.php custom 시작*/
+// common
+@mixin focus($color) {
+  -webkit-box-shadow: 0 0 5px $color;
+  -moz-box-shadow: 0 0 5px $color;
+  box-shadow: 0 0 5px $color;
+  border: 1px solid transparent !important;
+}
+// common var
+$main_blue: #7bb7ff;
+$main_skyblue: #c3ddfe;
 
-// search
+.ft_blue {
+  color: $main_blue;
+}
+.ft_sblue {
+  color: $main_skyblue;
+}
+.fw900 {
+  font-weight: 900;
+}
+.fw700 {
+  font-weight: 700;
+}
+.fw500 {
+  font-weight: 500;
+}
+.fw300 {
+  font-weight: 300;
+}
+// searchs
 input[type="text"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  -webkit-box-shadow: 0 0 5px #7bb7ff;
-  -moz-box-shadow: 0 0 5px #7bb7ff;
-  box-shadow: 0 0 5px #7bb7ff;
-  border: 1px solid transparent !important;
+  @include focus($main_blue);
 }
+
 .top_sch_wrap {
   .bo_sch {
     display: flex;
@@ -68,6 +94,7 @@ select:focus {
   .sch_input {
     display: block;
     width: 100%;
+    max-width: 180px;
     padding: 0 20px;
     line-height: 40px;
     margin: 10px 10px 10px 0;
@@ -75,15 +102,22 @@ select:focus {
     font-weight: bold;
     color: #232323;
     line-height: 45px;
+    &:focus {
+      &:focus {
+        @include focus($main_blue);
+      }
+    }
   }
 }
 .sch_select_wrap {
   display: none;
   justify-content: flex-start;
   align-items: flex-start;
+  flex-wrap: wrap;
   select.sch_input {
     width: 20%;
     height: 50px;
+    min-width: 180px;
     margin: 9px 10px 4px 0px;
     padding: 0px 20px;
     font-size: 0.9rem;
@@ -98,9 +132,33 @@ select:focus {
   padding: 0 20px;
   text-decoration: underline;
   &:hover {
-    color: #7bb7ff;
+    color: $main_blue;
   }
 }
+
+// info
+.crm_info {
+  width: 120px;
+  text-align: center;
+  margin: 3rem 0 2rem;
+  span {
+    display: inline-block;
+  }
+  .crm_total_count {
+    font-size: 5rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+// buttons
+.button_wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 // list
 
 .back_to_list {
@@ -111,7 +169,7 @@ select:focus {
   transition: 0.4s;
   font-weight: 700;
   &:hover {
-    color: #7bb7ff;
+    color: $main_blue;
     background-image: url("../img/back_to_hov.png");
   }
 }
