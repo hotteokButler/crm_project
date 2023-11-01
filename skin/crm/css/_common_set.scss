@@ -1,0 +1,105 @@
+@import url("./font.css");
+
+// 공통  mixin / variable
+
+// variable
+// pc
+$pc_menu_wid: 74%;
+$pc_dpth01_font: 1.3rem;
+$pc_dpth02_font: 1rem;
+$pc_font_lg: 3rem;
+$pc_font_rl: 2.65rem;
+$pc_font_sl: 2rem;
+$pc_font_rr: 1.75rem;
+$pc_font_r: 1rem;
+$pc_font_sr: 0.85rem;
+$pc_font_s: 0.6rem;
+$pc_font_ss: 0.5rem;
+
+//tablet
+$tb_menu_wid: 74%;
+$tb_font_lg: 3.2vw;
+$tb_font_rl: 2.5vw;
+$tb_font_sl: 2vw;
+$tb_font_rr: 1.7vw;
+$tb_font_r: 1.5vw;
+$tb_font_sr: 1.4vw;
+$tb_font_s: 1.25vw;
+$tb_font_ss: 1vw;
+
+//mobile
+$mo_font_lg: 7.85vw;
+$mo_font_rl: 7vw;
+$mo_font_sl: 6.5vw;
+$mo_font_rr: 5vw;
+$mo_font_r: 4vw;
+$mo_font_sr: 3.2vw;
+$mo_font_s: 2.65vw;
+$mo_font_ss: 2.3vw;
+
+
+// mobile
+
+// color pallet
+$main_blue: #7bb7ff;
+$main_skyblue: #c3ddfe;
+$main_color: #f08468;
+$light_org : #feead1;
+$dark_org: #e5b086;
+$dark_beige : #f7e7da;
+$beige : #fff5e9;
+$dark_gray :#dedadb;
+$gray : #edebec;
+$light_gray: #f3f3f3;
+$light_gray02: #f6f6f6;
+$light_gray_op5: #ffffff45;
+$light_gray_op7: #f3f3f3c2;
+$white_color : #fff;
+$dark_brown: #4c4648;
+
+
+$sl_pg_color: #4d474b;
+$sl_btn_color :#676464;
+$sl_btn_hover :#595959c9;
+$font_color: #4b4545;
+
+
+$transition-custom: all 0.4s ease-in-out;
+$transition-custom2: all 0.8s ease-in-out; /* data-scroll */
+$font-family1: 'Poppins', 'Pretendard', "나눔고딕", NanumGothic, "Nanum Gothic","돋움", Dotum, Arial, sans-serif;
+$font-family2: 'Poppins', "나눔고딕", NanumGothic, "Nanum Gothic","돋움", Dotum, Arial, sans-serif;
+$font-family3: 'TheJamsil', "나눔고딕", NanumGothic, "Nanum Gothic","돋움", Dotum, Arial, sans-serif;
+
+// mixin
+@mixin focus($color) {
+  -webkit-box-shadow: 0 0 5px $color;
+  -moz-box-shadow: 0 0 5px $color;
+  box-shadow: 0 0 5px $color;
+  border: 1px solid transparent !important;
+}
+
+
+@mixin flex($js_content: center, $al_item: center, $flx_direction: row, $wrap: nowrap) {
+  display: flex;
+  justify-content: $js_content;
+  align-items: $al_item;
+  @if $flx_direction != row {
+    flex-direction: $flx_direction;
+  }
+  @if $wrap != nowrap {
+    flex-wrap: $wrap;
+  }
+}
+
+@mixin clear_both($display: block) {
+  clear: both;
+  content: "";
+  display: $display;
+
+}
+
+@mixin bg($repeat:no-repeat,$bg_size:100% auto,$bg_pos:center) {
+  background-repeat:$repeat;
+  background-size: $bg_size;
+  background-position: $bg_pos;
+}

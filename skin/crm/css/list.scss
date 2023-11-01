@@ -1,22 +1,13 @@
 @charset 'utf-8';
-
+@use "_common_set" as def;
 /* list.skin.php custom 시작*/
 // common
-@mixin focus($color) {
-  -webkit-box-shadow: 0 0 5px $color;
-  -moz-box-shadow: 0 0 5px $color;
-  box-shadow: 0 0 5px $color;
-  border: 1px solid transparent !important;
-}
-// common var
-$main_blue: #7bb7ff;
-$main_skyblue: #c3ddfe;
 
 .ft_blue {
-  color: $main_blue;
+  color: def.$main_blue;
 }
 .ft_sblue {
-  color: $main_skyblue;
+  color: def.$main_skyblue;
 }
 .fw900 {
   font-weight: 900;
@@ -30,20 +21,18 @@ $main_skyblue: #c3ddfe;
 .fw300 {
   font-weight: 300;
 }
+
 // searchs
 input[type="text"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  @include focus($main_blue);
+  @include def.focus(def.$main_blue);
 }
 
 .top_sch_wrap {
   .bo_sch {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    @include def.flex(center, center, column);
   }
   form {
     width: 100%;
@@ -77,12 +66,12 @@ select:focus {
     border: 1px solid transparent;
     border-radius: 100px;
     background-color: #eee;
-    font-size: 0.9rem;
+    font-size: def.$pc_font_sr;
     font-weight: bold;
     color: #232323;
     line-height: 45px;
     &::placeholder {
-      font-size: 0.9rem;
+      font-size: def.$pc_font_sr;
       font-weight: bold;
       color: #232323;
       line-height: 45px;
@@ -98,13 +87,13 @@ select:focus {
     padding: 0 20px;
     line-height: 40px;
     margin: 10px 10px 10px 0;
-    font-size: 0.9rem;
+    font-size: def.$pc_font_sr;
     font-weight: bold;
     color: #232323;
     line-height: 45px;
     &:focus {
       &:focus {
-        @include focus($main_blue);
+        @include def.focus(def.$main_blue);
       }
     }
   }
@@ -132,7 +121,7 @@ select:focus {
   padding: 0 20px;
   text-decoration: underline;
   &:hover {
-    color: $main_blue;
+    color: def.$main_blue;
   }
 }
 
@@ -149,7 +138,7 @@ select:focus {
   }
   p {
     display: inline-block;
-    font-size: 1.2rem;
+    font-size: def.$pc_font_rr;
   }
 }
 
@@ -161,32 +150,25 @@ select:focus {
 }
 
 // list
-
 .back_to_list {
   display: inline-block;
   padding: 10px 20px 10px 35px;
-  font-size: 1rem;
+  font-size: def.$pc_font_r;
   background: url("../img/back_to.png") no-repeat left center/19% auto;
   transition: 0.4s;
   font-weight: 700;
   &:hover {
-    color: $main_blue;
+    color: def.$main_blue;
     background-image: url("../img/back_to_hov.png");
   }
-}
-
-#bo_gall {
-  width: 80%;
-  max-width: 900px;
-  margin: 3rem auto;
 }
 .gall_more {
   position: absolute;
   top: 10px;
-  right: 10px;
-  z-index: 3;
+  right: 7px;
   width: 17%;
   max-width: 40px;
+  z-index: 3;
   a {
     display: block;
     width: 100%;
@@ -205,7 +187,7 @@ select:focus {
   width: 100%;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.15);
-  font-size: 14px;
+  font-size: def.$pc_font_sr;
   b {
     color: #fff;
   }
@@ -220,15 +202,83 @@ select:focus {
   width: 27px;
   line-height: 27px;
   position: absolute;
-  bottom: 1.5%;
-  right: 2%;
+  bottom: 2%;
+  right: 2.5%;
 
   span {
     display: block;
     height: inherit;
     line-height: inherit;
-    color: #7bb7ff;
-    font-size: 14px;
-    background: url("../img/co_icon.png") no-repeat center bottom/100% auto;
+    color: def.$main_blue;
+    font-size: def.$pc_font_sr;
+    background: url("../img/co_icon.png") no-repeat center bottom -1px/100% auto;
   }
+}
+//회원 info
+
+.crm_info_wrap {
+  display: flex;
+  margin: 2rem 0;
+}
+
+.crm_pf_wrap {
+  .crm_pf {
+    position: relative;
+    width: 8vw;
+    height: 8vw;
+    max-width: 120px;
+    max-height: 120px;
+    min-width: 60px;
+    min-height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: def.$main_blue;
+    img,
+    span {
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    img {
+      z-index: 2;
+    }
+    span {
+      font-size: def.$pc_font_r;
+      z-index: 1;
+      text-align: center;
+    }
+  }
+}
+
+.crm_info {
+  @include def.flex(flex-start);
+  padding: 4% 2%;
+  width: 100%;
+  .crm_info_li {
+    text-align: center;
+    padding: 0 2%;
+    border-right:2px solid def.$light_gray;
+    &:last-child {
+      border: none;
+    }
+    span {
+      display: inline-block;
+      margin-bottom: 4px;
+      font-size:  def.$pc_font_rr;
+    }
+    p {
+      font-size: def.$pc_font_r;
+    }
+  }
+}
+
+//리스트 시작
+#bo_gall {
+  width: 80%;
+  max-width: 900px;
+  margin: 3rem auto;
+  text-align: left;
 }

@@ -96,9 +96,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     $d_start = date("Y-m-d", time());;
     $d_day_count = floor((strtotime(date($row['mb_fdate'])) - strtotime($d_start)) / 86400 );
     if ($d_day_count <= 0) {
-      $d_day_count = '<span class="event_btn event_end fw700">치료종료</span>';
+      $d_day_count = '<span class="event_btn event_end fw900 ft_sblue">치료종료</span>';
     } else {
-      $d_day_count = '<span class="event_btn event_ongoing fw700">D-' . $d_day_count . '</span>';
+      $d_day_count = '<span class="event_btn event_ongoing fw900 ft_sblue">D-' . $d_day_count . '</span>';
     }
     ?>
 
@@ -128,35 +128,35 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 
         <ul class="crm_info">
             <li class="crm_info_li">
-                <span class="dm fw700"><?php echo $row['mb_sdate'] ?></span>
-                <p>치료 시작일</p>
+                <span class="fw900 ft_sblue"><?=$row['mb_sdate'] ? $row['mb_sdate']: '0' ?></span>
+                <p class="fw700 ft_blue">치료 시작일</p>
             </li>
             <li class="crm_info_li">
-                <span class="dm fw700"><?php echo $row['mb_fdate'] ?></span>
-                <p>치료 종료 예상일</p>
+                <span class="fw900 ft_sblue"><?=$row['mb_sdate'] ? $row['mb_fdate']: '0' ?></span>
+                <p class="fw700 ft_blue">치료 종료 예상일</p>
             </li>
             <li class="crm_info_li">
-                <span class="dm fw700"><?php echo number_format($total_count) ?></span>
-                <p>스토리</p>
+                <span class="fw900 ft_sblue"><?php echo number_format($total_count) ?></span>
+                <p class="fw700 ft_blue">스토리</p>
             </li>
             <li class="crm_info_li">
                 <?= $d_day_count ?>
-                <p>남은 기간</p>
+                <p class="fw700 ft_blue">남은 기간</p>
             </li>
         </ul>
     </div>
 
     <ul class="crm_info_detail">
         <li class="crm_info_detail_li">
-            <p class="fw700">CASE</p>
+            <p class="fw700 ft_blue">CASE</p>
             <p><?= $row['mb_2']?></p>
         </li>
         <li class="crm_info_detail_li">
-            <p class="fw700">치료형태</p>
+            <p class="fw700 ft_blue">치료형태</p>
             <p><?= $row['mb_3']?></p>
         </li>
         <li class="crm_info_detail_li">
-            <p class="fw700">사용장치</p>
+            <p class="fw700 ft_blue">사용장치</p>
             <p><?= $row['mb_7']?></p>
         </li>
     </ul>
@@ -195,43 +195,43 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
             </div>
             <ul class="crm_info">
                 <li class="crm_info_li">
-                    <span class="fw700"><?php echo $row['mb_sdate'] ?></span>
-                    <p>치료 시작일</p>
+                    <span class="fw900 ft_sblue"><?=$row['mb_sdate'] ? $row['mb_sdate']: '0' ?></span>
+                    <p class="fw700 ft_blue">치료 시작일</p>
                 </li>
                 <li class="crm_info_li">
-                    <span class="fw700"><?php echo $row['mb_fdate'] ?></span>
-                    <p>치료 종료 예상일</p>
+                    <span class="fw900 ft_sblue"><?=$row['mb_sdate'] ? $row['mb_fdate']: '0' ?></span>
+                    <p class="fw700 ft_blue">치료 종료 예상일</p>
                 </li>
                 <li class="crm_info_li">
-                    <span class="fw700"><?php echo number_format($total_count) ?></span>
-                    <p>스토리</p>
+                    <span class="fw900 ft_sblue"><?php echo number_format($total_count) ?></span>
+                    <p class="fw700 ft_blue">스토리</p>
                 </li>
                 <li class="crm_info_li">
                     <?= $d_day_count ?>
-                    <p>남은 기간</p>
+                    <p class="fw700 ft_blue">남은 기간</p>
                 </li>
             </ul>
         </div>
 
         <ul class="crm_info_detail">
             <li class="crm_info_detail_li">
-                <p class="fw700">차트번호</p>
+                <p class="fw700 ft_blue">차트번호</p>
                 <p><?= $row['mb_id']?></p>
             </li>
             <li class="crm_info_detail_li">
-                <p class="fw700">환자정보</p>
+                <p class="fw700 ft_blue">환자정보</p>
                 <p><?= $row['mb_name']?>(<?=$row['mb_8'] == '0' ? '남' : '여'?>) / <span class="dm"><?= $row['mb_1']?> </span>(만 <span class="dm"><?=$age?></span>세)</p>
             </li>
             <li class="crm_info_detail_li">
-                <p class="fw700">전화번호</p>
+                <p class="fw700 ft_blue">전화번호</p>
                 <p class="dm"><?= $row['mb_hp']?> <? if($row['mb_tel']) {?>보호자: <?= $row['mb_tel']?> <? } ?></p>
             </li>
             <li class="crm_info_detail_li">
-                <p class="fw700">CASE</p>
+                <p class="fw700 ft_blue">CASE</p>
                 <p><?= $row['mb_2']?></p>
             </li>
             <li class="crm_info_detail_li">
-                <p class="fw700">치료형태</p>
+                <p class="fw700 ft_blue">치료형태</p>
                 <p>
                     <span>발치 진행 유무 : <?= $row['mb_3']?>&nbsp;&#124;&nbsp;</span>
                     <span>교정 범위 : <?= $row['mb_4']?>&nbsp;&#124;&nbsp;</span>
@@ -240,7 +240,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                 </p>
             </li>
             <li class="customer_info3">
-                <p class="fw700">사용장치</p>
+                <p class="fw700 ft_blue">사용장치</p>
                 <p><?= $row['mb_7']?></p>
             </li>
         </ul>

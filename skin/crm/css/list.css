@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import url("./font.css");
+/* data-scroll */
 /* list.skin.php custom 시작*/
 .ft_blue {
   color: #7bb7ff;
@@ -70,19 +72,19 @@ select:focus {
   border: 1px solid transparent;
   border-radius: 100px;
   background-color: #eee;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   color: #232323;
   line-height: 45px;
 }
 .top_sch_wrap .sch_input::-moz-placeholder {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   color: #232323;
   line-height: 45px;
 }
 .top_sch_wrap .sch_input::placeholder {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   color: #232323;
   line-height: 45px;
@@ -95,7 +97,7 @@ select:focus {
   padding: 0 20px;
   line-height: 40px;
   margin: 10px 10px 10px 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   color: #232323;
   line-height: 45px;
@@ -145,7 +147,7 @@ select:focus {
 }
 .crm_total_info p {
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: 1.75rem;
 }
 
 .button_wrap {
@@ -167,19 +169,13 @@ select:focus {
   background-image: url("../img/back_to_hov.png");
 }
 
-#bo_gall {
-  width: 80%;
-  max-width: 900px;
-  margin: 3rem auto;
-}
-
 .gall_more {
   position: absolute;
   top: 10px;
-  right: 10px;
-  z-index: 3;
+  right: 7px;
   width: 17%;
   max-width: 40px;
+  z-index: 3;
 }
 .gall_more a {
   display: block;
@@ -197,7 +193,7 @@ select:focus {
   width: 100%;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.15);
-  font-size: 14px;
+  font-size: 0.85rem;
 }
 .gall_pos b {
   color: #fff;
@@ -212,14 +208,80 @@ select:focus {
   width: 27px;
   line-height: 27px;
   position: absolute;
-  bottom: 1.5%;
-  right: 2%;
+  bottom: 2%;
+  right: 2.5%;
 }
 .crm_comment span {
   display: block;
   height: inherit;
   line-height: inherit;
   color: #7bb7ff;
-  font-size: 14px;
-  background: url("../img/co_icon.png") no-repeat center bottom/100% auto;
+  font-size: 0.85rem;
+  background: url("../img/co_icon.png") no-repeat center bottom -1px/100% auto;
+}
+
+.crm_info_wrap {
+  display: flex;
+  margin: 2rem 0;
+}
+
+.crm_pf_wrap .crm_pf {
+  position: relative;
+  width: 8vw;
+  height: 8vw;
+  max-width: 120px;
+  max-height: 120px;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #7bb7ff;
+}
+.crm_pf_wrap .crm_pf img,
+.crm_pf_wrap .crm_pf span {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.crm_pf_wrap .crm_pf img {
+  z-index: 2;
+}
+.crm_pf_wrap .crm_pf span {
+  font-size: 1rem;
+  z-index: 1;
+  text-align: center;
+}
+
+.crm_info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 4% 2%;
+  width: 100%;
+}
+.crm_info .crm_info_li {
+  text-align: center;
+  padding: 0 2%;
+  border-right: 2px solid #f3f3f3;
+}
+.crm_info .crm_info_li:last-child {
+  border: none;
+}
+.crm_info .crm_info_li span {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 1.75rem;
+}
+.crm_info .crm_info_li p {
+  font-size: 1rem;
+}
+
+#bo_gall {
+  width: 80%;
+  max-width: 900px;
+  margin: 3rem auto;
+  text-align: left;
 }
