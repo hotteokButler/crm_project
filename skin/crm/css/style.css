@@ -103,10 +103,10 @@ box-shadow:inset 0 2px 5px rgb(33, 135, 202)}
 #bo_gall h2 {margin:0;padding:0;width:1px;height:1px;font-size:0;line-height:0;overflow:hidden}
 #bo_gall #gall_ul { display: flex;flex-wrap: wrap;margin: 1.5rem 0px 0;padding: 0; list-style: none; zoom: 1;}
 #bo_gall #gall_ul:after {display:block;visibility:hidden;clear:both;content:""}
-#bo_gall .gall_li {position: relative; margin: 0.5%;width: 32.3%; }
+#bo_gall .gall_li {position: relative; margin: 0.5%;width: 32.3%;border: 1px solid #ebf3ffe0; }
 #bo_gall .gall_li:after { content: ""; display: block; padding-bottom: 100%; }
 #bo_gall .gall_li .gall_chk {position:absolute;top:0;left:0;padding:5px;z-index:1}
-#bo_gall .gall_box {position: absolute; display: table; top: 0;left: 0; width: 100%; height: 100%; background-color: #ebf4ff; }
+#bo_gall .gall_box {position: absolute; display: table; top: 0;left: 0; width: 100%; height: 100%; background-color: #f5f9ff; }
 #bo_gall .gall_con {position:relative; display: table-cell; vertical-align: middle; text-align: center; }
 #bo_gall .gall_box .no_img { color: #4E5168;}
 /* #bo_gall .gall_li:nth-child(3n) { margin-right: 0; } */
@@ -463,8 +463,7 @@ box-shadow:inset 0 1px 2px rgba(0, 0, 0, 0.1)}
 button { background: inherit ; border:none; box-shadow:none; border-radius:0; padding:0; overflow:visible; cursor:pointer }
 #bo_v_title { margin: auto;  display: flex; justify-content: center; align-items: center; }
 #bo_v_title img { margin-right: 10px; }
-
-.gall_pos { position: absolute; left: 10px; bottom: 10px; background-color: rgba(0,0,0,0.3); color: #fff; padding:5px 10px; }
+/* S: crm 수정 */
 
 .ortho_sch { width: 100%;
     border-radius: 20px;
@@ -474,11 +473,8 @@ button { background: inherit ; border:none; box-shadow:none; border-radius:0; pa
 .ortho_sch .btn_b01 { color: #4e5168; }
 .ortho_sch span { text-align: center; }
 .sch_stx { width: 100%; } 
-.gall_more { position: absolute; top: 10px; right: 10px; z-index: 3;  }
-.gall_pos { font-size: 12px; border-radius: 10px; }
-.gall_pos p { font-size: 14px; } 
-.ortho_comment {color:#fff;font-size:14px;height:16px;line-height:16px; position: absolute; bottom: 5%; right: 5%; }
 
+/* E: crm 수정 */
 
 @media all and (max-width:349px) {
     .ortho_pf { width: 80px; height: 80px; }

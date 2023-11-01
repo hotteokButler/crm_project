@@ -137,10 +137,10 @@ select:focus {
 }
 
 // info
-.crm_info {
-  width: 120px;
+.crm_total_info {
+  display: inline-block;
+  margin: 2rem 0;
   text-align: center;
-  margin: 3rem 0 2rem;
   span {
     display: inline-block;
   }
@@ -148,12 +148,13 @@ select:focus {
     font-size: 5rem;
   }
   p {
+    display: inline-block;
     font-size: 1.2rem;
   }
 }
 
 // buttons
-.button_wrap{
+.button_wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -173,8 +174,61 @@ select:focus {
     background-image: url("../img/back_to_hov.png");
   }
 }
+
 #bo_gall {
   width: 80%;
   max-width: 900px;
   margin: 3rem auto;
+}
+.gall_more {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  width: 17%;
+  max-width: 40px;
+  a {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+//이름
+.gall_pos {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  b {
+    color: #fff;
+  }
+  span {
+    display: inline-block;
+    margin-left: 4px;
+    color: #232323;
+  }
+}
+// 코멘트
+.crm_comment {
+  width: 27px;
+  line-height: 27px;
+  position: absolute;
+  bottom: 1.5%;
+  right: 2%;
+
+  span {
+    display: block;
+    height: inherit;
+    line-height: inherit;
+    color: #7bb7ff;
+    font-size: 14px;
+    background: url("../img/co_icon.png") no-repeat center bottom/100% auto;
+  }
 }

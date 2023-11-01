@@ -165,14 +165,15 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
    <?if(($is_admin || $member['mb_level'] >=9 )){?>
 
     <?if(!$stx || !$sfl){?>
-        <div class="crm_info">
-            <div class="crm_info_li crm_total_story">
+        <div class="crm_total_info">
+            <div class=" crm_total_story">
                 <span class="fw900 crm_total_count ft_sblue">
                     <?
                     $list_a = sql_fetch("select bo_count_write from g5_board where bo_table='crm';"); 
                     echo $list_a['bo_count_write']; // 전체 게시글 수
                     ?>
                 </span>  
+                <br>
                 <p class="ft_blue fw700">총 스토리</p>
             </div>
         </div>
@@ -326,12 +327,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                 <div class="gall_con">
                 <?if($is_admin && $member['mb_level'] >=9){?>
                     <div class="gall_pos">
-                        <small><?=$list[$i]['wr_1']?></small>
-                        <p><?=$list[$i]['wr_2']?></p>
+                        <b><?=$list[$i]['wr_1']?></b>
+                        <span><?=$list[$i]['wr_2']?></span>
                     </div>
                     <div class="gall_more">
                         <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&page=&sca=&sfl=wr_1&stx=<?=$list[$i]['wr_1']?>">
-                        
+                            <img src="<?=$board_skin_url?>/img/chart_icon.png" alt="환자 리스트 보러가기">
                         </a>
                     </div>
                 <?}?>
@@ -339,7 +340,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                         <a href="<?php echo $list[$i]['href'] ?>">
                         <?
                             $thumb = get_list_thumbnail($board['bo_table'], $list[$i]['wr_id'], $board['bo_gallery_width'], $board['bo_gallery_height'], false, true);
-                            $cut_content = cut_str(strip_tags($list[$i]['wr_content']),50);
+                            $cut_content = cut_str(strip_tags($list[$i]['wr_content']),40);
 
                             if($thumb['src']) {
                                 echo '<img src="'.$thumb['src'].'" alt="'.$thumb['alt'].'">';
@@ -361,9 +362,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 	
                         <a href="<?php echo $list[$i]['href'] ?>" class="bo_tit">			
                             <?php if ($list[$i]['comment_cnt']) { ?>
-                                <div class="ortho_comment">
-                                    <img src="/theme/basic/svg/comment_w.svg" alt="">
-                                <span class="cnt_cmt"><?php echo $list[$i]['wr_comment']; ?></span>
+                                <div class="crm_comment">
+                                <span class="cnt_cmt fw700"><?php echo $list[$i]['wr_comment']; ?></span>
                                </div>
                             <?php } ?>                          
                          </a>
