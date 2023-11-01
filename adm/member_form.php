@@ -342,14 +342,14 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
     <tr>
         <th scope="row"><label for="mb_sdate">치료시작일</label></th>
         <td colspan="3">
-            <input class="required frm_input" type="date" name="mb_sdate" id="mb_sdate" value="<?=$mb['mb_sdate'];?>" pattern="\d{4}-\d{2}-\d{2}">
+            <input class="required frm_input" type="date" name="mb_sdate" id="mb_sdate" max="9999-12-31" value="<?=$mb['mb_sdate'];?>" pattern="\d{4}-\d{2}-\d{2}">
             <span class="example_txt">ex&#41;연도-월-일</span>
         </td>
     </tr>
     <tr>
         <th scope="row"><label for="mb_fdate">치료종료예상일</label></th>
         <td colspan="3">
-            <input class="required frm_input" type="date" name="mb_fdate" id="mb_fdate" value="<?=$mb['mb_fdate'];?>" pattern="\d{4}-\d{2}-\d{2}">
+            <input class="required frm_input" type="date" name="mb_fdate" id="mb_fdate" max="9999-12-31" value="<?=$mb['mb_fdate'];?>" pattern="\d{4}-\d{2}-\d{2}">
             <span class="example_txt">ex&#41;연도-월-일</span>
         </td>
     </tr>
