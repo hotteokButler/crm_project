@@ -232,14 +232,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
             </li>
             <li class="crm_info_detail_li">
                 <p class="fw700 ft_blue">치료형태</p>
-                <p>
-                    <span>발치 진행 유무 : <?= $row['mb_3']?>&nbsp;&#124;&nbsp;</span>
-                    <span>교정 범위 : <?= $row['mb_4']?>&nbsp;&#124;&nbsp;</span>
-                    <span>교정 부위 : <?= $row['mb_5']?>&nbsp;&#124;&nbsp;</span>
-                    <span>교정 악궁 : <?= $row['mb_6']?>&nbsp;</span>
+                <p class="crm_info_detail_type">
+                    <span>발치 진행 유무 : <?= $row['mb_3']?></span>
+                    <span>교정 범위 : <?= $row['mb_4']?></span>
+                    <span>교정 부위 : <?= $row['mb_5']?></span>
+                    <span>교정 악궁 : <?= $row['mb_6']?></span>
                 </p>
             </li>
-            <li class="customer_info3">
+            <li class="crm_info_detail_li">
                 <p class="fw700 ft_blue">사용장치</p>
                 <p><?= $row['mb_7']?></p>
             </li>

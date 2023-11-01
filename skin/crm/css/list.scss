@@ -260,21 +260,45 @@ select:focus {
   .crm_info_li {
     text-align: center;
     padding: 0 2%;
-    border-right:2px solid def.$light_gray;
+    border-right: 2px solid def.$light_gray;
     &:last-child {
       border: none;
     }
     span {
       display: inline-block;
       margin-bottom: 4px;
-      font-size:  def.$pc_font_rr;
+      font-size: def.$pc_font_rr;
     }
     p {
       font-size: def.$pc_font_r;
     }
   }
 }
-
+// 상세
+.crm_info_detail {
+  margin-bottom: 3rem;
+}
+.crm_info_detail_li {
+  padding: 0.8rem 0;
+  border-bottom: 2px solid def.$main_skyblue;
+  p {
+    display: inline-block;
+    font-size: def.$pc_font_r;
+    &:first-child {
+      width: 65px;
+      margin-right: 10px;
+    }
+  }
+  p.crm_info_detail_type {
+    display: inline-flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    border-left: 2px solid def.$skyblue_op5;
+    span {
+      padding: 0.4rem 0;
+    }
+  }
+}
 //리스트 시작
 #bo_gall {
   width: 80%;

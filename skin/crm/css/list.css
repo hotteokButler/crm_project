@@ -279,6 +279,32 @@ select:focus {
   font-size: 1rem;
 }
 
+.crm_info_detail {
+  margin-bottom: 3rem;
+}
+
+.crm_info_detail_li {
+  padding: 0.8rem 0;
+  border-bottom: 2px solid #c3ddfe;
+}
+.crm_info_detail_li p {
+  display: inline-block;
+  font-size: 1rem;
+}
+.crm_info_detail_li p:first-child {
+  width: 65px;
+  margin-right: 10px;
+}
+.crm_info_detail_li p.crm_info_detail_type {
+  display: inline-flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(195, 221, 254, 0.5764705882);
+}
+.crm_info_detail_li p.crm_info_detail_type span {
+  padding: 0.4rem 0;
+}
+
 #bo_gall {
   width: 80%;
   max-width: 900px;
