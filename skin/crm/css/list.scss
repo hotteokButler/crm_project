@@ -125,23 +125,6 @@ select:focus {
   }
 }
 
-// info
-.crm_total_info {
-  display: inline-block;
-  margin: 2rem 0;
-  text-align: center;
-  span {
-    display: inline-block;
-  }
-  .crm_total_count {
-    font-size: 5rem;
-  }
-  p {
-    display: inline-block;
-    font-size: def.$pc_font_rr;
-  }
-}
-
 // buttons
 .button_wrap {
   display: flex;

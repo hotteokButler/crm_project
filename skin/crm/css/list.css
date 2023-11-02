@@ -134,22 +134,6 @@ select:focus {
   color: #7bb7ff;
 }
 
-.crm_total_info {
-  display: inline-block;
-  margin: 2rem 0;
-  text-align: center;
-}
-.crm_total_info span {
-  display: inline-block;
-}
-.crm_total_info .crm_total_count {
-  font-size: 5rem;
-}
-.crm_total_info p {
-  display: inline-block;
-  font-size: 1.75rem;
-}
-
 .button_wrap {
   display: flex;
   justify-content: space-between;
