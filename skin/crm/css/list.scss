@@ -25,7 +25,6 @@
   padding: 0 8px 0 15px;
 }
 
-
 // searchs
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -201,91 +200,7 @@ select:focus {
     background: url("../img/co_icon.png") no-repeat center bottom -1px/100% auto;
   }
 }
-//회원 info
 
-.crm_info_wrap {
-  display: flex;
-  margin: 2rem 0;
-}
-
-.crm_pf_wrap {
-  .crm_pf {
-    position: relative;
-    width: 8vw;
-    height: 8vw;
-    max-width: 120px;
-    max-height: 120px;
-    min-width: 60px;
-    min-height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: def.$main_blue;
-    img,
-    span {
-      display: block;
-      width: 100%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    img {
-      z-index: 2;
-    }
-    span {
-      font-size: def.$pc_font_r;
-      z-index: 1;
-      text-align: center;
-    }
-  }
-}
-
-.crm_info {
-  @include def.flex(flex-start);
-  padding: 4% 2%;
-  width: 100%;
-  .crm_info_li {
-    text-align: center;
-    padding: 0 2%;
-    border-right: 2px solid def.$light_gray;
-    &:last-child {
-      border: none;
-    }
-    span {
-      display: inline-block;
-      margin-bottom: 4px;
-      font-size: def.$pc_font_rr;
-    }
-    p {
-      font-size: def.$pc_font_r;
-    }
-  }
-}
-// 상세
-.crm_info_detail {
-  margin-bottom: 3rem;
-}
-.crm_info_detail_li {
-  padding: 0.8rem 0;
-  border-bottom: 2px solid def.$main_skyblue;
-  p {
-    display: inline-block;
-    font-size: def.$pc_font_r;
-    &:first-child {
-      width: 65px;
-      margin-right: 10px;
-    }
-  }
-  p.crm_info_detail_type {
-    display: inline-flex;
-    flex-direction: column;
-    padding-left: 1rem;
-    border-left: 2px solid def.$skyblue_op5;
-    span {
-      padding: 0.4rem 0;
-    }
-  }
-}
 //리스트 시작
 #bo_gall {
   width: 80%;

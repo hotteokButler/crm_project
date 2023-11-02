@@ -182,13 +182,16 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
         <div class="crm_info_wrap">
             <div class="crm_pf_wrap">
                 <p class="crm_pf">
-                    <?    
-                        $mb_prof_dir = substr($row['mb_id'],0,2);
-                        $mb_prof_file = G5_DATA_PATH.'/member/'.$mb_prof_dir.'/'.get_mb_icon_name($row['mb_id']).'.gif';
-                        
-                        if (file_exists($mb_prof_file)) 
-                            echo get_member_profile_img($row['mb_id']);
-                    ?>
+                    <a href="<?=G5_ADMIN_MEMBER_UPDATE_URL.$row['mb_id']?>">
+                        <?    
+                            $mb_prof_dir = substr($row['mb_id'],0,2);
+                            $mb_prof_file = G5_DATA_PATH.'/member/'.$mb_prof_dir.'/'.get_mb_icon_name($row['mb_id']).'.gif';
+                            
+                            if (file_exists($mb_prof_file)) 
+                                echo get_member_profile_img($row['mb_id']);
+                        ?>
+                    </a>
+     
                 <span> <?= $row['mb_name']?></span>
 
                 </p>
@@ -220,7 +223,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
             </li>
             <li class="crm_info_detail_li">
                 <p class="fw700 ft_blue">환자정보</p>
-                <p><?= $row['mb_name']?>(<?=$row['mb_8'] == '0' ? '남' : '여'?>) / <span class="dm"><?= $row['mb_1']?> </span>(만 <span class="dm"><?=$age?></span>세)</p>
+                <p><?= $row['mb_name']?>(<?=$row['mb_8'] == '0' ? '남' : '여'?>) / <span ><?= $row['mb_1']?> </span>(만 <span><?=$age?></span>세)</p>
             </li>
             <li class="crm_info_detail_li">
                 <p class="fw700 ft_blue">전화번호</p>
