@@ -96,15 +96,16 @@ select:focus {
 
 .sch_bar_date .sch_input {
   display: block;
-  width: 100%;
-  max-width: 180px;
+  width: 180px;
+  line-height: 45px;
   padding: 0 20px;
-  line-height: 40px;
   margin: 10px 10px 10px 0;
   font-size: 0.85rem;
   font-weight: bold;
   color: #232323;
-  line-height: 45px;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  text-align: left;
 }
 .sch_bar_date .sch_input:focus:focus {
   box-shadow: 0 0 5px #7bb7ff;
@@ -213,4 +214,34 @@ select:focus {
   max-width: 900px;
   margin: 3rem auto;
   text-align: left;
+}
+
+/* max-width :1024px ==============================================================*/
+/* max-width :768px ===============================================================*/
+@media (max-width: 768px) {
+  #bo_gall {
+    width: 90%;
+  }
+  #bo_gall .gall_li {
+    margin: 0.5%;
+    width: 49%;
+  }
+  #bo_gall .gall_img p {
+    font-size: 2.65vw;
+  }
+  .gall_pos {
+    font-size: 3.2vw;
+  }
+  .gall_more {
+    width: 15%;
+  }
+  .crm_comment {
+    width: 5.5vw;
+    line-height: 5.5vw;
+    bottom: 3%;
+    right: 3.5%;
+  }
+  .crm_comment span {
+    font-size: 2.3vw;
+  }
 }

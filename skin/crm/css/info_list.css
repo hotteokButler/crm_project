@@ -65,8 +65,8 @@ select:focus {
   height: 8vw;
   max-width: 120px;
   max-height: 120px;
-  min-width: 60px;
-  min-height: 60px;
+  min-width: 90px;
+  min-height: 90px;
   border-radius: 50%;
   overflow: hidden;
   background-color: #7bb7ff;
@@ -119,6 +119,7 @@ select:focus {
 }
 
 .crm_info_detail {
+  padding: 0 4% 0 0;
   margin-bottom: 3rem;
 }
 
@@ -149,4 +150,51 @@ select:focus {
   max-width: 900px;
   margin: 3rem auto;
   text-align: left;
+}
+
+/* max-width :768px ===============================================================*/
+@media (max-width: 768px) {
+  .crm_total_info {
+    margin: 3vw 0 4vw;
+  }
+  .crm_info_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 7% 0 5%;
+  }
+  .crm_pf_wrap .crm_pf {
+    width: 17vw;
+    height: 17vw;
+  }
+  .crm_info {
+    flex-wrap: wrap;
+    padding: 9% 2% 3%;
+  }
+  .crm_info .crm_info_li {
+    padding: 3% 2%;
+    width: 50%;
+  }
+  .crm_info .crm_info_li:nth-child(odd) {
+    border-left: none;
+  }
+  .crm_info .crm_info_li:nth-child(even) {
+    border-right: none;
+  }
+  .crm_info .crm_info_li span {
+    font-size: 6.5vw;
+  }
+  .crm_info .crm_info_li p {
+    font-size: 4vw;
+  }
+  .crm_info_detail_li {
+    padding: 2vw 0;
+  }
+  .crm_info_detail_li p {
+    font-size: 3.2vw;
+  }
+  .crm_info_detail_li p:first-child {
+    width: 19%;
+  }
 }

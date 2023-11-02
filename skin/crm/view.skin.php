@@ -10,24 +10,25 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/view.css">', 0);
 ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
-<link rel="stylesheet" href="/theme/basic/css/style.css">
 
 
 <!-- 게시물 읽기 시작 { -->
 
+
 <article id="bo_v" style="max-width:900px; min-width: 320px; width:100%; margin:0 auto;">
     <header>
         <div>
-            <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&sca=&sop=and&sfl=wr_1&stx=<?=$stx?>"><img src="/theme/basic/svg/back.svg" alt=""></a>
+       <a href="/bbs/board.php?bo_table=ortho_story&sca=&sop=and&sfl=wr_1&stx=<?=$stx?>"><img src="/theme/basic/svg/back.svg" alt=""></a>
         </div>
         <div id="bo_v_title">
             <?php if ($category_name) { ?>
             <span class="bo_v_cate"><?php echo $view['ca_name']; // 분류 출력 끝 ?></span> 
             <?php } ?>            
-            <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&page=&sca=&sfl=wr_1&stx=<?=$view['wr_1']?>"><img src="/theme/basic/svg/ortho_story.svg" alt=""></a>
+            <a href="/bbs/board.php?bo_table=ortho_story&page=&sca=&sfl=wr_1&stx=<?=$view[wr_1]?>"><img src="/theme/basic/svg/ortho_story.svg" alt=""></a>
             <p class="bo_v_tit color_point m">
             <?php
             echo cut_str(get_text($view['wr_subject']), 70); // 글제목 출력
@@ -46,12 +47,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
 	        <?php ob_start(); ?>
 
 	        <ul class="btn_bo_user bo_v_com">
-	            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>&stx=<?=$view['wr_1']?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
+	            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>&stx=<?=$view[wr_1]?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
 	        	<?php if($update_href || $delete_href || $copy_href || $move_href || $search_href) { ?>
 	        	<li>
 	        		<button type="button" class="btn_more_opt is_view_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
 		        	<ul class="more_opt is_view_btn"> 
-			            <?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>&stx=<?=$view['wr_1']?>">수정<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li><?php } ?>
+			            <?php if ($update_href) { ?><li><a href="<?php echo $update_href ?>">수정<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></li><?php } ?>
 			            <?php if ($delete_href) { ?><li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;">삭제<i class="fa fa-trash-o" aria-hidden="true"></i></a></li><?php } ?>
 			            <?php if ($copy_href) { ?><li><a href="<?php echo $copy_href ?>" onclick="board_move(this.href); return false;">복사<i class="fa fa-files-o" aria-hidden="true"></i></a></li><?php } ?>
 			            <?php if ($move_href) { ?><li><a href="<?php echo $move_href ?>" onclick="board_move(this.href); return false;">이동<i class="fa fa-arrows" aria-hidden="true"></i></a></li><?php } ?>
@@ -77,16 +78,15 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
 	        <?php
 	        $link_buttons = ob_get_contents();
 	        ob_end_flush();
-	    ?>
+	         ?>
 	    </div>
 	    <!-- } 게시물 상단 버튼 끝 -->
 	    <div id="bo_v_top">
-<?php //echo $view['wr_1']; ?>
+    <?php //echo $view['wr_1']; ?>
 	</div>
         <?}?>
     </section>
     <?}?>
-
 
     <? // 검색된 회원 정보 가져오기
     $sql1="select * from {$g5['member_table']} where mb_id = '$view[wr_1]'";
@@ -94,19 +94,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
     $row= sql_fetch_array( $res1);
     ?>
 
-
-
-
-
     <section>
-		<div style="font-size:15px; color:#ff5f59; padding:10px; line-height:32px;">
-                <?
-                if ($view['wr_6'] && $view['wr_7']) { 
-                    echo '▶'.$row['mb_name'].'님의 다음 진료 예약일은 '.$view['wr_6'].'('.$view['wr_7'].') 입니다.';
-                } else {
-                    echo   '▶'.$row['mb_name'].'님의 다음 진료 예약이 없습니다. 예약 진행 시 전화 문의 부탁드립니다.';
-                }   ?>
-                <br>
+		<div class="view_tit">
+				▶ <?=$row['mb_name'];?>님의 다음 진료 예약일은  <?=$view['wr_6'];?>(<?=$view['wr_7'];?>) 입니다.  <br>
 				▶ 진료일, 시간 변경은 전화로만 가능합니다. 
 		</div>
     </section>
@@ -126,10 +116,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
 
             echo "</div>\n";
         }
-        ?>
-
-
-
+         ?>
 
         <!-- 본문 내용 시작 { -->
         <div id="bo_v_con"><?php echo get_view_thumbnail($view['content']); ?></div>
@@ -173,9 +160,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
 
     <section>
 	  <? if($member['mb_level'] == "10") {?>
-		<div style="width:55%; margin: 0 auto; float:left;"><a href="/ortho_sms.php?bo_table=<?=$bo_table?>&wr_id=<?=$view['wr_id']?>&wr_1=<?=$view['wr_1']?>"><input type="button" value="문자알림 보내기" style="width:100px; height:35px; float:right; margin-right:5px; background-color:#ff3158; border: 1px solid #dd2145; color:#fff; cursor:pointer;" onclick="location.href=''; document.getElementById('popchk').style.display='none'"></a></div>
-		<br><br><br>
-		<div style="width:100%; text-align:center;">발송일시 : <?=$view['wr_10']?> / 발송인: <?=$view['wr_9']?> / 단축 url : <?=$view['wr_8']?></div>
+		<div class="view_kakao_btn"><a href="/ortho_sms.php?bo_table=<?=$bo_table?>&wr_id=<?=$view['wr_id']?>&wr_1=<?=$view['wr_1']?>"><input type="button" value="카카오톡 알림" click="location.href=''; document.getElementById('popchk').style.display='none'"></a></div>
+		<br>
+		<div class="view_send_txt">발송일시 : <?=$view['wr_10']?> / 발송인: <?=$view['wr_9']?> / 단축 URL : <?=$view['wr_8']?></div>
 	 <? } ?>
     </section>
 
@@ -245,10 +232,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
         </ul>
     </section>
     <!-- } 관련링크 끝 -->
-    <?php }
+    <?php } ?>
+
+    <?php
     // 코멘트 입출력
     include_once(G5_BBS_PATH.'/view_comment.php');
-    ?>
+	?>
 </article>
 <!-- } 게시판 읽기 끝 -->
 

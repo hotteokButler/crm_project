@@ -378,7 +378,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
         </li>
 
         <?php } ?>
-        <?php if (count($list) == 0) { echo "<li class=\"empty_list\">게시물이 없습니다.</li>"; } ?>
+        <?php if (count($list) == 0) { echo "<li class=\"empty_list\"><p>게시물이 없습니다.</p></li>"; } ?>
     </ul>
 	
 	<!-- 페이지 -->

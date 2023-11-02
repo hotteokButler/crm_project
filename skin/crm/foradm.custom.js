@@ -1,5 +1,15 @@
+const getTodayDate =function() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2);
+  return dateStr = `${year}-${month}-${day}`;
+}
+
+const todayDate = getTodayDate();
+
 const checkDataInputElem =
-  '<div class="sch_bar_date"><input type="date" name="wr_5" value="" id="stx" required class="sch_input" size="25" max="9999-12-31"><span class="sch_bar_date">정확한 조회를 위해 <b>생년월일</b>을 필히 입력해주세요</span></div>';
+  '<div class="sch_bar_date"><input type="date" name="wr_5" id="stx" required class="sch_input" size="25" max="9999-12-31" value="'+todayDate+'"><span class="sch_bar_date">정확한 조회를 위해 <b>생년월일</b>을 필히 입력해주세요</span></div>';
 
 $(function () {
   $(".btn_more_opt.is_list_btn").on("click", function (e) {
@@ -18,8 +28,6 @@ $(function () {
   if (searchFieldElem.children("option:selected").val() == "wr_2") {
     $(".bo_sch .sch_bar").after(checkDataInputElem);
   }
-
-
 
   $(".sch_bar_date").length > 0 && $("div,span").remove(".sch_bar_date");
 
