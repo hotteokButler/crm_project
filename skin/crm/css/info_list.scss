@@ -1,6 +1,36 @@
 @charset 'utf-8';
 @use "_common_set" as def;
 /* 공통 info 부분 시작*/
+.ft_blue {
+  color: def.$main_blue;
+}
+.ft_sblue {
+  color: def.$main_skyblue;
+}
+.fw900 {
+  font-weight: 900;
+}
+.fw700 {
+  font-weight: 700;
+}
+.fw500 {
+  font-weight: 500;
+}
+.fw300 {
+  font-weight: 300;
+}
+.pt_tel {
+  padding: 0 8px 0 15px;
+}
+
+// searchs
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  @include def.focus(def.$main_blue);
+}
+
 // info
 .crm_total_info {
   display: inline-block;

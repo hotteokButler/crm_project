@@ -133,7 +133,7 @@ $attrs=NULL ) {
 
 
 <!-- 회원선택 -->
-    <div class="bo_w_select write_div">
+<div class="bo_w_select write_div">
 
 
     <? // 검색된 회원 정보 가져오기
@@ -154,13 +154,12 @@ $attrs=NULL ) {
         } else {
         $d_day_count = '<span class="event_btn event_ongoing fw900 ft_sblue">D-' . $d_day_count . '</span>';
         }
-        ?>
+    ?>
 
-        <? // 만나이 계산
-        $birth_time   = strtotime($row['mb_1']);
-        $now          = date('Y');
-        $birthday     = date('Y' , $birth_time);
-        $age           = $now - $birthday - 1  ;
+    <? // 만나이 계산
+        $birth_time   = date('Ymd',strtotime($row['mb_1']));
+        $now          = date('Ymd');
+        $age     = floor(($now - $birth_time)/10000);
     ?>
 
 
@@ -261,7 +260,7 @@ $attrs=NULL ) {
             </li>
             <li class="crm_info_detail_li">
                 <p class="fw700 ft_blue">전화번호</p>
-                <p class="dm"><?= $row['mb_hp']?> <? if($row['mb_tel']) {?>보호자: <?= $row['mb_tel']?> <? } ?></p>
+                <p class=""><?= $row['mb_hp']?> <? if($row['mb_tel']) {?>보호자: <?= $row['mb_tel']?> <? } ?></p>
             </li>
             <li class="crm_info_detail_li">
                 <p class="fw700 ft_blue">CASE</p>

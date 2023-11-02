@@ -104,10 +104,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     ?>
 
     <? // 만나이 계산
-    $birth_time   = strtotime($row['mb_1']);
-    $now          = date('Y');
-    $birthday     = date('Y' , $birth_time);
-    $age           = $now - $birthday - 1  ;
+    $birth_time   = date('Ymd',strtotime($row['mb_1']));
+    $now          = date('Ymd');
+    $age     = floor(($now - $birth_time)/10000);
     ?>
 
 
@@ -225,7 +224,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
             </li>
             <li class="crm_info_detail_li">
                 <p class="fw700 ft_blue">전화번호</p>
-                <p class="dm"><?= $row['mb_hp']?> <? if($row['mb_tel']) {?>보호자: <?= $row['mb_tel']?> <? } ?></p>
+                <p class=""><?= $row['mb_hp']?> <? if($row['mb_tel']) {?><b class="fw700 ft_blue pt_tel">보호자</b> <?= $row['mb_tel']?> <? } ?></p>
             </li>
             <li class="crm_info_detail_li">
                 <p class="fw700 ft_blue">CASE</p>
