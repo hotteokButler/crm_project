@@ -307,7 +307,7 @@ $attrs=NULL ) {
     </div>
 
     <div>
-    <input type="checkbox" id="pin_fix" name="wr_3"  class="pin_fix" value="1" <?=(int) $write['wr_3'] == 1 ? 'checked' : ''?>>
+    <input type="checkbox" id="pin_fix" name="notice"  class="pin_fix" value="1" <?=$notice_checked?>>
     <label for="pin_fix"><span></span>상단 고정</label>
     </div>
     <div class="bo_w_tit write_div">

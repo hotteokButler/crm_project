@@ -11,11 +11,14 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/view.css">', 0);
+add_javascript('<script src="'.$board_skin_url.'/skin.custom.js"></script>', 1);
 ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 <link rel="stylesheet" href="/theme/basic/css/style.css">
 
+
+<? include_once('menu.skin.php');?>
 
 <!-- 게시물 읽기 시작 { -->
 
@@ -247,6 +250,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/view.css">'
 	?>
 </article>
 <!-- } 게시판 읽기 끝 -->
+
 
 <script>
 <?php if ($board['bo_download_point'] < 0) { ?>

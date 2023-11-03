@@ -23,6 +23,10 @@
   padding: 0 8px 0 15px;
 }
 
+.top_gap { // 일반 회원일 경우
+  margin-top: 10rem !important;
+}
+
 // searchs
 input[type="text"]:focus,
 input[type="password"]:focus,

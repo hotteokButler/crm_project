@@ -9,6 +9,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 
 ?>
 
+
 <? include_once('menu.skin.php');?>
 
 <!-- 게시판 목록 시작 { -->
@@ -114,8 +115,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 
 
 
-    <?if(!$is_admin && $member['mb_level'] <=8){?>
-    <div class="crm_info_wrap">
+<?if(!$is_admin && $member['mb_level'] <=8){?>
+    <div class="crm_info_wrap top_gap">
         <div class="crm_pf_wrap">
             <p class="crm_pf">
                 <?    
@@ -293,9 +294,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
         <?php }  ?>
     </div>
 
-    <ul id="gall_ul" class="gall_row">
-        <!-- 핀고정 아래 추가 -->
 
+    <ul id="gall_ul" class="gall_row">
 
         <?php for ($i=0; $i<count($list); $i++) {
 
@@ -316,10 +316,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
         <li class="<?php echo implode(' ', $classes); ?>">
             <div class="gall_box">
                 <div class="gall_chk">
-                <?php if ($is_checkbox) { ?>
-                <label for="chk_wr_id_<?php echo $i ?>" class="sound_only"><?php echo $list[$i]['subject'] ?></label>
-                <input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
-                <?php } ?>
+                    <?php if ($is_checkbox) { ?>
+                    <label for="chk_wr_id_<?php echo $i ?>" class="sound_only"><?php echo $list[$i]['subject'] ?></label>
+                    <input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
+                    <?php } ?>
 
                 <span>
                 <?php
@@ -338,7 +338,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                     </div>
                     <div class="gall_more">
                         <a href="/bbs/board.php?bo_table=<?=$bo_table;?>&page=&sca=&sfl=wr_1&stx=<?=$list[$i]['wr_1']?>">
-                            <img src="<?=$board_skin_url?>/img/chart_icon.png" alt="환자 리스트 보러가기">
+                        <?php
+                        if ($list[$i]['is_notice']){ // 핀고정 
+                            echo '<img src="'.$board_skin_url.'/img/pin_icon.png" alt="공지"/><span class="sound_only">공지</span>';
+                        } else {
+                            echo '<img src="'.$board_skin_url.'/img/chart_icon.png" alt="환자 리스트 보러가기"/><span class="sound_only">환자 리스트 보러가기</span>';
+                        }
+                        ?>
                         </a>
                     </div>
                 <?}?>

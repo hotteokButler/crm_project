@@ -100,8 +100,12 @@ $i = 0;
 $notice_count = 0;
 $notice_array = array();
 
-// 공지 처리
-if (!$is_search_bbs) {
+// crm 게시판일때만 pin고정 추가
+$is_board_crm = ($bo_table == "crm") ? $is_search_bbs : !$is_search_bbs;
+// 공지 처리 
+// if (!$is_search_bbs) {
+    
+if ($is_board_crm) {
     $arr_notice = explode(',', trim($board['bo_notice']));
     $from_notice_idx = ($page - 1) * $page_rows;
     if($from_notice_idx < 0)
