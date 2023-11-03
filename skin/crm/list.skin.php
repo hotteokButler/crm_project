@@ -6,7 +6,10 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">', 0);
+
 ?>
+
+<? include_once('menu.skin.php');?>
 
 <!-- 게시판 목록 시작 { -->
 <div id="bo_gall">
