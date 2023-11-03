@@ -340,7 +340,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                     </div>
                 <?}?>
                     <div class="gall_img">
-                        <a href="<?php echo $list[$i]['href'] ?>">
+                        <a href="<?php echo $list[$i]['href'].'&sfl=wr_1&stx='.$list[$i]['wr_1'] ?>">
                         <?
                             $thumb = get_list_thumbnail($board['bo_table'], $list[$i]['wr_id'], $board['bo_gallery_width'], $board['bo_gallery_height'], false, true);
                             $cut_content = cut_str(strip_tags($list[$i]['wr_content']),40);
@@ -357,19 +357,18 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                         
                     </div>
                     <div class="gall_text_href">       
-
 						<?php
                         if ($is_category) {
-                         ?>
+                        ?>
                         <?php } ?>					
 	
-                        <a href="<?php echo $list[$i]['href'] ?>" class="bo_tit">			
+                        <a href="<?php echo $list[$i]['href'].'&sfl=wr_1&stx='.$list[$i]['wr_1'] ?>" class="bo_tit">			
                             <?php if ($list[$i]['comment_cnt']) { ?>
                                 <div class="crm_comment">
-                                <span class="cnt_cmt fw700"><?php echo $list[$i]['wr_comment']; ?></span>
-                               </div>
+                                    <span class="cnt_cmt fw700"><?php echo $list[$i]['wr_comment']; ?></span>
+                                </div>
                             <?php } ?>                          
-                         </a>
+                        </a>
                     </div>                  	
                 </div>
 				
