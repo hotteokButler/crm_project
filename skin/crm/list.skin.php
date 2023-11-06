@@ -330,7 +330,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                 ?>
                 </span>
                 </div>
-                <div class="gall_con">
+                <div class="gall_con <?=$list[$i]['is_notice'] ? 'gall_pin' : ''?>">
                 <?if($is_admin && $member['mb_level'] >=9){?>
                     <div class="gall_pos">
                         <b><?=$list[$i]['wr_1']?></b>
