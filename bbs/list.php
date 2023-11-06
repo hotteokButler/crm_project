@@ -102,9 +102,17 @@ $notice_array = array();
 
 // crm 게시판일때만 pin고정 추가
 $is_board_crm = ($bo_table == "crm") ? $is_search_bbs : !$is_search_bbs;
+// crm 검색에 따른 pin고정
+$pin_sql ='';
+if($bo_table == "crm" && $sfl == 'wr_1' ) {
+    $pin_sql .= " and wr_1={$stx}";
+} elseif ($bo_table == "crm" && $sfl == 'wr_2') {
+    $pin_sql .= " and wr_2='{$stx}' and wr_5='{$wr_5}'";
+}
+
 // 공지 처리 
 // if (!$is_search_bbs) {
-    
+
 if ($is_board_crm) {
     $arr_notice = explode(',', trim($board['bo_notice']));
     $from_notice_idx = ($page - 1) * $page_rows;
@@ -115,7 +123,7 @@ if ($is_board_crm) {
     for ($k=0; $k<$board_notice_count; $k++) {
         if (trim($arr_notice[$k]) == '') continue;
 
-        $row = sql_fetch(" select * from {$write_table} where wr_id = '{$arr_notice[$k]}' ");
+        $row = sql_fetch(" select * from {$write_table} where wr_id = '{$arr_notice[$k]}' {$pin_sql}");
 
         if (!$row['wr_id']) continue;
 

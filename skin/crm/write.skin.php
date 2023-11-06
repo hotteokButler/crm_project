@@ -286,6 +286,7 @@ $attrs=NULL ) {
 
     <input type="hidden" name="wr_1" value="<?=$stx?>">  
     <input type="hidden" name="wr_2" value="<?=$row['mb_name']?>">  
+    <input type="hidden" name="wr_5" value="<?=$row['mb_1']?>">  
   
     <?php }else{ ?>
         <select name="wr_1" id="wr_1" required>
