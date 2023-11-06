@@ -108,6 +108,9 @@ if($bo_table == "crm" && $sfl == 'wr_1' ) {
     $pin_sql .= " and wr_1={$stx}";
 } elseif ($bo_table == "crm" && $sfl == 'wr_2') {
     $pin_sql .= " and wr_2='{$stx}' and wr_5='{$wr_5}'";
+} elseif ($bo_table == "crm" && $is_member && !$sfl) {
+    $is_board_crm =!$is_search_bbs;
+    $pin_sql .= " and wr_1='{$member['mb_id']}' ";
 }
 
 // 공지 처리 

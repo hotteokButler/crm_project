@@ -3,7 +3,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 // 관리자가 아닌 회원의 경우 로그인 아이디(차트번호)와 게시글 차트번호 체크
 if ($is_member && !$is_admin && $view['wr_1']!== $member['mb_id']) {
-    alert("잘못된 접근입니다" ,"/bbs/board.php?bo_table=".$bo_table."&page=&sca=&sfl=wr_1&stx=".$member['mb_id']);
+    alert("잘못된 접근입니다" ,"/bbs/board.php?bo_table={$bo_table}");
 }
 
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');

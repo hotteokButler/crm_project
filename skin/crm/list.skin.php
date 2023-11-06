@@ -347,7 +347,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                         ?>
                         </a>
                     </div>
-                <?}?>
+                <?} ?>
+                <?php if ( !$is_admin && $member['mb_level'] <=8 && $list[$i]['is_notice'] ) {?>
+                    <div class="gall_more">
+                        <img src="<?=$board_skin_url;?>/img/pin_icon.png" alt="공지"/><span class="sound_only">공지</span>
+                    </div>
+                <?}?>    
                     <div class="gall_img">
                         <a href="<?php echo $list[$i]['href'].'&sfl=wr_1&stx='.$list[$i]['wr_1'] ?>">
                         <?
