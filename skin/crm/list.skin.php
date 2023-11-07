@@ -108,9 +108,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     ?>
 
     <? // 만나이 계산
-    $birth_time   = date('Ymd',strtotime($row['mb_1']));
-    $now          = date('Ymd');
-    $age     = floor(($now - $birth_time)/10000);
+        $birth_time   = date('Ymd',strtotime($row['mb_1']));
+        $now          = date('Ymd');
+        if (count( $row) == 0) {
+            $age = 0;
+        } else {
+            $age = floor(($now - $birth_time)/10000);
+        }
     ?>
 
 
