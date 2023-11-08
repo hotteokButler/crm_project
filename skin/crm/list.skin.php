@@ -255,20 +255,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                 <p><?= $row['mb_7']?></p>
             </li>
         </ul>
-    <?}?>
-<?}?>
+    <?
+    include('notice.php');      
+    }}
+    ?>
+    
 
-<?if($sfl=='wr_2'){?>
-<div class="crm_notice">
-    <span class="crm_notice_icon ft_red">
-        <img src="<?=$board_skin_url;?>/img/notice_ico.png" alt="">
-    </span>
-    <span class="fw700 ft_red">
-        검색 Tip! 
-    </span>
-    <p class="fw700 ft_gray_a">정확한 조회를 원하신다면 <span class="ft_red">차트번호</span>로 검색해주세요.</p>
-</div> 
-<?}?>
 
     <div class="button_wrap">
         <?php if ($is_checkbox) { ?>
