@@ -189,7 +189,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 
         <div class="crm_info_wrap">
             <div class="crm_pf_wrap">
-                <p class="crm_pf">
+                <p class="crm_pf crm_pf_adm">
                     <a href="<?=G5_ADMIN_MEMBER_UPDATE_URL.$row['mb_id']?>">
                         <?    
                             $mb_prof_dir = substr($row['mb_id'],0,2);

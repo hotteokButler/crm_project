@@ -242,6 +242,15 @@ select:focus {
 
 /* max-width :768px ===============================================================*/
 @media (max-width: 768px) {
+  // 이름검색 문구
+  .crm_notice {
+    font-size: def.$mo_font_sr;
+    &_icon {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
   // list
   #bo_gall {
     width: 90%;

@@ -247,6 +247,13 @@ select:focus {
 /* max-width :1024px ==============================================================*/
 /* max-width :768px ===============================================================*/
 @media (max-width: 768px) {
+  .crm_notice {
+    font-size: 3.2vw;
+  }
+  .crm_notice_icon {
+    width: 35px;
+    height: 35px;
+  }
   #bo_gall {
     width: 90%;
   }
