@@ -260,7 +260,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 
 <?if($sfl=='wr_2'){?>
 <div class="crm_notice">
-    환자명으로 검색하신 경우 아래 목록에서 아이콘 을 선택하신 후<br>"환자 정보가 나오는 화면"으로 이동 후 새글을 작성해주세요.
+    <span class="crm_notice_icon ft_red">
+        <img src="<?=$board_skin_url;?>/img/notice_ico.png" alt="">
+    </span>
+    <span class="fw700 ft_red">
+        검색 Tip! 
+    </span>
+    <p class="fw700 ft_gray_a">정확한 조회를 원하신다면 <span class="ft_red">차트번호</span>로 검색해주세요.</p>
 </div> 
 <?}?>
 

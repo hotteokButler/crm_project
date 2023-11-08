@@ -3,6 +3,12 @@
 /* list.skin.php custom 시작*/
 // common
 
+.ft_gray_a {
+  color: def.$gray_aaa;
+}
+.ft_red {
+  color: def.$red_color;
+}
 .ft_blue {
   color: def.$main_blue;
 }
@@ -202,6 +208,28 @@ select:focus {
   }
 }
 
+// 이름검색 문구
+
+.crm_notice {
+  margin: 0 0 3rem;
+  font-size: def.$pc_font_r;
+  &_icon {
+    display: inline-block;
+    width: 2.5vw;
+    height: 2.5vw;
+    max-width: 48px;
+    max-height: 48px;
+    margin: 0 4px 7px 0;
+    font-size: inherit;
+    img {
+      width: 100%;
+    }
+  }
+  p {
+    font-size: inherit;
+  }
+}
+
 //리스트 시작
 #bo_gall {
   width: 80%;
@@ -240,7 +268,7 @@ select:focus {
     bottom: 3%;
     right: 3.5%;
     span {
-      font-size:  def.$mo_font_ss;
+      font-size: def.$mo_font_ss;
     }
   }
 }

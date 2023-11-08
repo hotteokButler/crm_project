@@ -2,6 +2,14 @@
 @import url("./font.css");
 /* data-scroll */
 /* list.skin.php custom 시작*/
+.ft_gray_a {
+  color: #aaa;
+}
+
+.ft_red {
+  color: #ff6347;
+}
+
 .ft_blue {
   color: #7bb7ff;
 }
@@ -207,6 +215,26 @@ select:focus {
   color: #7bb7ff;
   font-size: 0.85rem;
   background: url("../img/co_icon.png") no-repeat center bottom -1px/100% auto;
+}
+
+.crm_notice {
+  margin: 0 0 3rem;
+  font-size: 1rem;
+}
+.crm_notice_icon {
+  display: inline-block;
+  width: 2.5vw;
+  height: 2.5vw;
+  max-width: 48px;
+  max-height: 48px;
+  margin: 0 4px 7px 0;
+  font-size: inherit;
+}
+.crm_notice_icon img {
+  width: 100%;
+}
+.crm_notice p {
+  font-size: inherit;
 }
 
 #bo_gall {
