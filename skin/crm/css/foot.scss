@@ -1,0 +1,50 @@
+@charset 'utf-8';
+@use "_common_set" as def;
+
+#crm_foot {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  margin: 5rem auto 0;
+  img {
+    width: 100%;
+  }
+}
+
+// top btn
+.top_button {
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  @include def.bg();
+  background-image: url("../img/top_btn.png");
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition: 0.4s;
+  z-index: 2;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  &:hover {
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 768px) {
+  #crm_foot {
+    width: 100%;
+  }
+
+  // top btn
+  .top_button {
+    width: 40px;
+    height: 40px;
+  }
+}

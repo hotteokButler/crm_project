@@ -4,6 +4,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/write.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">', 0);
+add_javascript('<script src="'.$board_skin_url.'/skin.custom.js"></script>', 1);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.css">', 0);
 
 
@@ -37,6 +38,8 @@ $attrs=NULL ) {
 }
 ?>
 
+<? include_once('menu.skin.php');?>
+
 <!------------------------------------------------------->
 
 <style>
@@ -46,9 +49,8 @@ $attrs=NULL ) {
 
 <section id="bo_w">
     <h2 class="sound_only"><?php echo $g5['title'] ?></h2>
-
     <!-- 게시물 작성/수정 시작 { -->
-    <form name="fwrite" id="fwrite" action="<?php echo $action_url ?>" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off" style="width:900px; margin:auto;">
+    <form name="fwrite" id="fwrite" action="<?php echo $action_url ?>" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off" style="margin:auto;">
     <input type="hidden" name="uid" value="<?php echo get_uniqid(); ?>">
     <input type="hidden" name="w" value="<?php echo $w ?>">
     <input type="hidden" name="bo_table" value="<?php echo $bo_table ?>">
@@ -296,15 +298,11 @@ $attrs=NULL ) {
         </select>       
     <? }?>
 
-   
-    <p style="font-size:15px; color:#7bb7ff; text-align:left; margin-top:30px;">
-    큰 원본 이미지 첨부 시 사이트 용량이 자주 초과될 수 있고,<br> 
-    작은 이미지 첨부 시 썸네일이 제대로 나오지 않거나 깨져서 나올 수 있으므로 최소 사이즈를 지켜주세요.<br> 
-    ** 첨부 이미지 최소 사이즈 : 가로 900px / 세로 600px 이상 **<br>   
-    아래 링크에서 이미지 사이즈를 변경할 수 있습니다. ('가로세로비율유지' 체크 필수) <br>
-    </p>
-    <p><a href="https://www.iloveimg.com/ko/resize-image/resize-jpg" target="_blank" style="font-size:16px; color: tomato; text-align:left; margin-top:10px; text-decoration:underline; display:inline">이미지 사이즈 변경하기 클릭!</a></p>
-  
+    <ul class="notice_txt">
+        <li><img src="<?=$board_skin_url;?>/img/notice_ico.png" alt="공지">이미지 사이즈 안내</li>
+        <li>- 이미지 최소 사이즈 : 가로 900px, 세로 600px 이상</li>
+        <li>- <a href="https://www.iloveimg.com/ko/resize-image/resize-jpg" target="_blank">이미지 사이즈 변경하러가기</a> ('가로세로 비율유지' 체크 후 변경)</li>
+    </ul>
 
     </div>
 
@@ -348,7 +346,7 @@ $attrs=NULL ) {
     </div>
 
 
-    <div class="write_div"> 다음 진료 예약일
+    <div class="write_div re_wirte_div"> 다음 진료 예약일
 			<input type="date" name="wr_6" value="<?php echo $write['wr_6']?>" id="wr_6" max="9999-12-31"  class="" size="10" style="height:30px;" placeholder="예약일">
 			<input type="time" name="wr_7" value="<?php echo $write['wr_7']?>" id="wr_7"  class="" size="10" style="height:30px;" placeholder="예약시간">
     </div>
@@ -450,4 +448,8 @@ $attrs=NULL ) {
     }
     </script>
 </section>
+
+<?php // footer
+include_once('skin.foot.php');
+?>
 <!-- } 게시물 작성/수정 끝 -->

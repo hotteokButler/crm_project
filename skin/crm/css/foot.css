@@ -1,0 +1,48 @@
+@import url("./font.css");
+/* data-scroll */
+#crm_foot {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  margin: 5rem auto 0;
+}
+#crm_foot img {
+  width: 100%;
+}
+
+.top_button {
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  background-image: url("../img/top_btn.png");
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  transition: 0.4s;
+  z-index: 2;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.25));
+}
+.top_button.active {
+  opacity: 1;
+  visibility: visible;
+}
+.top_button:hover {
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  #crm_foot {
+    width: 100%;
+  }
+  .top_button {
+    width: 40px;
+    height: 40px;
+  }
+}

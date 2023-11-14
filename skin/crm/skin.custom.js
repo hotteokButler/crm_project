@@ -2,6 +2,7 @@ let scrollEventTimer;
 let windowScrollPos = window.scrollY;
 const CRM_KEY = Object.freeze({
   fixed: "fixed",
+  active: "active",
 });
 
 // function ===================================================================
@@ -28,12 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // elem
   const crmMenu = document.getElementById("crm_nav");
   const crmMenuHeight = crmMenu.clientHeight;
-
+  const crmTopBtm = document.querySelector('.top_button');
 
 
 
 
   handleClassByScroll(windowScrollPos, crmMenuHeight, crmMenu, CRM_KEY.fixed);
+  handleClassByScroll(windowScrollPos, crmMenuHeight, crmTopBtm, CRM_KEY.active);
+  crmTopBtm.addEventListener('click',(e)=>{
+    e.preventDefault();
+    window.scrollTo({
+      top :0,
+      left : 0,
+      behavior: "smooth"
+    });
+  })
 
   // scroll event
 
@@ -44,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollEventTimer = setTimeout(function () {
       windowScrollPos = window.scrollY;
       handleClassByScroll(windowScrollPos, crmMenuHeight, crmMenu, CRM_KEY.fixed);
+      handleClassByScroll(windowScrollPos, crmMenuHeight, crmTopBtm, CRM_KEY.active);
+
     }, 20);
 
     // scroll event End

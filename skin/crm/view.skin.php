@@ -3,7 +3,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 // 관리자가 아닌 회원의 경우 로그인 아이디(차트번호)와 게시글 차트번호 체크
 if ($is_member && !$is_admin && $view['wr_1']!== $member['mb_id']) {
-    alert("잘못된 접근입니다" ,"/bbs/board.php?bo_table={$bo_table}");
+    alert("잘못된 접근입니다" ,"/bbs/board.php?bo_table=".$bo_table."&page=&sca=&sfl=wr_1&stx=".$member['mb_id']);
 }
 
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
@@ -12,6 +12,7 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/view.css">', 0);
 add_javascript('<script src="'.$board_skin_url.'/skin.custom.js"></script>', 1);
+add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.css">', 0);
 ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
@@ -24,14 +25,11 @@ add_javascript('<script src="'.$board_skin_url.'/skin.custom.js"></script>', 1);
 
 <article id="bo_v">
     <header>
-        <div>
-       <a href="/bbs/board.php?bo_table=crm&sca=&sop=and&sfl=wr_1&stx=<?=$stx?>"><img src="/theme/basic/svg/back.svg" alt=""></a>
-        </div>
         <div id="bo_v_title">
             <?php if ($category_name) { ?>
             <span class="bo_v_cate"><?php echo $view['ca_name']; // 분류 출력 끝 ?></span> 
             <?php } ?>            
-            <a href="/bbs/board.php?bo_table=crm&page=&sca=&sfl=wr_1&stx=<?=$view[wr_1]?>"><img src="<?=$board_skin_url?>/img/chart_icon.png" alt="환자 리스트 보러가기"></a>
+            <a href="/bbs/board.php?bo_table=crm&page=&sca=&sfl=wr_1&stx=<?=$view[wr_1]?>"></a>
             <p class="bo_v_tit color_point m">
             <?php
             echo cut_str(get_text($view['wr_subject']), 70); // 글제목 출력
@@ -101,12 +99,12 @@ add_javascript('<script src="'.$board_skin_url.'/skin.custom.js"></script>', 1);
 		<div class="view_tit">
             <?
                 if ($view['wr_6'] && $view['wr_7']) { 
-                    echo '▶'.$row['mb_name'].'님의 다음 진료 예약일은 '.$view['wr_6'].'('.$view['wr_7'].') 입니다.';
+                    echo '❤ '.$row['mb_name'].'님의 다음 진료 예약일은 '.$view['wr_6'].'('.$view['wr_7'].') 입니다.';
                 } else {
-                    echo   '▶'.$row['mb_name'].'님의 다음 진료 예약이 없습니다. 예약 진행 시 전화 문의 부탁드립니다.';
+                    echo   '❤ '.$row['mb_name'].'님의 다음 진료 예약이 없습니다.<br class="mobile_view"> 예약 진행 시 전화 문의 부탁드립니다.';
             } ?>
             <br>
-            ▶ 진료일, 시간 변경은 전화로만 가능합니다. 
+            ❤ 진료일, 시간 변경은 전화로만 가능합니다. 
 		</div>
     </section>
 
@@ -250,7 +248,9 @@ add_javascript('<script src="'.$board_skin_url.'/skin.custom.js"></script>', 1);
 	?>
 </article>
 <!-- } 게시판 읽기 끝 -->
-
+<?php // footer
+include_once('skin.foot.php');
+?>
 
 <script>
 <?php if ($board['bo_download_point'] < 0) { ?>
