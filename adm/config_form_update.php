@@ -150,10 +150,16 @@ $check_keys = array(
 'cf_icode_server_ip' => 'char',
 'cf_captcha' => 'char',
 'cf_syndi_token' => '',
-'cf_syndi_except' => ''
+'cf_syndi_except' => '',
+'cf_1' => 'char',
+'cf_2' => 'char',
+'cf_3' => 'char',
+'cf_4' => 'char',
+'cf_5' => 'char'
 );
 
-for($i=1;$i<=10;$i++){
+// 미사용 여분필드 6~
+for($i=6;$i<=10;$i++){
     $check_keys['cf_'.$i.'_subj'] = isset($_POST['cf_'.$i.'_subj']) ? $_POST['cf_'.$i.'_subj'] : '';
     $check_keys['cf_'.$i] = isset($_POST['cf_'.$i]) ? $_POST['cf_'.$i] : '';
 }
@@ -178,6 +184,8 @@ if(!$_POST['cf_cert_use']) {
     $posts[$key] = $_POST['cf_cert_ipin'] = '';
     $posts[$key] = $_POST['cf_cert_hp'] = '';
 }
+
+
 
 $sql = " update {$g5['config_table']}
             set cf_title = '{$cf_title}',

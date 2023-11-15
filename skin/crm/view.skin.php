@@ -1,10 +1,14 @@
 <?php
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
+
 // 관리자가 아닌 회원의 경우 로그인 아이디(차트번호)와 게시글 차트번호 체크
 if ($is_member && !$is_admin && $view['wr_1']!== $member['mb_id']) {
     alert("잘못된 접근입니다" ,"/bbs/board.php?bo_table=".$bo_table."&page=&sca=&sfl=wr_1&stx=".$member['mb_id']);
 }
+
+// 현 url 
+$view_url_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 
@@ -29,7 +33,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.c
             <?php if ($category_name) { ?>
             <span class="bo_v_cate"><?php echo $view['ca_name']; // 분류 출력 끝 ?></span> 
             <?php } ?>            
-            <a href="/bbs/board.php?bo_table=crm&page=&sca=&sfl=wr_1&stx=<?=$view[wr_1]?>"></a>
+            <a href="/bbs/board.php?bo_table=crm&page=&sca=&sfl=wr_1&stx=<?=$view['wr_1']?>"></a>
             <p class="bo_v_tit color_point m">
             <?php
             echo cut_str(get_text($view['wr_subject']), 70); // 글제목 출력
@@ -48,7 +52,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.c
 	        <?php ob_start(); ?>
 
 	        <ul class="btn_bo_user bo_v_com">
-	            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>&stx=<?=$view[wr_1]?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
+	            <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>&stx=<?=$view['wr_1']?>" class="btn_b01 btn" title="글쓰기"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sound_only">글쓰기</span></a></li><?php } ?>
 	        	<?php if($update_href || $delete_href || $copy_href || $move_href || $search_href) { ?>
 	        	<li>
 	        		<button type="button" class="btn_more_opt is_view_btn btn_b01 btn" title="게시판 리스트 옵션"><i class="fa fa-ellipsis-v" aria-hidden="true"></i><span class="sound_only">게시판 리스트 옵션</span></button>
@@ -90,18 +94,18 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.c
     <?}?>
 
     <? // 검색된 회원 정보 가져오기
-    $sql1="select * from {$g5['member_table']} where mb_id = '$view[wr_1]'";
-    $res1=sql_query( $sql1);
-    $row= sql_fetch_array( $res1);
+    $sql1 = "select * from {$g5['member_table']} where mb_id = {$view['wr_1']} ";
+    $res1 = sql_query( $sql1);
+    $member_row = sql_fetch_array( $res1);
     ?>
 
     <section>
 		<div class="view_tit">
             <?
                 if ($view['wr_6'] && $view['wr_7']) { 
-                    echo '❤ '.$row['mb_name'].'님의 다음 진료 예약일은 '.$view['wr_6'].'('.$view['wr_7'].') 입니다.';
+                    echo '❤ '.$member_row['mb_name'].'님의 다음 진료 예약일은 '.$view['wr_6'].'('.$view['wr_7'].') 입니다.';
                 } else {
-                    echo   '❤ '.$row['mb_name'].'님의 다음 진료 예약이 없습니다.<br class="mobile_view"> 예약 진행 시 전화 문의 부탁드립니다.';
+                    echo   '❤ '.$member_row['mb_name'].'님의 다음 진료 예약이 없습니다.<br class="mobile_view"> 예약 진행 시 전화 문의 부탁드립니다.';
             } ?>
             <br>
             ❤ 진료일, 시간 변경은 전화로만 가능합니다. 
@@ -168,9 +172,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.c
 
     <section>
 	  <? if($member['mb_level'] == "10") {?>
-		<div class="view_kakao_btn"><a href="/ortho_sms.php?bo_table=<?=$bo_table?>&wr_id=<?=$view['wr_id']?>&wr_1=<?=$view['wr_1']?>"><input type="button" value="카카오톡 알림" click="location.href=''; document.getElementById('popchk').style.display='none'"></a></div>
+		<div class="view_kakao_btn"><a href=""><input type="button" value="카카오톡 알림"></a></div>
 		<br>
-		<div class="view_send_txt">발송일시 : <?=$view['wr_10']?> / 발송인: <?=$view['wr_9']?> / 단축 URL : <?=$view['wr_8']?></div>
+		<div class="view_send_txt">발송일시 : <?=$view['wr_8']?> / 발송인: <?=$view['wr_9']?> / 단축 URL : <?=$view['wr_10']?></div>
 	 <? } ?>
     </section>
 
@@ -281,8 +285,45 @@ function board_move(href)
 }
 </script>
 
+
+
 <script>
 $(function() {
+
+    
+
+    $('.view_kakao_btn') && 
+        $('.view_kakao_btn').on('click', ()=>{
+            
+        $.ajax({
+            url: "<?=$board_skin_url;?>/solapi/send_alimtalk.php",
+            data: {
+            "bo_table" : "<?=$bo_table?>",
+            "wr_id" : "<?=$wr_id?>",
+            "wr_8": "<?=date('Y-m-d')?>",
+            "wr_9": "<?=$member["mb_name"] ?>",
+            "wr_10": "<?=$view_url_link?>",
+            "tel_number" : "<?=$member_row['mb_hp'] ? $member_row['mb_hp'] : $member_row['mb_tel'] ?>",
+            "temp_reserv_date" : "<?=$view['wr_6']?>",
+            "temp_reserv_time" : "<?=$view['wr_7']?>",
+            "temp_name" : "<?=$member_row['mb_name']?>" ,
+            },
+            type: "POST",
+            dataType: "json",
+            }).done(function(data) {
+                if (data.error) {
+                    alert(data.error);
+                    return false;
+                } 
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status); // 상태값 출력 (404,500)
+                    console.log(textStatus); // 상태에 대한 텍스트 출력 (error)
+                    if(jqXHR.status == 404){
+                        alert('올바른 방법으로 다시 이용해주세요-');
+                    }
+            });
+        })
+
     $("a.view_image").click(function() {
         window.open(this.href, "large_image", "location=yes,links=no,toolbar=no,top=10,left=10,width=10,height=10,resizable=yes,scrollbars=no,status=no");
         return false;

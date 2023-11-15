@@ -296,7 +296,7 @@ $pg_anchor = '<ul class="anchor">
     <li><a href="#anc_cf_vote_mail">투표메일</a></li>
     <li><a href="#anc_cf_sns">SNS</a></li>
     <li><a href="#anc_cf_lay">레이아웃 추가설정</a></li>
-    <li><a href="#anc_cf_sms">SMS</a></li>
+    <li><a href="#anc_cf_sms">SMS / 카카오 알림톡</a></li>
     <li><a href="#anc_cf_extra">여분필드</a></li>
 </ul>';
 
@@ -1242,7 +1242,7 @@ include_once('_rewrite_config_form.php');
 
 
 <section id="anc_cf_sms">
-    <h2 class="h2_frm">SMS</h2>
+    <h2 class="h2_frm">SMS 및 카카오 알림톡(솔라피)</h2>
     <?php echo $pg_anchor ?>
 
     <div class="tbl_frm01 tbl_wrap">
@@ -1259,6 +1259,7 @@ include_once('_rewrite_config_form.php');
                 <select id="cf_sms_use" name="cf_sms_use">
                     <option value="" <?php echo get_selected($config['cf_sms_use'], ''); ?>>사용안함</option>
                     <option value="icode" <?php echo get_selected($config['cf_sms_use'], 'icode'); ?>>아이코드</option>
+                    <option value="solapi" <?php echo get_selected($config['cf_sms_use'], 'solapi'); ?>>솔라피</option>
                 </select>
             </td>
         </tr>
@@ -1329,6 +1330,60 @@ include_once('_rewrite_config_form.php');
                 <a href="http://icodekorea.com/res/join_company_fix_a.php?sellid=sir2" target="_blank" class="btn_frmline">아이코드 회원가입</a>
             </td>
         </tr>
+
+        <!-- 솔라피 관련 input 추가 -->
+        <tr class="icode_json_version">
+            <th scope="row" colspan="2">
+                카카오톡 알림톡 (솔라피) 설정 관련 - 모두 정확히 입력해주셔야 발송 됩니다
+                <br>
+                <br>
+                <a href="https://console.solapi.com/signup" target="_blank" class="btn_frmline">솔라피 회원가입</a>
+            </th>
+        </tr>
+
+        <tr class="solapi_config">
+            <th scope="row"><label for="cf_solapi_api">솔라피 API Key</label></th>
+            <td>
+                <?php echo help("솔라피 : [개발/연동] > [API Key 관리] >  API Key 항목의 값"); ?>
+                <input type="password" name="cf_1" value="<?php echo get_sanitize_input($config['cf_1']); ?>" id="cf_solapi_api" class="frm_input">
+            </td>
+        </tr>
+
+        <tr class="solapi_config">
+            <th scope="row"><label for="cf_solapi_sec_api">솔라피 API Secret</label></th>
+            <td>
+                <?php echo help("솔라피 : [개발/연동] > [API Key 관리] >  API Secret 항목의 값"); ?>
+                <input type="password" name="cf_2" value="<?php echo get_sanitize_input($config['cf_2']); ?>" id="cf_solapi_sec_api" class="frm_input">
+            </td>
+        </tr>
+
+        <tr class="solapi_config">
+            <th scope="row"><label for="cf_solapi_pf">솔라피 API 프로필 ID</label></th>
+            <td>
+                <?php echo help("솔라피 : [외부 채널 발송] > [카카오 알림톡 탬플릿] > 해당 탬플릿 클릭 >  PFID (Channel ID) 항목의 값"); ?>
+                <input type="password" name="cf_3" value="<?php echo get_sanitize_input($config['cf_3']); ?>" id="cf_solapi_pf" class="frm_input">
+            </td>
+        </tr>
+
+
+        <tr class="solapi_config">
+            <th scope="row"><label for="cf_solapi_tp_id">솔라피 API 탬플릿 ID</label></th>
+            <td>
+                <?php echo help("솔라피 : [외부 채널 발송] > [카카오 알림톡 탬플릿] > 해당 탬플릿 클릭 > Template ID 항목의 값"); ?>
+                <input type="password" name="cf_4" value="<?php echo get_sanitize_input($config['cf_4']); ?>" id="cf_solapi_tp_id" class="frm_input">
+            </td>
+        </tr>
+
+        <tr class="solapi_config">
+            <th scope="row"><label for="cf_solapi_tel">카카오 비즈니스 채널 <br/> 전화번호</label></th>
+            <td>
+                <?php echo help("연동된 비즈니스채널의 대표번호를 입력해주세요 숫자만 입력"); ?>
+                <input type="text" name="cf_5" value="<?php echo get_sanitize_input($config['cf_5']);?>" id="cf_solapi_tel" class="frm_input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+            </td>
+        </tr>
+
+
+
         </tbody>
         </table>
     </div>
@@ -1350,7 +1405,7 @@ include_once('_rewrite_config_form.php');
             <col>
         </colgroup>
         <tbody>
-        <?php for ($i=1; $i<=10; $i++) { ?>
+        <?php for ($i=6; $i<=10; $i++) { ?>
         <tr>
             <th scope="row">여분필드<?php echo $i ?></th>
             <td class="td_extra">

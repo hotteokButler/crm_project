@@ -98,7 +98,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
 
     <? //D-day 계산 (오늘날짜 기준)
 
-    $d_start = date("Y-m-d", time());;
+    $d_start = date("Y-m-d", time());
     $d_day_count = floor((strtotime(date($row['mb_fdate'])) - strtotime($d_start)) / 86400 );
     if ($d_day_count <= 0) {
       $d_day_count = '<span class="event_btn event_end fw900 ft_sblue">치료종료</span>';
