@@ -84,8 +84,8 @@ if(($is_admin || $member['mb_level'] >=9 )) {
     <? // 검색된 회원 정보 가져오기
     
     $sql_is_member = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = {$member['mb_id']} order by mb_name ";        
-    $sql_by_stx = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = {$stx} order by mb_name ";
-    $sql_by_birth_and_name = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_name = {$stx} and mb_1 ={$wr_5} order by mb_name ";
+    $sql_by_stx = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = '{$stx}' order by mb_name ";
+    $sql_by_birth_and_name = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_name = '{$stx}' and mb_1 ='{$wr_5}' order by mb_name ";
 
 
     if ( $is_member && !$is_admin) {
