@@ -42,7 +42,7 @@ if ($bo_table == "crm" && !$is_admin){
         echo'
         <script>
         $(function(){
-            $("li.empty_list").append("<button class=\"go_to_list\"><a href=\"/bbs/board.php?bo_table=crm\">목록으로 돌아가기</a></button>");
+            $("li.empty_list").append("<button type=\"button\" class=\"go_to_list\"><a href=\"/bbs/board.php?bo_table=crm\">목록으로 돌아가기</a></button>");
           });
         </script>';
     };
