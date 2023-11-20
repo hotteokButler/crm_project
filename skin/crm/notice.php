@@ -1,3 +1,8 @@
+<?php
+if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+?>
+
+
 <div class="crm_notice">
     <span class="crm_notice_icon ft_red">
         <img src="<?=$board_skin_url;?>/img/notice_ico.png" alt="">

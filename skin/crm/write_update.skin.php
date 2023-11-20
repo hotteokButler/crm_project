@@ -21,6 +21,5 @@ include_once('./_common.php');
 //                  wr_20 = '$wr_20'
 //           where wr_id = '$wr_id' ";
 // sql_query($sql);
-
 ?>
 

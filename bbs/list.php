@@ -104,12 +104,20 @@ $notice_array = array();
 $is_board_crm = ($bo_table == "crm") ? $is_search_bbs : !$is_search_bbs;
 // crm 검색에 따른 pin고정
 $pin_sql ='';
-if($bo_table == "crm" && $sfl == 'wr_1' ) {
-    $pin_sql .= " and wr_1={$stx}";
-} elseif ($bo_table == "crm" && $sfl == 'wr_2') {
-    $pin_sql .= " and wr_2='{$stx}' and wr_5='{$wr_5}'";
-} elseif ($bo_table == "crm" && $is_member && !$sfl) {
-    $is_board_crm =!$is_search_bbs;
+
+if (($is_admin || $member['mb_level'] >=9)) {
+    if($bo_table == "crm" && $sfl == 'wr_1' ) {
+        $pin_sql .= " and wr_1={$stx}"; 
+    
+    } elseif ($bo_table == "crm" && $sfl == 'wr_2') {
+        $pin_sql .= " and wr_2='{$stx}' and wr_5='{$wr_5}'";
+    
+    } elseif ($bo_table == "crm" && $is_member && !$sfl) {
+        $is_board_crm = !$is_search_bbs;
+        $pin_sql .= " and wr_1='{$member['mb_id']}' ";
+    }
+} else {
+    $is_board_crm = !$is_search_bbs;
     $pin_sql .= " and wr_1='{$member['mb_id']}' ";
 }
 

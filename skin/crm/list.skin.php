@@ -7,8 +7,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">', 0);
 
-?>
+add_javascript('<script src="'.$board_skin_url.'/js/skin.custom.js"></script>', 1);
+// 관리자일때만 
+if(($is_admin || $member['mb_level'] >=9 )) {
+    add_javascript('<script src="'.$board_skin_url.'/js/foradm.custom.js"></script>', 1);
+}
 
+?>
 
 <? include_once('menu.skin.php');?>
 
@@ -76,12 +81,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
     <input type="hidden" name="sw" value="">
 
 
-      
     <? // 검색된 회원 정보 가져오기
     
-    $sql_is_member = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = '".$member['mb_id']."' order by mb_name ";        
-    $sql_by_stx = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = '$stx' order by mb_name ";
-    $sql_by_birth_and_name = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_name = '$stx' and mb_1 = '$wr_5' order by mb_name ";
+    $sql_is_member = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = {$member['mb_id']} order by mb_name ";        
+    $sql_by_stx = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_id = {$stx} order by mb_name ";
+    $sql_by_birth_and_name = "select * from {$g5['member_table']} where (mb_level in (6,5)) and mb_name = {$stx} and mb_1 ={$wr_5} order by mb_name ";
 
 
     if ( $is_member && !$is_admin) {
@@ -133,7 +137,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/list.css">'
                 <span> <?= $row['mb_name']?></span>
             </p>
         </div>
-
         <ul class="crm_info">
             <li class="crm_info_li">
                 <span class="fw900 ft_sblue"><?=$row['mb_sdate'] ? $row['mb_sdate']: '0' ?></span>
@@ -476,11 +479,8 @@ function select_copy(sw) {
     f.action = g5_bbs_url+"/move.php";
     f.submit();
 }
-
 </script>
-<!--게시판 리스트 관리자 옵션  -->
-<script src="<?=$board_skin_url?>/foradm.custom.js"></script>
+
 <?php } ?>
-<script src="<?=$board_skin_url?>/skin.custom.js"></script>
 
 <!-- } 게시판 목록 끝 -->

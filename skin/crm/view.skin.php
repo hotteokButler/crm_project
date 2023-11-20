@@ -15,12 +15,11 @@ include_once(G5_LIB_PATH.'/thumbnail.lib.php');
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/view.css">', 0);
-add_javascript('<script src="'.$board_skin_url.'/skin.custom.js"></script>', 1);
+add_javascript('<script src="'.$board_skin_url.'/js/skin.custom.js"></script>', 1);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.css">', 0);
 ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
-<link rel="stylesheet" href="/theme/basic/css/style.css">
 
 
 <? include_once('menu.skin.php');?>
@@ -293,36 +292,47 @@ $(function() {
     
 
     $('.view_kakao_btn') && 
-        $('.view_kakao_btn').on('click', ()=>{
-            
-        $.ajax({
-            url: "<?=$board_skin_url;?>/solapi/send_alimtalk.php",
-            data: {
-            "bo_table" : "<?=$bo_table?>",
-            "wr_id" : "<?=$wr_id?>",
-            "wr_8": "<?=date('Y-m-d')?>",
-            "wr_9": "<?=$member["mb_name"] ?>",
-            "wr_10": "<?=$view_url_link?>",
-            "tel_number" : "<?=$member_row['mb_hp'] ? $member_row['mb_hp'] : $member_row['mb_tel'] ?>",
-            "temp_reserv_date" : "<?=$view['wr_6']?>",
-            "temp_reserv_time" : "<?=$view['wr_7']?>",
-            "temp_name" : "<?=$member_row['mb_name']?>" ,
-            },
-            type: "POST",
-            dataType: "json",
-            }).done(function(data) {
-                if (data.error) {
-                    alert(data.error);
-                    return false;
-                } 
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR.status); // 상태값 출력 (404,500)
-                    console.log(textStatus); // 상태에 대한 텍스트 출력 (error)
-                    if(jqXHR.status == 404){
-                        alert('올바른 방법으로 다시 이용해주세요-');
-                    }
+        $('.view_kakao_btn').on('click', (e)=>{ 
+            e.preventDefault();
+            if (confirm(`
+             수신인 : <?=$member_row["mb_name"] ?>\n
+             수신번호 : <?=$member_row['mb_hp'] ? $member_row['mb_hp'] : $member_row['mb_tel'] ?> \n
+             (확인 클릭 시 알림톡 발송됩니다)
+            `)) {
+                $.ajax({
+                    url: "<?=$board_skin_url;?>/solapi/send_alimtalk.php",
+                    data: {
+                    "bo_table" : "<?=$bo_table?>",
+                    "wr_id" : "<?=$wr_id?>",
+                    "wr_8": "<?=date('Y-m-d')?>",
+                    "wr_9": "<?=$member["mb_name"] ?>",
+                    "wr_10": "<?=$view_url_link?>",
+                    "tel_number" : "<?=$member_row['mb_hp'] ? $member_row['mb_hp'] : $member_row['mb_tel'] ?>",
+                    "temp_reserv_date" : "<?=$view['wr_6']?>",
+                    "temp_reserv_time" : "<?=$view['wr_7']?>",
+                    "temp_name" : "<?=$member_row['mb_name']?>" ,
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    }).done(function(data) {
+                        if (data.error) {
+                            alert(data.error);
+                            return false;
+                        } 
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR.status); // 상태값 출력 (404,500)
+                            console.log(textStatus); // 상태에 대한 텍스트 출력 (error)
+                            if(jqXHR.status == 404){
+                                alert('올바른 방법으로 다시 이용해주세요-');
+                            }
+                    });
+                } else {
+                   alert('취소되었습니다.');
+                }
             });
-        })
+
+
+
 
     $("a.view_image").click(function() {
         window.open(this.href, "large_image", "location=yes,links=no,toolbar=no,top=10,left=10,width=10,height=10,resizable=yes,scrollbars=no,status=no");
