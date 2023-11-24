@@ -315,16 +315,17 @@ $(function() {
                     type: "POST",
                     dataType: "json",
                     }).done(function(data) {
+                        alert('정상적으로 전송 되었습니다');
                         if (data.error) {
                             alert(data.error);
                             return false;
                         } 
                     }).fail(function (jqXHR, textStatus, errorThrown) {
-                            console.log(jqXHR.status); // 상태값 출력 (404,500)
-                            console.log(textStatus); // 상태에 대한 텍스트 출력 (error)
-                            if(jqXHR.status == 404){
-                                alert('올바른 방법으로 다시 이용해주세요-');
-                            }
+                        console.log(jqXHR.status); // 상태값 출력 (404,500)
+                        console.log(textStatus); // 상태에 대한 텍스트 출력 (error)
+                        if(jqXHR.status == 404){
+                            alert('올바른 방법으로 다시 이용해주세요-');
+                        }
                     });
                 } else {
                    alert('취소되었습니다.');
