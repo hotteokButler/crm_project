@@ -32,7 +32,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.c
             <?php if ($category_name) { ?>
             <span class="bo_v_cate"><?php echo $view['ca_name']; // 분류 출력 끝 ?></span> 
             <?php } ?>            
-            <a href="/bbs/board.php?bo_table=crm&page=&sca=&sfl=wr_1&stx=<?=$view['wr_1']?>"></a>
+            <a href="/bbs/board.php?bo_table=crm<?=($is_admin || $member['mb_level'] >=9 ) ? '&page=&sca=&sfl=wr_1&stx='.$view['wr_1'] :'' ?>"></a>
             <p class="bo_v_tit color_point m">
             <?php
             echo cut_str(get_text($view['wr_subject']), 70); // 글제목 출력
