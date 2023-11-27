@@ -35,17 +35,16 @@ $sql = "
 $temp_reserv_txt = $temp_reserv_date && $temp_reserv_time ? $temp_reserv_date."(".$temp_reserv_time.")" : "다음 예약이 없습니다.";
 
 
+if(sql_query($sql)){
 
-if($config['cf_sms_use'] == 'solapi') { 
 
-if(sql_query($sql)) {
-    
 /*
  * 한번 요청으로 1만건의 알림톡 발송이 가능합니다.
  * 템플릿 내용에 변수가 있는 경우 반드시 변수: 값 을 입력하세요.
  */
 require_once("message.php");
 // sms solapi 사용 시에만 발송
+if($config['cf_sms_use'] == 'solapi') { 
 
 $messages = array(
     array(
@@ -67,12 +66,13 @@ $messages = array(
 
 
 send_messages($messages);
+
 // 중복 수신번호를 허용하실 경우 아래와 같이 실행하시면 됩니다.
 // print_r(send_messages($messages, true));
-} else {
+ } else {
     print_r(send_messages($messages, true));
-}
-
+ }
+	// die(json_encode(array('error'=>'')));
 }else{
 	die(json_encode(array('error'=>'접수에 문제가 있습니다. 관리자에게 문의하세요.')));
 }

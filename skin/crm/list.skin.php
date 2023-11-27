@@ -11,6 +11,10 @@ add_javascript('<script src="'.$board_skin_url.'/js/skin.custom.js"></script>', 
 // 관리자일때만 
 if(($is_admin || $member['mb_level'] >=9 )) {
     add_javascript('<script src="'.$board_skin_url.'/js/foradm.custom.js"></script>', 1);
+} 
+// 최고 관리자일때만
+if(!$is_admin) {
+    add_javascript('<script src="'.$board_skin_url.'/js/block.js"></script>', 1);
 }
 
 ?>

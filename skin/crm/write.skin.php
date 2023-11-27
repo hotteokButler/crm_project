@@ -6,6 +6,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/write.css">
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">', 0);
 add_javascript('<script src="'.$board_skin_url.'/js/skin.custom.js"></script>', 1);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.css">', 0);
+// 최고 관리자일때만
+if(!$is_admin) {
+    add_javascript('<script src="'.$board_skin_url.'/js/block.js"></script>', 1);
+}
 
 
 // 6등급 회원 조회 
@@ -165,58 +169,6 @@ $attrs=NULL ) {
         $age     = floor(($now - $birth_time)/10000);
     ?>
 
-
-    <?if(!$is_admin && $member['mb_level'] <=8){?>
-        <div class="crm_info_wrap">
-            <div class="crm_pf_wrap">
-                <p class="crm_pf">
-                    <?    
-                        $mb_prof_dir = substr($row['mb_id'],0,2);
-                        $mb_prof_file = G5_DATA_PATH.'/member/'.$mb_prof_dir.'/'.get_mb_icon_name($row['mb_id']).'.gif';
-                        
-                        if (file_exists($mb_prof_file)) 
-                            echo get_member_profile_img($row['mb_id']);
-                    ?>
-                    <span> <?= $row['mb_name']?></span>
-                </p>
-            </div>
-
-            <ul class="crm_info">
-                <li class="crm_info_li">
-                    <span class="fw900 ft_sblue"><?=$row['mb_sdate'] ? $row['mb_sdate']: '0' ?></span>
-                    <p class="fw700 ft_blue">치료 시작일</p>
-                </li>
-                <li class="crm_info_li">
-                    <span class="fw900 ft_sblue"><?=$row['mb_sdate'] ? $row['mb_fdate']: '0' ?></span>
-                    <p class="fw700 ft_blue">치료 종료 예상일</p>
-                </li>
-                <li class="crm_info_li">
-                    <span class="fw900 ft_sblue"><?php echo number_format($total_count) ?></span>
-                    <p class="fw700 ft_blue">스토리</p>
-                </li>
-                <li class="crm_info_li">
-                    <?= $d_day_count ?>
-                    <p class="fw700 ft_blue">남은 기간</p>
-                </li>
-            </ul>
-        </div>
-
-        <ul class="crm_info_detail">
-            <li class="crm_info_detail_li">
-                <p class="fw700 ft_blue">CASE</p>
-                <p><?= $row['mb_2']?></p>
-            </li>
-            <li class="crm_info_detail_li">
-                <p class="fw700 ft_blue">치료형태</p>
-                <p><?= $row['mb_3']?></p>
-            </li>
-            <li class="crm_info_detail_li">
-                <p class="fw700 ft_blue">사용장치</p>
-                <p><?= $row['mb_7']?></p>
-            </li>
-        </ul>
-   <?}?>
-
    <?if($is_admin || $member['mb_level'] >=9 ){?>
         <div class="crm_info_wrap">
             <div class="crm_pf_wrap">
@@ -243,14 +195,7 @@ $attrs=NULL ) {
                     <span class="fw900 ft_sblue"><?=$row['mb_sdate'] ? $row['mb_fdate']: '0' ?></span>
                     <p class="fw700 ft_blue">치료 종료 예상일</p>
                 </li>
-                <li class="crm_info_li">
-                    <span class="fw900 ft_sblue"><?php echo number_format($total_count) ?></span>
-                    <p class="fw700 ft_blue">스토리</p>
-                </li>
-                <li class="crm_info_li">
-                    <?= $d_day_count ?>
-                    <p class="fw700 ft_blue">남은 기간</p>
-                </li>
+
             </ul>
         </div>
 

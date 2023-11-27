@@ -253,7 +253,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
         </td>
         <th scope="row"><label for="mb_tel">보호자 휴대폰번호</label></th>
         <td>
-            <input class="required frm_input" type="text" name="mb_tel" oninput="oninputPhone(this)" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" size="15" maxlength="20">
+            <input class="frm_input" type="text" name="mb_tel" oninput="oninputPhone(this)" value="<?php echo $mb['mb_tel'] ?>" id="mb_tel" size="15" maxlength="20">
             <span>예&#41;010-1234-1234</span>
         </td>
     </tr>

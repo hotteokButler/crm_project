@@ -17,9 +17,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/style.css">
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/view.css">', 0);
 add_javascript('<script src="'.$board_skin_url.'/js/skin.custom.js"></script>', 1);
 add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.css">', 0);
+// 최고 관리자일때만
+if(!$is_admin) {
+    add_javascript('<script src="'.$board_skin_url.'/js/block.js"></script>', 1);
+}
 ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
+
 
 
 <? include_once('menu.skin.php');?>
@@ -246,8 +251,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/css/info_list.c
     <?php } ?>
 
     <?php
-    // 코멘트 입출력
-    include_once(G5_BBS_PATH.'/view_comment.php');
+        if($is_admin || $member['mb_level'] >=9) {
+            // 코멘트 입출력
+            include_once(G5_BBS_PATH.'/view_comment.php');
+        }
 	?>
 </article>
 <!-- } 게시판 읽기 끝 -->
@@ -315,11 +322,13 @@ $(function() {
                     type: "POST",
                     dataType: "json",
                     }).done(function(data) {
-                        alert('정상적으로 전송 되었습니다');
+                        console.log(data);
                         if (data.error) {
                             alert(data.error);
                             return false;
-                        } 
+                        } else {
+                        alert('정상적으로 전송 되었습니다');
+                        }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR.status); // 상태값 출력 (404,500)
                         console.log(textStatus); // 상태에 대한 텍스트 출력 (error)
